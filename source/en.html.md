@@ -5,7 +5,7 @@ language_tabs:
   - http: HTTP
 
 toc_footers:
-  - <a href="/zh.html">中文</a>
+  - <a href="/index.html">中文</a>
   - <a href="/th.html">ภาษาไทย</a>
   - <a href="http://www.fulfillment.com">Flash Express</a>
 
