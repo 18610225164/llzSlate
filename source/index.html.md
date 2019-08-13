@@ -1,12 +1,12 @@
 ---
-title: FlashExpress Open API Reference
+title: Fulfillment Open API Reference
 
 language_tabs:
   - http: HTTP
 
 toc_footers:
   - <a href="/zh.html">中文</a>
-  - <a href="http://www.flashexpress.com">Flash Express</a>
+  - <a href="http://www.fulfillment.com">Flash Express</a>
 
 includes: []
 
@@ -23,8 +23,8 @@ API Basic Endpoints:
 
 Env        | Endpoint
 ---        | --------
-Sandbox    | https://api-sandbox.flashexpress.com
-Production | https://api.flashexpress.com
+Sandbox    | https://api-sandbox.fulfillment.com
+Production | https://api.fulfillment.com
 
 # API Reference
 ## The Basic Standard
@@ -62,7 +62,7 @@ The API respond a `JSON` format data, and it includes three parameters as follow
 
 ```http
 POST /open/v1/ping HTTP/1.1
-Host: api-sandbox.flashexpress.com
+Host: api-sandbox.fulfillment.com
 Accept: application/json
 Accept-Language: th
 ```
@@ -185,7 +185,7 @@ the `nonceStr` parameter in this open platform API specification, is used to ens
 
 ```http
 POST /open/v1/warehouses HTTP/1.1
-Host: api-sandbox.flashexpress.com
+Host: api-sandbox.fulfillment.com
 Content-Type: application/x-www-form-urlencoded
 Accept: application/json
 ```
@@ -267,7 +267,7 @@ getAllWarehouses
 
 ```http
 POST /open/v1/orders HTTP/1.1
-Host: api-sandbox.flashexpress.com
+Host: api-sandbox.fulfillment.com
 Content-Type: application/x-www-form-urlencoded
 Accept: application/json
 ```
@@ -385,7 +385,7 @@ You could specify shipper's information of the parcel in 2 ways.</br>
 
 ```http
 POST /open/v1/orders/TH4714A27/cancel HTTP/1.1
-Host: api-sandbox.flashexpress.com
+Host: api-sandbox.fulfillment.com
 Content-Type: application/x-www-form-urlencoded
 Accept: application/json
 ```
@@ -431,7 +431,7 @@ None.
 
 ```http
 POST /open/v1/orders/TH01011C27/routes HTTP/1.1
-Host: api-sandbox.flashexpress.com
+Host: api-sandbox.fulfillment.com
 Accept: application/json
 ```
 
@@ -512,7 +512,7 @@ sign: 'EB1C59F14A1A616DE861E7F09C0FD2949B64EAD98B3D649EA2D73CA0328D77B7'
 
 ```http
 POST /open/v1/orders/TH01011C27/deliveredInfo HTTP/1.1
-Host: api-sandbox.flashexpress.com
+Host: api-sandbox.fulfillment.com
 Accept: application/json
 ```
 
@@ -575,7 +575,7 @@ sign: '9B9519983FEC2B2C3BBD15FF1F858ACEA681E4800B82863EEB91163E87E7B2D9'
 
 ```http
 POST /open/v1/orders/TH01011C27/pre_print HTTP/1.1
-Host: api-sandbox.flashexpress.com
+Host: api-sandbox.fulfillment.com
 Accept: application/pdf
 ```
 
@@ -620,7 +620,7 @@ pdf file stream of label
 
 ```http
 POST /open/v1/ordersByMchPno HTTP/1.1
-Host: api-sandbox.flashexpress.com
+Host: api-sandbox.fulfillment.com
 Content-Type: application/x-www-form-urlencoded
 Accept: application/json
 ```
@@ -732,7 +732,7 @@ You could specify shipper's information of the parcel in 2 ways.</br>
 
 ```http
 POST /open/v1/orders/consumer HTTP/1.1
-Host: api-sandbox.flashexpress.com
+Host: api-sandbox.fulfillment.com
 Content-Type: application/x-www-form-urlencoded
 Accept: application/json
 ```
@@ -842,7 +842,7 @@ create consumer order
 
 ```http
 POST /open/v1/notifications HTTP/1.1
-Host: api-sandbox.flashexpress.com
+Host: api-sandbox.fulfillment.com
 Content-Type: application/x-www-form-urlencoded
 Accept: application/json
 ```
@@ -953,7 +953,7 @@ getAllNotificationsInDate
 
 ```http
 POST /open/v1/notify HTTP/1.1
-Host: api-sandbox.flashexpress.com
+Host: api-sandbox.fulfillment.com
 Content-Type: application/x-www-form-urlencoded
 Accept: application/json
 ```
@@ -1021,7 +1021,7 @@ None.
 
 ```http
 POST /open/v1/orders/TH4714A27/cancel HTTP/1.1
-Host: api-sandbox.flashexpress.com
+Host: api-sandbox.fulfillment.com
 Content-Type: application/x-www-form-urlencoded
 Accept: application/json
 ```

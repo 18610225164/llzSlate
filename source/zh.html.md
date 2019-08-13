@@ -1,12 +1,12 @@
 ---
-title: FlashExpress 开放平台接口
+title: Fulfillment 开放平台接口
 
 language_tabs:
   - http: HTTP
 
 toc_footers:
   - <a href="/">English</a>
-  - <a href="http://www.flashexpress.com">Flash Express</a>
+  - <a href="http://www.fulfillment.com">Flash Express</a>
 
 includes: []
 
@@ -23,8 +23,8 @@ API Base Endpoints:
 
 Env        | Endpoint
 ---        | --------
-Sandbox    | https://api-sandbox.flashexpress.com
-Production | https://api.flashexpress.com
+Sandbox    | https://api-sandbox.fulfillment.com
+Production | https://api.fulfillment.com
 
 # 接口规范
 ## 基本规范
@@ -62,7 +62,7 @@ Production | https://api.flashexpress.com
 
 ```http
 POST /open/v1/ping HTTP/1.1
-Host: api-sandbox.flashexpress.com
+Host: api-sandbox.fulfillment.com
 Accept: application/json
 Accept-Language: th
 ```
@@ -178,94 +178,12 @@ body=%E4%B9%94%E5%B3%B0%26%E6%85%95%E5%AE%B9&mch_id=5a7bdfd22593414adb72df5f&non
 ## 生成随机数算法
 开放平台接口规范中包含字段 `nonce_str`, 主要保证签名不可预测. 我们推荐生成随机数算法如下: 调用随机数函数生成, 将得到的值转换为字符串.
 
-# 维护数据 API
-## 查询商户所有仓库 `/warehouses`
-
-```http
-POST /open/v1/warehouses HTTP/1.1
-Host: api-sandbox.flashexpress.com
-Content-Type: application/x-www-form-urlencoded
-Accept: application/json
-```
-
-> 请求示例
-
-```css
-mchId=UBP18100020&nonceStr=1525314174723&sign=7DE4B504A237BDC961A30A7BF1C9AFF6FB6F386C02A2F7E1FD4F0B1B6B01FB00
-```
-
-> 请求示例参数详情
-
-```yaml
-mchId: 'UBP18100020'
-nonceStr: '1525314174723'
-sign: '7DE4B504A237BDC961A30A7BF1C9AFF6FB6F386C02A2F7E1FD4F0B1B6B01FB00'
-```
-
-`POST /open/v1/warehouses`
-
-查询商户所有仓库
-
-### 请求参数
-
-|名称|数据类型|是否必填|说明|
-|---|---|---|---|
-|mchId|string(32)|true|商户号|
-|nonceStr|string(32)|true|随机数|
-|sign|string(64)|true|签名|
-
-> 返回数据体示例
-
-```json
-{
-	"code": 1,
-	"message": "success",
-	"data": [{
-		"warehouseNo": "UBP18100020_001",
-		"name": "UBP18100020_001",
-		"countryName": "Thailand",
-		"provinceName": "อุบลราชธานี",
-		"cityName": "เมืองอุบลราชธานี",
-		"districtName": "แจระแม",
-		"postalCode": "34000",
-		"detailAddress": "68/5-6 ม.1 บ้านท่าบ่อ",
-		"phone": "0630101454",
-		"srcName": "หอมรวม"
-	}, {
-		"warehouseNo": "UBP18100020_002",
-		"name": "UBP18100020_002",
-		"countryName": "Thailand",
-		"provinceName": "กรุงเทพ",
-		"cityName": "บางแค",
-		"districtName": "บางแค",
-		"postalCode": "10160",
-		"detailAddress": "11/369 ซ.53 หมู่ 7 ถ.กาญจนาภิเษก",
-		"phone": "0888027955",
-		"srcName": "เอกรินทร์"
-	}]
-}
-```
-
-### 返回数据体
-
-|名称|数据类型|说明|
-|---|---|---|
-|warehouseNo|string(32)|商户仓库编号|
-|countryName|string(100)|仓库国家名称|
-|provinceName|string(150)|仓库省名称(一级行政区划)|
-|cityName|string(150)|仓库市名称(二级行政区划)|
-|districtName|string(150)|仓库区名称(三级行政区划)|
-|postalCode|string(20)|仓库邮政编码|
-|detailAddress|string(200)|仓库详细地址|
-|phone|string(20)|寄件人联系方式|
-|srcName|string(50)|寄件人姓名|
-
-# 订单 API
-## 创建订单 `/orders`
+# open_api
+## 仓库库存查询 `POST` `/open/goodsStock`
 
 ```http
 POST /open/v1/orders HTTP/1.1
-Host: api-sandbox.flashexpress.com
+Host: api-sandbox.fulfillment.com
 Content-Type: application/x-www-form-urlencoded
 Accept: application/json
 ```
@@ -273,275 +191,103 @@ Accept: application/json
 > 请求示例
 
 ```css
-mchId=UBP18100020&nonceStr=1526461166805&sign=CD03E4D230D0824E804D2AB013879E39A75238C1230214840C6A31C9DF169BF5&outTradeNo=1526461166805&warehouseNo=UBP18100020_001&srcName=%E0%B8%AB%E0%B8%AD%E0%B8%A1%E0%B8%A3%E0%B8%A7%E0%B8%A1&srcPhone=0630101454&srcProvinceName=%E0%B8%AD%E0%B8%B8%E0%B8%9A%E0%B8%A5%E0%B8%A3%E0%B8%B2%E0%B8%8A%E0%B8%98%E0%B8%B2%E0%B8%99%E0%B8%B5&srcCityName=%E0%B9%80%E0%B8%A1%E0%B8%B7%E0%B8%AD%E0%B8%87%E0%B8%AD%E0%B8%B8%E0%B8%9A%E0%B8%A5%E0%B8%A3%E0%B8%B2%E0%B8%8A%E0%B8%98%E0%B8%B2%E0%B8%99%E0%B8%B5&srcPostalCode=34000&srcDetailAddress=68%2F22-6%E0%B8%A1.1%E0%B8%9A%E0%B9%89%E0%B8%B2%E0%B8%99%E0%B8%97%E0%B9%88%E0%B8%B2%E0%B8%9A%E0%B9%88%E0%B8%AD&dstName=%E0%B8%99%E0%B9%89%E0%B8%B3%E0%B8%9E%E0%B8%A3%E0%B8%B4%E0%B8%81%E0%B9%81%E0%B8%A1%E0%B9%88%E0%B8%AD%E0%B8%B3%E0%B8%9E%E0%B8%A3&dstPhone=0970209976&dstHomePhone=0970220220&dstProvinceName=%E0%B9%80%E0%B8%8A%E0%B8%B5%E0%B8%A2%E0%B8%87%E0%B9%83%E0%B8%AB%E0%B8%A1%E0%B9%88&dstCityName=%E0%B8%AA%E0%B8%B1%E0%B8%99%E0%B8%97%E0%B8%A3%E0%B8%B2%E0%B8%A2&dstPostalCode=50210&dstDetailAddress=127+%E0%B8%AB%E0%B8%A1%E0%B8%B9%E0%B9%88+3+%E0%B8%95.%E0%B8%AB%E0%B8%99%E0%B8%AD%E0%B8%87%E0%B9%81%E0%B8%AB%E0%B8%A2%E0%B9%88%E0%B8%87+%E0%B8%AD.%E0%B8%AA%E0%B8%B1%E0%B8%99%E0%B8%97%E0%B8%A3%E0%B8%B2%E0%B8%A2+%E0%B8%88.%E0%B9%80%E0%B8%8A%E0%B8%B5%E0%B8%A2%E0%B8%87%E0%B9%83%E0%B8%AB%E0%B8%A1%E0%B9%88&articleCategory=1&expressCategory=1&weight=1000&insured=1&insureDeclareValue=100000&codEnabled=1&codAmount=100000&remark=%E0%B8%82%E0%B8%B6%E0%B9%89%E0%B8%99%E0%B8%9A%E0%B8%B1%E0%B8%99%E0%B9%84%E0%B8%94
 ```
 
 > 请求示例参数说明
 
 ```yaml
-mchId: 'UBP18100020'
-nonceStr: '1526461166805'
-sign: 'CD03E4D230D0824E804D2AB013879E39A75238C1230214840C6A31C9DF169BF5'
-outTradeNo: '1526461166805'
-warehouseNo: 'UBP18100020_001'
-expressCategory: 1
-srcName: 'หอมรวม'
-srcPhone: '0630101454'
-srcProvinceName: 'อุบลราชธานี'
-srcCityName: 'เมืองอุบลราชธานี'
-srcPostalCode: '34000'
-srcDetailAddress: '68/22-6ม.1บ้านท่าบ่อ'
-dstName: 'น้ำพริกแม่อำพร'
-dstPhone: '0970209976'
-dstHomePhone: '0970220220'
-dstProvinceName: 'เชียงใหม่'
-dstCityName: 'สันทราย'
-dstPostalCode: '50210'
-dstDetailAddress: '127หมู่3ต.หนองแหย่งอ.สันทรายจ.เชียงใหม่'
-articleCategory: 1
-weight: 1000
-insured: 1
-insureDeclareValue: 100000
-codEnabled: 1
-codAmount: 100000
-remark: 'ขึ้นบันได'
+
 ```
 
-`POST /open/v1/orders`
 
-创建订单
-
-
-### 请求参数
+### 请求参数说明
 
 |名称|数据类型|是否必填|说明|
 |---|---|---|---|
-|mchId|string(32)|true|商户号|
-|nonceStr|string(32)|true|随机数|
-|sign|string(64)|true|签名|
-|outTradeNo|string(64)|true|商户订单号|
-|expressCategory|integer|true|[产品类型](#express_category)(必须为 1)|
-|warehouseNo|string(32)|false|寄件人商户仓库编号.必须是通过接口[getAllWarehouses](#getallwarehouses-warehouses)查询的商户仓库编号.|
-|srcName|string(50)|false|寄件人姓名|
-|srcPhone|string(20)|false|寄件人联系方式|
-|srcProvinceName|string(150)|false|寄件人省名称(一级行政区划)|
-|srcCityName|string(150)|false|寄件人市名称(二级行政区划)|
-|srcPostalCode|string(20)|false|寄件人邮政编码|
-|srcDetailAddress|string(200)|false|寄件人的详细地址|
-|dstName|string(50)|true|收件人姓名|
-|dstPhone|string(20)|true|收件人联系方式|
-|dstHomePhone|string(20)|true|收件人家庭联系方式或第二联系方式|
-|dstProvinceName|string(150)|true|收件人省名称(一级行政区划)|
-|dstCityName|string(150)|true|收件人市名称(二级行政区划)|
-|dstPostalCode|string(20)|true|收件人邮政编码|
-|dstDetailAddress|string(200)|true|收件人的详细地址|
-|articleCategory|integer|true|[物品类型](#article_category)|
-|weight|integer|true|重量(单位: 克)|
-|insured|integer|true|是否保价(1: 保价 0: 不保价)|
-|insureDeclareValue|integer|false|物品金额(单位: 分)|
-|codEnabled|integer|true|是否 COD(1: 是 0: 否)|
-|codAmount|integer|false|COD 金额(单位: 分)|
-|remark|string(200)|false|备注|
+|barCode|string|true|条形码 多个用,隔开，验证正则  ^[\w-]+(,[\w-]+)*|
+|warehouseId|string|false|仓库ID，不填默认全部仓库|
+|goodsStatus|string|false|质量状态[normal]正品，默认[bad]残品|
 
 > 返回数据体示例
 
 ```json
-{
-	"code": 1,
-	"message": "success",
-	"data": {
-		"pno": "TH47144P18",
-		"mchId": "UBP18100020",
-		"outTradeNo": "1526461166805"
-	}
-}
 ```
 
 ### 返回数据体
 
+***data: Array\[goodsStockInfo对象\]，goodsStockInfo对象说明：***
+
 |名称|数据类型|说明|
 |---|---|---|
-|pno|string(20)|Flash Express 运单号|
-|mchId|string(32)|商户号|
-|outTradeNo|string(64)|商户订单号|
+|availableInventory|integer|可售库存|
+|totalInventory|integer|实物库存|
+|inventory|integer|可用库存|
 
-## 作废订单 `/orders/{pno}/cancel`
+## 出库单添加 `POST /open/returnWarehouseAdd`
 
 ```http
-POST /open/v1/orders/TH4714A27/cancel HTTP/1.1
-Host: api-sandbox.flashexpress.com
+POST /open/v1/orders HTTP/1.1
+Host: api-sandbox.fulfillment.com
 Content-Type: application/x-www-form-urlencoded
 Accept: application/json
 ```
-`POST /open/v1/orders/{pno}/cancel`
-
-作废订单
-
-### 请求路径参数 (不参与签名)
-
-|名称|数据类型|是否必填|说明|
-|---|---|---|---|
-|pno|string(20)|true|Flash Express 运单号|
 
 > 请求示例
 
 ```css
-mchId=UBP18100020&nonceStr=1525312687777&sign=6981B676CF590F1F9BDC5529AF77B8396D70153F4E01FF781069261F35497389
 ```
 
 > 请求示例参数说明
 
 ```yaml
-mchId: 'UBP18100020'
-nonceStr: '1525312687777'
-sign: '6981B676CF590F1F9BDC5529AF77B8396D70153F4E01FF781069261F35497389'
+
 ```
 
-### 请求参数
+
+### 请求参数说明
 
 |名称|数据类型|是否必填|说明|
 |---|---|---|---|
-|mchId|string(32)|true|商户号|
-|nonceStr|string(32)|true|随机数|
-|sign|string(64)|true|签名|
+|warehouseId|string|true|仓库ID|
+|consigneeName|string|true|收货人|
+|consigneePhone|string|true|联系方式|
+|province|string|true|省|
+|city|string|true|市|
+|district|string|true|区|
+|postalCode|string|true|邮编|
+|consigneeAddress|string|true|详细地址|
+|goods|string|true|出库商品json, 详细说明在下方|
+|orderSn|string|true|外部订单号|
+|status|string|false|\[1\]待审核|
+|type|string|false|\[1\]退供出库|
+|channelSource|string|false|来源渠道|
+|nodeSn|string|false|网点编码|
+|logistics|string|false|配送方式【物流 logistics】 【快递express】 【 到仓自取self】|
+|outTime|string|false|期望出库时间|
+|goodsStatus|string|false|【normal】正品  【bad】残品|
+|remark|string|false|备注|
 
-> 返回数据体: 无
+***goods字段：出库商品json说明***
+
+|名称|数据类型|是否必填|说明|
+|---|---|---|---|
+|sellerGoodsId|string|true|商品id|
+|number|string|true|商品数量|
+
+> 返回数据体示例
+
+```json
+```
 
 ### 返回数据体
 
 无
 
-## 路由查询 `/orders/{pno}/routes`
+## 发货单新增 `POST` `/Order/addOrder`
 
 ```http
-POST /open/v1/orders/TH01011C27/routes HTTP/1.1
-Host: api-sandbox.flashexpress.com
-Accept: application/json
-```
-
-`POST /open/v1/orders/{pno}/routes`
-
-查询包裹路由
-
-### 请求路径参数 (不参与签名)
-
-|名称|数据类型|是否必填|说明|
-|---|---|---|---|
-|pno|string(20)|true|Flash Express 运单号|
-
-> 请求示例
-
-```css
-mchId=AA0005&nonceStr=1525315650958&sign=EB1C59F14A1A616DE861E7F09C0FD2949B64EAD98B3D649EA2D73CA0328D77B7
-```
-
-> 请求示例参数说明
-
-```yaml
-mchId: 'AA0005'
-nonceStr: '1525315650958'
-sign: 'EB1C59F14A1A616DE861E7F09C0FD2949B64EAD98B3D649EA2D73CA0328D77B7'
-```
-
-### 请求参数
-|名称|数据类型|是否必填|说明|
-|---|---|---|---|
-|mchId|string(32)|true|商户号|
-|nonceStr|string(32)|true|随机数|
-|sign|string(64)|true|签名|
-
-> 返回数据体示例
-
-```json
-{
-	"code": 1,
-	"message": "success",
-	"data": {
-		"pno": "TH01011C27",
-		"state": 5,
-		"stateText": "เซ็นรับแล้ว",
-		"routes": [{
-			"routedAt": 1523357001,
-			"routeAction": "DELIVERY_CONFIRM",
-			"message": "พัสดุของคุณถูกเซ็นรับแล้ว เซ็นรับโดย TH01011C27"
-		}, {
-			"routedAt": 1523356924,
-			"routeAction": "DELIVERY_TICKET_CREATION_SCAN",
-			"message": "มีพัสดุรอการนำส่ง กรุณารอการติดต่อจากเจ้าหน้าที่ Flash Express"
-		}, {
-			"routedAt": 1523356560,
-			"routeAction": "SHIPMENT_WAREHOUSE_SCAN",
-			"message": "พัสดุของคุณอยู่ที่ กทม. จะถูกส่งไปยัง จตุโชติ-DC"
-		}, {
-			"routedAt": 1523356029,
-			"routeAction": "RECEIVED",
-			"message": "zhao=DC พนักงานเข้ารับพัสดุแล้ว"
-		}]
-	}
-}
-```
-
-### 返回数据体
-
-|名称|数据类型|说明|
-|---|---|---|
-|pno|string(20)|Flash Express 运单号|
-|state|integer|包裹状态|
-|stateText|string(100)|包裹状态描述|
-|routes.routedAt|integer|路由发生时间戳 UTC|
-|routes.routedAction|string(29)|路由发生动作|
-|routes.message|string(500)|路由消息|
-
-## 打印 `/orders/{pno}/pre_print`
-
-```http
-POST /open/v1/orders/TH01011C27/pre_print HTTP/1.1
-Host: api-sandbox.flashexpress.com
-Accept: application/pdf
-```
-
-`POST /open/v1/orders/{pno}/pre_print`
-
-打印包裹面单
-
-### 请求路径参数 (不参与签名)
-
-|名称|数据类型|是否必填|说明|
-|---|---|---|---|
-|pno|string(20)|true|Flash Express 运单号|
-
-> 请求示例
-
-```css
-mchId=AA0005&nonceStr=1525316377546&sign=D500B8379DDB2CEDDBAF0130D1FF2A995FD3AFEFDE1EC90BBD2A1762F562FAE3
-```
-
-> 请求示例参数说明
-
-```yaml
-mchId: 'AA0005'
-nonceStr: '1525316377546'
-sign: 'D500B8379DDB2CEDDBAF0130D1FF2A995FD3AFEFDE1EC90BBD2A1762F562FAE3'
-```
-
-### 请求参数
-|名称|数据类型|是否必填|说明|
-|---|---|---|---|
-|mchId|string(32)|true|商户号|
-|nonceStr|string(32)|true|随机数|
-|sign|string(64)|true|签名|
-
-> 返回数据体 为面单 pdf 文件数据流
-
-### 返回数据体
-
-面单 pdf 文件数据流
-
-## 创建个人消费者订单 `/orders/consumer`
-
-```http
-POST /open/v1/orders/consumer HTTP/1.1
-Host: api-sandbox.flashexpress.com
+POST /open/v1/orders HTTP/1.1
+Host: api-sandbox.fulfillment.com
 Content-Type: application/x-www-form-urlencoded
 Accept: application/json
 ```
@@ -549,165 +295,167 @@ Accept: application/json
 > 请求示例
 
 ```css
-mchId=UBP18100020&nonceStr=1530763467835&sign=8D08ACD66D6C3837BB03880A48D639312F76BB70C49DF0283C431AAB9828529B&customerPhone=0630101499&outTradeNo=1530763467835&srcName=%E0%B8%AB%E0%B8%AD%E0%B8%A1%E0%B8%A3%E0%B8%A7%E0%B8%A1&srcPhone=0630101454&srcProvinceName=%E0%B8%81%E0%B8%A3%E0%B8%B8%E0%B8%87%E0%B9%80%E0%B8%97%E0%B8%9E&srcCityName=%E0%B8%AB%E0%B8%99%E0%B8%AD%E0%B8%87%E0%B8%88%E0%B8%AD%E0%B8%81&srcDistrictName=%E0%B8%A5%E0%B8%B3%E0%B8%9C%E0%B8%B1%E0%B8%81%E0%B8%8A%E0%B8%B5&srcPostalCode=10530&srcDetailAddress=68%2F5-6+%E0%B8%A1.1+%E0%B8%9A%E0%B9%89%E0%B8%B2%E0%B8%99%E0%B8%97%E0%B9%88%E0%B8%B2%E0%B8%9A%E0%B9%88%E0%B8%AD&srcLat=13.80063275&srcLng=100.84433917&dstName=%E0%B8%99%E0%B9%89%E0%B8%B3%E0%B8%9E%E0%B8%A3%E0%B8%B4%E0%B8%81%E0%B9%81%E0%B8%A1%E0%B9%88%E0%B8%AD%E0%B8%B3%E0%B8%9E%E0%B8%A3&dstPhone=0970209976&dstHomePhone=0970220220&dstProvinceName=%E0%B9%80%E0%B8%8A%E0%B8%B5%E0%B8%A2%E0%B8%87%E0%B9%83%E0%B8%AB%E0%B8%A1%E0%B9%88&dstCityName=%E0%B8%AA%E0%B8%B1%E0%B8%99%E0%B8%97%E0%B8%A3%E0%B8%B2%E0%B8%A2&dstPostalCode=50210&dstDetailAddress=127+%E0%B8%AB%E0%B8%A1%E0%B8%B9%E0%B9%88+3+%E0%B8%95.%E0%B8%AB%E0%B8%99%E0%B8%AD%E0%B8%87%E0%B9%81%E0%B8%AB%E0%B8%A2%E0%B9%88%E0%B8%87+%E0%B8%AD.%E0%B8%AA%E0%B8%B1%E0%B8%99%E0%B8%97%E0%B8%A3%E0%B8%B2%E0%B8%A2+%E0%B8%88.%E0%B9%80%E0%B8%8A%E0%B8%B5%E0%B8%A2%E0%B8%87%E0%B9%83%E0%B8%AB%E0%B8%A1%E0%B9%88&articleCategory=1&expressCategory=1&weight=1000&insured=1&insureDeclareValue=10000&remark=%E0%B8%82%E0%B8%B6%E0%B9%89%E0%B8%99%E0%B8%9A%E0%B8%B1%E0%B8%99%E0%B9%84%E0%B8%94
 ```
 
 > 请求示例参数说明
 
 ```yaml
-mchId: 'UBP18100020'
-nonceStr: '1530763467835'
-sign: '8D08ACD66D6C3837BB03880A48D639312F76BB70C49DF0283C431AAB9828529B'
-customerPhone: '0630101499'
-outTradeNo: '1530763467835'
-expressCategory: 1
-srcName: 'หอมรวม'
-srcPhone: '0630101454'
-srcProvinceName: 'กรุงเทพ'
-srcCityName: 'หนองจอก'
-srcDistrictName: 'ลำผักชี'
-srcPostalCode: '10530'
-srcDetailAddress: '68/5-6 ม.1 บ้านท่าบ่อ'
-srcLat: 13.80063275
-srcLng: 100.84433917
-dstName: 'น้ำพริกแม่อำพร'
-dstPhone: '0970209976'
-dstHomePhone: '0970220220'
-dstProvinceName: 'เชียงใหม่'
-dstCityName: 'สันทราย'
-dstPostalCode: '50210'
-dstDetailAddress: '127หมู่3ต.หนองแหย่งอ.สันทรายจ.เชียงใหม่'
-articleCategory: 1
-weight: 1000
-insured: 1
-insureDeclareValue: 100000
-remark: 'ขึ้นบันได'
+
 ```
 
-`POST /open/v1/orders/consumer`
 
-创建个人消费者订单
-
-### 请求参数
+### 请求参数说明
 
 |名称|数据类型|是否必填|说明|
 |---|---|---|---|
-|mchId|string(32)|true|商户号|
-|nonceStr|string(32)|true|随机数|
-|sign|string(64)|true|签名|
-|customerPhone|string(20)|true|个人消费者电话号码|
-|outTradeNo|string(64)|true|商户订单号|
-|expressCategory|integer|true|[产品类型](#express_category)(必须为 1)|
-|srcName|string(50)|true|寄件人姓名|
-|srcPhone|string(20)|true|寄件人联系方式|
-|srcProvinceName|string(150)|false|寄件人省名称(一级行政区划)|
-|srcCityName|string(150)|false|寄件人市名称(二级行政区划)|
-|srcDistrictName|string(150)|false|寄件人区名称(三级行政区划)|
-|srcPostalCode|string(20)|true|寄件人邮政编码|
-|srcDetailAddress|string(200)|true|寄件人的详细地址|
-|srcLat|decimal(11,8)|false|寄件人位置的纬度|
-|srcLng|decimal(11,8)|false|寄件人位置的经度|
-|dstName|string(50)|true|收件人姓名|
-|dstPhone|string(20)|true|收件人联系方式|
-|dstHomePhone|string(20)|true|收件人家庭联系方式或第二联系方式|
-|dstProvinceName|string(150)|true|收件人省名称(一级行政区划)|
-|dstCityName|string(150)|true|收件人市名称(二级行政区划)|
-|dstPostalCode|string(20)|true|收件人邮政编码|
-|dstDetailAddress|string(200)|true|收件人的详细地址|
-|articleCategory|integer|true|[物品类型](#article_category)|
-|weight|integer|true|重量(单位: 克)|
-|insured|integer|true|是否保价(1: 保价 0: 不保价)|
-|insureDeclareValue|integer|false|物品金额(单位: 分)|
-|remark|string(200)|false|备注|
+|platformSourceId|string|true|wms端添加的货主店铺主键ID|
+|orderSn|string|true|订单号|
+|orderSourceId|string|true|订单主键ID|
+|code|string|true|地址code|
+|postalCode|string|true|邮编|
+|consigneeName|string|true|收件人名称|
+|consigneeAddress|string|true|收件人详细地址|
+|phoneNumber|string|true|联系电话|
+|buyerMessage|string|true|买家留言|
+|paidPrice|string|true|订单金额|
+|logisticCharge|string|true|运费|
+|totalPrice|string|true|订单总金额|
+|payMode|string|true|支付方式  【1】货到付款  【2】银行转账|
+|goods|string|true|订单商品list\[订单商品信息的json\]|
+|type|string|true|订单类型 [1]销售订单 (默认) [2]补货订单|
+|deliverySn|string|true|原发货单号(type=2时必填)|
+
+*goods字段: 订单商品信息的json说明*
+
+|名称|数据类型|是否必填|说明|
+|---|---|---|---|
+|id|string|true|商品id|
+|num|string|true|商品数量|
+|price|string|true|商品单价|
 
 > 返回数据体示例
 
 ```json
-{
-	"code": 1,
-	"message": "success",
-	"data": {
-		"orderId": "5b3d98f7a4c2130579510116",
-		"customerPhone": "0630101499",
-		"outTradeNo": "1530763467835"
-	}
-}
 ```
-
-### 返回数据体
-
-|名称|数据类型|说明|
-|---|---|---|
-|orderId|string(32)|Flash Express订单id|
-|customerPhone|string(20)|个人消费者电话号码|
-|outTradeNo|string(64)|商户订单号|
-
-# 通知 API
-## 通知快递员揽件 `/notify`
-
-```http
-POST /open/v1/notify HTTP/1.1
-Host: api-sandbox.flashexpress.com
-Content-Type: application/x-www-form-urlencoded
-Accept: application/json
-```
-
-> 请求示例
-
-```css
-mchId=UBP18100020&nonceStr=1530089198055&sign=30C169401CF32A3B0A18B12F81EF6484D790ADC1EE839F494D37362B6C0FA47E&warehouseNo=UBP18100020_001&srcName=%E0%B8%AB%E0%B8%AD%E0%B8%A1%E0%B8%A3%E0%B8%A7%E0%B8%A1&srcPhone=0630101454&srcProvinceName=%E0%B8%AD%E0%B8%B8%E0%B8%9A%E0%B8%A5%E0%B8%A3%E0%B8%B2%E0%B8%8A%E0%B8%98%E0%B8%B2%E0%B8%99%E0%B8%B5&srcCityName=%E0%B9%80%E0%B8%A1%E0%B8%B7%E0%B8%AD%E0%B8%87%E0%B8%AD%E0%B8%B8%E0%B8%9A%E0%B8%A5%E0%B8%A3%E0%B8%B2%E0%B8%8A%E0%B8%98%E0%B8%B2%E0%B8%99%E0%B8%B5&srcPostalCode=34000&srcDetailAddress=68%2F5-6+%E0%B8%A1.1+%E0%B8%9A%E0%B9%89%E0%B8%B2%E0%B8%99%E0%B8%97%E0%B9%88%E0%B8%B2%E0%B8%9A%E0%B9%88%E0%B8%AD&estimateParcelNumber=9&remark=ASAP
-```
-
-> 请求示例参数说明
-
-```yaml
-mchId: 'UBP18100020'
-nonceStr: '1530089198055'
-sign: '30C169401CF32A3B0A18B12F81EF6484D790ADC1EE839F494D37362B6C0FA47E'
-warehouseNo: 'UBP18100020_001'
-srcName: 'หอมรวม'
-srcPhone: '0630101454'
-srcProvinceName: 'อุบลราชธานี'
-srcCityName: 'เมืองอุบลราชธานี'
-srcPostalCode: '34000'
-srcDetailAddress: '68/5-6 ม.1 บ้านท่าบ่อ'
-estimateParcelNumber: '9'
-remark: 'ASAP'
-```
-
-`POST /open/v1/notify`
-
-通知快递员揽件
-
-### 请求参数
-
-<aside class="notice">
-关于揽件地址</br>
-可以在接口中指定希望快递员去揽件的地址。</br>
-如果请求参数{srcName、srcPhone、srcProvinceName、srcCityName、srcPostalCode、srcDetailAddress}全部填写了参数值，注意必须是这几个参数全部填写了参数值，那这几个参数代表的地址就是揽件地址。</br>
-如果请求参数{srcName、srcPhone、srcProvinceName、srcCityName、srcPostalCode、srcDetailAddress}没有全部填写参数值，那必须填写请求参数"warehouseNo"的值为揽件地址。
-</aside>
-
-|名称|数据类型|是否必填|说明|
-|---|---|---|---|
-|mchId|string(32)|true|商户号|
-|nonceStr|string(32)|true|随机数|
-|sign|string(64)|true|签名|
-|warehouseNo|string(32)|false|寄件人商户仓库编号.必须是通过接口[getAllWarehouses](#getallwarehouses-warehouses)查询的商户仓库编号.|
-|srcName|string(50)|false|寄件人姓名|
-|srcPhone|string(20)|false|寄件人联系方式|
-|srcProvinceName|string(150)|false|寄件人省名称(一级行政区划)|
-|srcCityName|string(150)|false|寄件人市名称(二级行政区划)|
-|srcPostalCode|string(20)|false|寄件人邮政编码|
-|srcDetailAddress|string(200)|false|寄件人的详细地址|
-|estimateParcelNumber|integer|true|预估发件包裹数|
-|remark|string(200)|false|备注|
-
-> 返回数据体: 无
 
 ### 返回数据体
 
 无
+
+## 入库通知单新增 `POST` `/arrival_notice/create`
+
+```http
+POST /open/v1/orders HTTP/1.1
+Host: api-sandbox.fulfillment.com
+Content-Type: application/x-www-form-urlencoded
+Accept: application/json
+```
+
+> 请求示例
+
+```css
+```
+
+> 请求示例参数说明
+
+```yaml
+
+```
+
+`/open/goodsStock`
+
+
+### 请求参数说明
+
+|名称|数据类型|是否必填|说明|
+|---|---|---|---|
+|aaaaaa|string|true|bbbbbbb|
+|aaaaaa|string|true|bbbbbbb|
+|aaaaaa|string|true|bbbbbbb|
+|aaaaaa|string|true|bbbbbbb|
+|aaaaaa|string|true|bbbbbbb|
+|aaaaaa|string|true|bbbbbbb|
+|aaaaaa|string|true|bbbbbbb|
+|aaaaaa|string|true|bbbbbbb|
+|aaaaaa|string|true|bbbbbbb|
+|aaaaaa|string|true|bbbbbbb|
+|aaaaaa|string|true|bbbbbbb|
+|aaaaaa|string|true|bbbbbbb|
+|aaaaaa|string|true|bbbbbbb|
+|aaaaaa|string|true|bbbbbbb|
+
+> 返回数据体示例
+
+```json
+```
+
+### 返回数据体
+
+***data: Array\[goodsStockInfo对象\]，goodsStockInfo对象说明：***
+
+|名称|数据类型|说明|
+|---|---|---|
+|availableInventory|integer|可售库存|
+|totalInventory|integer|实物库存|
+|inventory|integer|可用库存|
+
+## 销退单新增 `POST` `/rollback_order/add`
+
+```http
+POST /open/v1/orders HTTP/1.1
+Host: api-sandbox.fulfillment.com
+Content-Type: application/x-www-form-urlencoded
+Accept: application/json
+```
+
+> 请求示例
+
+```css
+```
+
+> 请求示例参数说明
+
+```yaml
+
+```
+
+`/open/goodsStock`
+
+
+### 请求参数说明
+
+|名称|数据类型|是否必填|说明|
+|---|---|---|---|
+|aaaaaa|string|true|bbbbbbb|
+|aaaaaa|string|true|bbbbbbb|
+|aaaaaa|string|true|bbbbbbb|
+|aaaaaa|string|true|bbbbbbb|
+|aaaaaa|string|true|bbbbbbb|
+|aaaaaa|string|true|bbbbbbb|
+|aaaaaa|string|true|bbbbbbb|
+|aaaaaa|string|true|bbbbbbb|
+|aaaaaa|string|true|bbbbbbb|
+|aaaaaa|string|true|bbbbbbb|
+|aaaaaa|string|true|bbbbbbb|
+|aaaaaa|string|true|bbbbbbb|
+|aaaaaa|string|true|bbbbbbb|
+|aaaaaa|string|true|bbbbbbb|
+
+> 返回数据体示例
+
+```json
+```
+
+### 返回数据体
+
+***data: Array\[goodsStockInfo对象\]，goodsStockInfo对象说明：***
+
+|名称|数据类型|说明|
+|---|---|---|
+|availableInventory|integer|可售库存|
+|totalInventory|integer|实物库存|
+|inventory|integer|可用库存|
+
 
 # 常量表
 <h2 id="response_code">返回码 (code)</h2>
