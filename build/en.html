@@ -1,0 +1,2457 @@
+
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>Fulfillment Open API Reference</title>
+
+    <style>
+      .highlight table td { padding: 5px; }
+.highlight table pre { margin: 0; }
+.highlight .gh {
+  color: #999999;
+}
+.highlight .sr {
+  color: #f6aa11;
+}
+.highlight .go {
+  color: #888888;
+}
+.highlight .gp {
+  color: #555555;
+}
+.highlight .gs {
+}
+.highlight .gu {
+  color: #aaaaaa;
+}
+.highlight .nb {
+  color: #f6aa11;
+}
+.highlight .cm {
+  color: #75715e;
+}
+.highlight .cp {
+  color: #75715e;
+}
+.highlight .c1 {
+  color: #75715e;
+}
+.highlight .cs {
+  color: #75715e;
+}
+.highlight .c, .highlight .cd {
+  color: #75715e;
+}
+.highlight .err {
+  color: #960050;
+}
+.highlight .gr {
+  color: #960050;
+}
+.highlight .gt {
+  color: #960050;
+}
+.highlight .gd {
+  color: #49483e;
+}
+.highlight .gi {
+  color: #49483e;
+}
+.highlight .ge {
+  color: #49483e;
+}
+.highlight .kc {
+  color: #66d9ef;
+}
+.highlight .kd {
+  color: #66d9ef;
+}
+.highlight .kr {
+  color: #66d9ef;
+}
+.highlight .no {
+  color: #66d9ef;
+}
+.highlight .kt {
+  color: #66d9ef;
+}
+.highlight .mf {
+  color: #ae81ff;
+}
+.highlight .mh {
+  color: #ae81ff;
+}
+.highlight .il {
+  color: #ae81ff;
+}
+.highlight .mi {
+  color: #ae81ff;
+}
+.highlight .mo {
+  color: #ae81ff;
+}
+.highlight .m, .highlight .mb, .highlight .mx {
+  color: #ae81ff;
+}
+.highlight .sc {
+  color: #ae81ff;
+}
+.highlight .se {
+  color: #ae81ff;
+}
+.highlight .ss {
+  color: #ae81ff;
+}
+.highlight .sd {
+  color: #e6db74;
+}
+.highlight .s2 {
+  color: #e6db74;
+}
+.highlight .sb {
+  color: #e6db74;
+}
+.highlight .sh {
+  color: #e6db74;
+}
+.highlight .si {
+  color: #e6db74;
+}
+.highlight .sx {
+  color: #e6db74;
+}
+.highlight .s1 {
+  color: #e6db74;
+}
+.highlight .s {
+  color: #e6db74;
+}
+.highlight .na {
+  color: #a6e22e;
+}
+.highlight .nc {
+  color: #a6e22e;
+}
+.highlight .nd {
+  color: #a6e22e;
+}
+.highlight .ne {
+  color: #a6e22e;
+}
+.highlight .nf {
+  color: #a6e22e;
+}
+.highlight .vc {
+  color: #ffffff;
+}
+.highlight .nn {
+  color: #ffffff;
+}
+.highlight .nl {
+  color: #ffffff;
+}
+.highlight .ni {
+  color: #ffffff;
+}
+.highlight .bp {
+  color: #ffffff;
+}
+.highlight .vg {
+  color: #ffffff;
+}
+.highlight .vi {
+  color: #ffffff;
+}
+.highlight .nv {
+  color: #ffffff;
+}
+.highlight .w {
+  color: #ffffff;
+}
+.highlight {
+  color: #ffffff;
+}
+.highlight .n, .highlight .py, .highlight .nx {
+  color: #ffffff;
+}
+.highlight .ow {
+  color: #f92672;
+}
+.highlight .nt {
+  color: #f92672;
+}
+.highlight .k, .highlight .kv {
+  color: #f92672;
+}
+.highlight .kn {
+  color: #f92672;
+}
+.highlight .kp {
+  color: #f92672;
+}
+.highlight .o {
+  color: #f92672;
+}
+    </style>
+    <link href="stylesheets/screen.css" rel="stylesheet" media="screen" />
+    <link href="stylesheets/print.css" rel="stylesheet" media="print" />
+      <script src="javascripts/all.js"></script>
+  </head>
+
+  <body class="en" data-languages="[&quot;http&quot;]">
+    <a href="#" id="nav-button">
+      <span>
+        NAV
+        <img src="images/navbar.png" alt="Navbar" />
+      </span>
+    </a>
+    <div class="toc-wrapper">
+      <img src="images/logo.png" class="logo" alt="Logo" />
+        <div class="lang-selector">
+              <a href="#" data-language-name="http">HTTP</a>
+        </div>
+        <div class="search">
+          <input type="text" class="search" id="input-search" placeholder="Search">
+        </div>
+        <ul class="search-results"></ul>
+      <div id="toc" class="toc-list-h1">
+          <li>
+            <a href="#open-api-reference" class="toc-h1 toc-link" data-title="open-api-reference">Open-API Reference</a>
+          </li>
+          <li>
+            <a href="#basic-url" class="toc-h1 toc-link" data-title="basic-url">Basic URL</a>
+          </li>
+          <li>
+            <a href="#api-reference" class="toc-h1 toc-link" data-title="api-reference">API Reference</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#the-basic-standard" class="toc-h2 toc-link" data-title="the-basic-standard">The Basic Standard</a>
+                  </li>
+                  <li>
+                    <a href="#the-basic-response-data-format" class="toc-h2 toc-link" data-title="the-basic-response-data-format">The Basic Response Data Format</a>
+                  </li>
+                  <li>
+                    <a href="#internationalization-reference" class="toc-h2 toc-link" data-title="internationalization-reference">Internationalization Reference</a>
+                  </li>
+                  <li>
+                    <a href="#notices" class="toc-h2 toc-link" data-title="notices">Notices</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#the-security-reference" class="toc-h1 toc-link" data-title="the-security-reference">The Security Reference</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#signature-algorithm" class="toc-h2 toc-link" data-title="signature-algorithm">Signature Algorithm</a>
+                  </li>
+                  <li>
+                    <a href="#notice" class="toc-h2 toc-link" data-title="notice">Notice</a>
+                  </li>
+                  <li>
+                    <a href="#random-nonce-string-algorithm" class="toc-h2 toc-link" data-title="random-nonce-string-algorithm">Random nonce string algorithm</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#management-api" class="toc-h1 toc-link" data-title="management-api">Management API</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#getallwarehouses-warehouses" class="toc-h2 toc-link" data-title="getallwarehouses-code-warehouses-code">getAllWarehouses <code>/warehouses</code></a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#order-api" class="toc-h1 toc-link" data-title="order-api">Order API</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#create-order-orders" class="toc-h2 toc-link" data-title="create-order-code-orders-code">Create order <code>/orders</code></a>
+                  </li>
+                  <li>
+                    <a href="#cancel-order-orders-pno-cancel" class="toc-h2 toc-link" data-title="cancel-order-code-orders-pno-cancel-code">Cancel order <code>/orders/{pno}/cancel</code></a>
+                  </li>
+                  <li>
+                    <a href="#tracking-order-orders-pno-routes" class="toc-h2 toc-link" data-title="tracking-order-code-orders-pno-routes-code">Tracking order <code>/orders/{pno}/routes</code></a>
+                  </li>
+                  <li>
+                    <a href="#getparceldeliveredinfo-orders-pno-deliveredinfo" class="toc-h2 toc-link" data-title="getparceldeliveredinfo-code-orders-pno-deliveredinfo-code">getParcelDeliveredInfo <code>/orders/{pno}/deliveredInfo</code></a>
+                  </li>
+                  <li>
+                    <a href="#print-label-orders-pno-pre_print" class="toc-h2 toc-link" data-title="print-label-code-orders-pno-pre_print-code">Print label <code>/orders/{pno}/pre_print</code></a>
+                  </li>
+                  <li>
+                    <a href="#create-order-by-merchant-tracking-number-ordersbymchpno" class="toc-h2 toc-link" data-title="create-order-by-merchant-tracking-number-code-ordersbymchpno-code">Create order by merchant tracking number <code>/ordersByMchPno</code></a>
+                  </li>
+                  <li>
+                    <a href="#create-consumer-order-orders-consumer" class="toc-h2 toc-link" data-title="create-consumer-order-code-orders-consumer-code">Create consumer order <code>/orders/consumer</code></a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#notify-api" class="toc-h1 toc-link" data-title="notify-api">Notify API</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#getallnotificationsindate-notifications" class="toc-h2 toc-link" data-title="getallnotificationsindate-code-notifications-code">getAllNotificationsInDate <code>/notifications</code></a>
+                  </li>
+                  <li>
+                    <a href="#notify-courier-notify" class="toc-h2 toc-link" data-title="notify-courier-code-notify-code">Notify courier <code>/notify</code></a>
+                  </li>
+                  <li>
+                    <a href="#cancel-notification-notify-id-cancel" class="toc-h2 toc-link" data-title="cancel-notification-code-notify-id-cancel-code">Cancel notification <code>/notify/{id}/cancel</code></a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#constants" class="toc-h1 toc-link" data-title="constants">Constants</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#response_code" class="toc-h2 toc-link" data-title="response-code">Response Code</a>
+                  </li>
+                  <li>
+                    <a href="#express_category" class="toc-h2 toc-link" data-title="express-category">Express Category</a>
+                  </li>
+                  <li>
+                    <a href="#article_category" class="toc-h2 toc-link" data-title="article-category">Article Category</a>
+                  </li>
+                  <li>
+                    <a href="#settlement_category" class="toc-h2 toc-link" data-title="settlement-category">Settlement Category</a>
+                  </li>
+                  <li>
+                    <a href="#notification_state" class="toc-h2 toc-link" data-title="notification-state">Notification State</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#demo-download" class="toc-h1 toc-link" data-title="demo-download">Demo Download</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#demo-csharp" class="toc-h2 toc-link" data-title="c-demo">C# Demo</a>
+                  </li>
+                  <li>
+                    <a href="#demo-php" class="toc-h2 toc-link" data-title="php-demo">PHP Demo</a>
+                  </li>
+                  <li>
+                    <a href="#demo-java" class="toc-h2 toc-link" data-title="java-demo">Java Demo</a>
+                  </li>
+              </ul>
+          </li>
+      </div>
+        <ul class="toc-footer">
+            <li><a href="/zh.html">中文</a></li>
+            <li><a href="/th.html">ภาษาไทย</a></li>
+            <li><a href="http://www.fulfillment.com">Flash Express</a></li>
+        </ul>
+    </div>
+    <div class="page-wrapper">
+      <div class="dark-box"></div>
+      <div class="content">
+        <h1 id='open-api-reference'>Open-API Reference</h1>
+<p>Welcome!</p>
+<h1 id='basic-url'>Basic URL</h1>
+<p>API Basic Endpoints:</p>
+
+<table><thead>
+<tr>
+<th>Env</th>
+<th>Endpoint</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Sandbox</td>
+<td>https://api-sandbox.fulfillment.com</td>
+</tr>
+<tr>
+<td>Production</td>
+<td>https://api.fulfillment.com</td>
+</tr>
+</tbody></table>
+<h1 id='api-reference'>API Reference</h1><h2 id='the-basic-standard'>The Basic Standard</h2>
+<ul>
+<li>Transfer Protocol: For the security, we use <code>HTTPS</code> protocol.</li>
+<li>Request Method: <code>POST</code></li>
+<li>Data Format: Request datas use the <code>application/x-www-form-urlencoded</code> format, and the response data use the <code>json</code> format.</li>
+<li>Character Encoding: UTF-8</li>
+<li>Signature Algorithm: SHA256</li>
+<li>Signature Requires: The request data is required to verify signature. Please refer to the &quot;The Security Reference - Signature Algorithm&quot; for detail.</li>
+</ul>
+<h2 id='the-basic-response-data-format'>The Basic Response Data Format</h2>
+<blockquote>
+<p>Example for the Data Format:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>The API respond a <code>JSON</code> format data, and it includes three parameters as follow:</p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>code</td>
+<td>integer</td>
+<td><a href="#response_code">ResponseCode</a></td>
+</tr>
+<tr>
+<td>message</td>
+<td>string</td>
+<td>Error Message</td>
+</tr>
+<tr>
+<td>data</td>
+<td>object</td>
+<td>business data, please refer to the corresponding API</td>
+</tr>
+</tbody></table>
+<h2 id='internationalization-reference'>Internationalization Reference</h2>
+<blockquote>
+<p>Example Code</p>
+</blockquote>
+<pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/open/v1/ping</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api-sandbox.fulfillment.com</span>
+<span class="na">Accept</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Accept-Language</span><span class="p">:</span> <span class="s">th</span>
+</code></pre>
+<p>Our API supports Chinese(<code>zh-CN</code>)and Thai(<code>th</code>).
+Notice: <strong>We do not support the internationalization of administrative region, we only support Thai.</strong></p>
+
+<p>You can add the parameter <code>Accept-Language</code> in HTTP Request Header to switch the language.</p>
+<h2 id='notices'>Notices</h2>
+<aside class="notice">
+We use gram(g) as the weight basic unit. Before calling the API, you must convert the kilogram to gram. For example: 2KG -> 2000g
+</aside>
+
+<aside class="notice">
+We make a virtual unit for an amount of money: cent.
+We set 1THB = 100 cent. Before calling the API, you must convert THB to cent.
+</aside>
+<h1 id='the-security-reference'>The Security Reference</h1><h2 id='signature-algorithm'>Signature Algorithm</h2>
+<p>The common step of make a signature:</p>
+
+<blockquote>
+<p>a. suppose the request data as below:</p>
+</blockquote>
+<pre class="highlight yaml"><code><span class="na">mchId</span><span class="pi">:</span> <span class="s">5a7bdfd22593414adb72df5f</span>
+<span class="na">nonceStr</span><span class="pi">:</span> <span class="s">yyv6YJP436wCkdpNdghC</span>
+<span class="na">body</span><span class="pi">:</span> <span class="s">test</span>
+</code></pre>
+<blockquote>
+<p>b. Format the parameters with the format of <code>key=value</code>, and then sort by the ASCII code of parameter&#39;s name DESC.</p>
+</blockquote>
+<pre class="highlight yaml"><code><span class="s">stringA="body=test&amp;mchId=5a7bdfd22593414adb72df5f&amp;nonceStr=yyv6YJP436wCkdpNdghC"</span>
+</code></pre>
+<blockquote>
+<p>c. Join the API Key:</p>
+</blockquote>
+<pre class="highlight yaml"><code><span class="s">stringSignTemp=stringA+"&amp;key=dd807a8e18b40153888e5a9864e70080" //Notice:key is supported by our system.</span>
+
+<span class="s">sign=sha256(stringSignTemp).toUpperCase()="BF46380E893F6B8F5486D2EDFE265BB8942C6A9BD5C897E34373734CE08B4B67" // Notice:SHA256 signature</span>
+</code></pre>
+<blockquote>
+<p>d. The final request data as below:</p>
+</blockquote>
+<pre class="highlight yaml"><code><span class="na">mchId</span><span class="pi">:</span> <span class="s">5a7bdfd22593414adb72df5f</span>
+<span class="na">nonceStr</span><span class="pi">:</span> <span class="s">yyv6YJP436wCkdpNdghC</span>
+<span class="na">body</span><span class="pi">:</span> <span class="s">test</span>
+<span class="na">sign</span><span class="pi">:</span> <span class="s">BF46380E893F6B8F5486D2EDFE265BB8942C6A9BD5C897E34373734CE08B4B67</span>
+</code></pre>
+<p>The first step, we suppose all of the request or respond data as a collection M, then sort the elements in M by the ASCII code of non-null parameter&#39;s name DESC. at last, join the parameter with the format of <code>key=value</code>( <code>key1=value1&amp;key2=value2…</code>) as a new string named stringA.
+Make attention to these important rules:</p>
+
+<ul>
+<li>Sort by the parameter&#39;s name with its ASCII code ASC.</li>
+<li>Do not sign a parameter if its value is null.</li>
+<li>The parameter&#39;s name is case sensitive.</li>
+<li>When verify the response or inform user to make a signature, the sign parameter should not be signed. Generate a signature and check it with the value of sign parameter.</li>
+<li>The API maybe be added parameters, so you must verify it if it is a increasing parameter.</li>
+</ul>
+
+<p>The second step, join the key string at the end of stringA, and we get a string stringSignTemp. Make a SHA256 operation to stringSignTemp and convert the result string to uppercase, then we get the sign&#39;s value named signValue.</p>
+
+<aside class="success">
+About The security key:Please contact the official support staff to obtain or reset.
+</aside>
+<h2 id='notice'>Notice</h2>
+<blockquote>
+<p>Passing blank values is allowed, but not involved in signature</p>
+</blockquote>
+<pre class="highlight css tab-css"><code><span class="c">/* suppose body parameter is blank */</span>
+<span class="nt">body</span> <span class="o">=</span> <span class="s1">" \t\n"</span>
+
+<span class="c">/* exclude the body parameter when calculating the signature, but it can still be send to open platform server */</span>
+<span class="nt">body</span><span class="o">=%</span><span class="nt">20</span><span class="o">%</span><span class="nt">09</span><span class="o">%</span><span class="nt">0A</span><span class="o">&amp;</span><span class="nt">mchId</span><span class="o">=</span><span class="nt">5a7bdfd22593414adb72df5f</span><span class="o">&amp;</span><span class="nt">nonceStr</span><span class="o">=</span><span class="nt">yyv6YJP436wCkdpNdghC</span><span class="o">&amp;</span><span class="nt">sign</span><span class="o">=</span><span class="nt">E893F6B8F5486D2EDFE265BB8942C6A9BD5C897E34373734CE08B4B67BF46380</span>
+</code></pre>
+<aside class="notice">
+If a value is blank, it can be send to open platform server normally, but it must not be included when calculating the signature. Blank value means that a string consisting entirely of whitespace characters, whitespace characters as follows:
+</aside>
+
+<ul>
+<li><code>\u0009</code> HORIZONTAL TABULATION <code>\t</code></li>
+<li><code>\u000A</code> LINE FEED <code>\n</code></li>
+<li><code>\u000B</code> VERTICAL TABULATION</li>
+<li><code>\u000C</code> FORM FEED <code>\f</code></li>
+<li><code>\u000D</code> CARRIAGE RETURN <code>\r</code></li>
+<li><code>\u001C</code> FILE SEPARATOR</li>
+<li><code>\u001D</code> GROUP SEPARATOR</li>
+<li><code>\u001E</code> RECORD SEPARATOR</li>
+<li><code>\u001F</code> UNIT SEPARATOR</li>
+</ul>
+
+<blockquote>
+<p>data must be urlencoded before sending to open platform server and after calculating signature</p>
+</blockquote>
+<pre class="highlight css tab-css"><code><span class="c">/* suppose the body value is as follows */</span>
+<span class="nt">body</span> <span class="o">=</span> <span class="s1">"Lisa&amp;Ruby"</span>
+
+<span class="c">/* request body */</span>
+<span class="nt">body</span><span class="o">=</span><span class="nt">Lisa</span><span class="o">%</span><span class="nt">26Ruby</span><span class="o">&amp;</span><span class="nt">mchId</span><span class="o">=</span><span class="nt">5a7bdfd22593414adb72df5f</span><span class="o">&amp;</span><span class="nt">nonceStr</span><span class="o">=</span><span class="nt">yyv6YJP436wCkdpNdghC</span><span class="o">&amp;</span><span class="nt">sign</span><span class="o">=</span><span class="nt">E34373734CE08B4B67BF46380E893F6B8F5486D2EDFE265BB8942C6A9BD5C897</span>
+</code></pre>
+<aside class="notice">
+As you have chosen application/x-www-form-urlencoded, do not forget to invoke urlencode() for every value.
+</aside>
+
+<aside class="notice">
+Calculate the signature before invoking urlencode(). Meanwhile, the open platform server will verify signature after invoking urldecode().
+</aside>
+<h2 id='random-nonce-string-algorithm'>Random nonce string algorithm</h2>
+<p>the <code>nonceStr</code> parameter in this open platform API specification, is used to ensure the signature is unpredictable. The algorithm Ee recommend is as follows: call random number generating function, convert the resulting value to string.</p>
+<h1 id='management-api'>Management API</h1><h2 id='getallwarehouses-warehouses'>getAllWarehouses <code>/warehouses</code></h2><pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/open/v1/warehouses</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api-sandbox.fulfillment.com</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/x-www-form-urlencoded</span>
+<span class="na">Accept</span><span class="p">:</span> <span class="s">application/json</span>
+</code></pre>
+<blockquote>
+<p>request body example</p>
+</blockquote>
+<pre class="highlight css tab-css"><code><span class="nt">mchId</span><span class="o">=</span><span class="nt">UBP18100020</span><span class="o">&amp;</span><span class="nt">nonceStr</span><span class="o">=</span><span class="nt">1525314174723</span><span class="o">&amp;</span><span class="nt">sign</span><span class="o">=</span><span class="nt">7DE4B504A237BDC961A30A7BF1C9AFF6FB6F386C02A2F7E1FD4F0B1B6B01FB00</span>
+</code></pre>
+<blockquote>
+<p>parameter description</p>
+</blockquote>
+<pre class="highlight yaml tab-yaml"><code><span class="na">mchId</span><span class="pi">:</span> <span class="s1">'</span><span class="s">UBP18100020'</span>
+<span class="na">nonceStr</span><span class="pi">:</span> <span class="s1">'</span><span class="s">1525314174723'</span>
+<span class="na">sign</span><span class="pi">:</span> <span class="s1">'</span><span class="s">7DE4B504A237BDC961A30A7BF1C9AFF6FB6F386C02A2F7E1FD4F0B1B6B01FB00'</span>
+</code></pre>
+<p><code>POST /open/v1/warehouses</code></p>
+
+<p>getAllWarehouses</p>
+<h3 id='request-parameters'>Request Parameters</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>mchId</td>
+<td>string(32)</td>
+<td>true</td>
+<td>merchant no</td>
+</tr>
+<tr>
+<td>nonceStr</td>
+<td>string(32)</td>
+<td>true</td>
+<td>random nonce string</td>
+</tr>
+<tr>
+<td>sign</td>
+<td>string(64)</td>
+<td>true</td>
+<td>signature</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>response body example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+        </span><span class="s2">"warehouseNo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"UBP18100020_001"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"UBP18100020_001"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"countryName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Thailand"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"provinceName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"อุบลราชธานี"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"cityName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"เมืองอุบลราชธานี"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"districtName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"แจระแม"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"postalCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"34000"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"detailAddress"</span><span class="p">:</span><span class="w"> </span><span class="s2">"68/5-6 ม.1 บ้านท่าบ่อ"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0630101454"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"srcName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"หอมรวม"</span><span class="w">
+    </span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"warehouseNo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"UBP18100020_002"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"UBP18100020_002"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"countryName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Thailand"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"provinceName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"กรุงเทพ"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"cityName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"บางแค"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"districtName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"บางแค"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"postalCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10160"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"detailAddress"</span><span class="p">:</span><span class="w"> </span><span class="s2">"11/369 ซ.53 หมู่ 7 ถ.กาญจนาภิเษก"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0888027955"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"srcName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"เอกรินทร์"</span><span class="w">
+    </span><span class="p">}]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='response-body'>Response Body</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>warehouseNo</td>
+<td>string(32)</td>
+<td>shipper warehouse no.</td>
+</tr>
+<tr>
+<td>countryName</td>
+<td>string(100)</td>
+<td>warehouse&#39;s province name</td>
+</tr>
+<tr>
+<td>provinceName</td>
+<td>string(150)</td>
+<td>warehouse&#39;s province name</td>
+</tr>
+<tr>
+<td>cityName</td>
+<td>string(150)</td>
+<td>warehouse&#39;s city name.city is a sub unit of province.</td>
+</tr>
+<tr>
+<td>districtName</td>
+<td>string(150)</td>
+<td>warehouse&#39;s district name.district is a sub unit of city.</td>
+</tr>
+<tr>
+<td>postalCode</td>
+<td>string(20)</td>
+<td>warehouse&#39;s postal code</td>
+</tr>
+<tr>
+<td>detailAddress</td>
+<td>string(200)</td>
+<td>warehouse&#39;s detail address</td>
+</tr>
+<tr>
+<td>phone</td>
+<td>string(20)</td>
+<td>shipper&#39;s phone number</td>
+</tr>
+<tr>
+<td>srcName</td>
+<td>string(50)</td>
+<td>shipper&#39;s name</td>
+</tr>
+</tbody></table>
+<h1 id='order-api'>Order API</h1><h2 id='create-order-orders'>Create order <code>/orders</code></h2><pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/open/v1/orders</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api-sandbox.fulfillment.com</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/x-www-form-urlencoded</span>
+<span class="na">Accept</span><span class="p">:</span> <span class="s">application/json</span>
+</code></pre>
+<blockquote>
+<p>request body example</p>
+</blockquote>
+<pre class="highlight css tab-css"><code><span class="nt">mchId</span><span class="o">=</span><span class="nt">AA0005</span><span class="o">&amp;</span><span class="nt">nonceStr</span><span class="o">=</span><span class="nt">1536749552628</span><span class="o">&amp;</span><span class="nt">sign</span><span class="o">=</span><span class="nt">D4515A46B6094589F1F7615ADCC988FBB03A79010F2A206DC982F27D396F93A0</span><span class="o">&amp;</span><span class="nt">outTradeNo</span><span class="o">=%</span><span class="nt">231536749552628</span><span class="o">%</span><span class="nt">23</span><span class="o">&amp;</span><span class="nt">warehouseNo</span><span class="o">=</span><span class="nt">AA0005_001</span><span class="o">&amp;</span><span class="nt">srcName</span><span class="o">=%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">AB</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">AD</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">A1</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">A3</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">A7</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">A1</span><span class="o">++</span><span class="nt">create</span><span class="o">+</span><span class="nt">order</span><span class="o">+</span><span class="nt">test</span><span class="o">+</span><span class="nt">name</span><span class="o">&amp;</span><span class="nt">srcPhone</span><span class="o">=</span><span class="nt">0630101454</span><span class="o">&amp;</span><span class="nt">srcProvinceName</span><span class="o">=%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">AD</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">9A</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">A5</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">A3</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">B2</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">8A</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">98</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">B2</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">99</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">B5</span><span class="o">&amp;</span><span class="nt">srcCityName</span><span class="o">=%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B9</span><span class="o">%</span><span class="nt">80</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">A1</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">B7</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">AD</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">87</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">AD</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">9A</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">A5</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">A3</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">B2</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">8A</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">98</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">B2</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">99</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">B5</span><span class="o">&amp;</span><span class="nt">srcDistrictName</span><span class="o">=%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B9</span><span class="o">%</span><span class="nt">83</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">99</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B9</span><span class="o">%</span><span class="nt">80</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">A1</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">B7</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">AD</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">87</span><span class="o">&amp;</span><span class="nt">srcPostalCode</span><span class="o">=</span><span class="nt">34000</span><span class="o">&amp;</span><span class="nt">srcDetailAddress</span><span class="o">=</span><span class="nt">68</span><span class="o">%</span><span class="nt">2F5-6</span><span class="o">+%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">A1</span><span class="nc">.1</span><span class="o">+%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">9A</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B9</span><span class="o">%</span><span class="nt">89</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">B2</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">99</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">97</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B9</span><span class="o">%</span><span class="nt">88</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">B2</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">9A</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B9</span><span class="o">%</span><span class="nt">88</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">AD</span><span class="o">+</span><span class="nt">create</span><span class="o">+</span><span class="nt">order</span><span class="o">+</span><span class="nt">test</span><span class="o">+</span><span class="nt">address</span><span class="o">&amp;</span><span class="nt">dstName</span><span class="o">=%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">99</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B9</span><span class="o">%</span><span class="nt">89</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">B3</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">9E</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">A3</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">B4</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">81</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B9</span><span class="o">%</span><span class="nt">81</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">A1</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B9</span><span class="o">%</span><span class="nt">88</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">AD</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">B3</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">9E</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">A3</span><span class="o">&amp;</span><span class="nt">dstPhone</span><span class="o">=</span><span class="nt">0970209976</span><span class="o">&amp;</span><span class="nt">dstHomePhone</span><span class="o">=</span><span class="nt">0970220220</span><span class="o">&amp;</span><span class="nt">dstProvinceName</span><span class="o">=%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B9</span><span class="o">%</span><span class="nt">80</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">8A</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">B5</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">A2</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">87</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B9</span><span class="o">%</span><span class="nt">83</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">AB</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">A1</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B9</span><span class="o">%</span><span class="nt">88</span><span class="o">&amp;</span><span class="nt">dstCityName</span><span class="o">=%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">AA</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">B1</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">99</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">97</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">A3</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">B2</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">A2</span><span class="o">&amp;</span><span class="nt">dstDistrictName</span><span class="o">=%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">AA</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">B1</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">99</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">9E</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">A3</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">B0</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B9</span><span class="o">%</span><span class="nt">80</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">99</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">95</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">A3</span><span class="o">&amp;</span><span class="nt">dstPostalCode</span><span class="o">=</span><span class="nt">50210</span><span class="o">&amp;</span><span class="nt">dstDetailAddress</span><span class="o">=</span><span class="nt">127</span><span class="o">+%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">AB</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">A1</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">B9</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B9</span><span class="o">%</span><span class="nt">88</span><span class="o">+</span><span class="nt">3</span><span class="o">+%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">95</span><span class="o">.%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">AB</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">99</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">AD</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">87</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B9</span><span class="o">%</span><span class="nt">81</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">AB</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">A2</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B9</span><span class="o">%</span><span class="nt">88</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">87</span><span class="o">+%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">AD</span><span class="o">.%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">AA</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">B1</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">99</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">97</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">A3</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">B2</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">A2</span><span class="o">+%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">88</span><span class="o">.%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B9</span><span class="o">%</span><span class="nt">80</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">8A</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">B5</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">A2</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">87</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B9</span><span class="o">%</span><span class="nt">83</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">AB</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">A1</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B9</span><span class="o">%</span><span class="nt">88</span><span class="o">+</span><span class="nt">create</span><span class="o">+</span><span class="nt">order</span><span class="o">+</span><span class="nt">test</span><span class="o">+</span><span class="nt">address</span><span class="o">&amp;</span><span class="nt">articleCategory</span><span class="o">=</span><span class="nt">1</span><span class="o">&amp;</span><span class="nt">expressCategory</span><span class="o">=</span><span class="nt">1</span><span class="o">&amp;</span><span class="nt">weight</span><span class="o">=</span><span class="nt">1000</span><span class="o">&amp;</span><span class="nt">insured</span><span class="o">=</span><span class="nt">1</span><span class="o">&amp;</span><span class="nt">insureDeclareValue</span><span class="o">=</span><span class="nt">10000</span><span class="o">&amp;</span><span class="nt">codEnabled</span><span class="o">=</span><span class="nt">1</span><span class="o">&amp;</span><span class="nt">codAmount</span><span class="o">=</span><span class="nt">10000</span><span class="o">&amp;</span><span class="nt">remark</span><span class="o">=%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">82</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">B6</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B9</span><span class="o">%</span><span class="nt">89</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">99</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">9A</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">B1</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">99</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B9</span><span class="o">%</span><span class="nt">84</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">94</span>
+</code></pre>
+<blockquote>
+<p>parameter description</p>
+</blockquote>
+<pre class="highlight yaml tab-yaml"><code><span class="na">mchId</span><span class="pi">:</span> <span class="s1">'</span><span class="s">AA0005'</span>
+<span class="na">nonceStr</span><span class="pi">:</span> <span class="s1">'</span><span class="s">1536749552628'</span>
+<span class="na">sign</span><span class="pi">:</span> <span class="s1">'</span><span class="s">D4515A46B6094589F1F7615ADCC988FBB03A79010F2A206DC982F27D396F93A0'</span>
+<span class="na">outTradeNo</span><span class="pi">:</span> <span class="s1">'</span><span class="s">#1536749552628#'</span>
+<span class="na">warehouseNo</span><span class="pi">:</span> <span class="s1">'</span><span class="s">AA0005_001'</span>
+<span class="na">srcName</span><span class="pi">:</span> <span class="s1">'</span><span class="s">หอมรวม</span><span class="nv">  </span><span class="s">create</span><span class="nv"> </span><span class="s">order</span><span class="nv"> </span><span class="s">test</span><span class="nv"> </span><span class="s">name'</span>
+<span class="na">srcPhone</span><span class="pi">:</span> <span class="s1">'</span><span class="s">0630101454'</span>
+<span class="na">srcProvinceName</span><span class="pi">:</span> <span class="s1">'</span><span class="s">อุบลราชธานี'</span>
+<span class="na">srcCityName</span><span class="pi">:</span> <span class="s1">'</span><span class="s">เมืองอุบลราชธานี'</span>
+<span class="na">srcDistrictName</span><span class="pi">:</span> <span class="s1">'</span><span class="s">ในเมือง'</span>
+<span class="na">srcPostalCode</span><span class="pi">:</span> <span class="s1">'</span><span class="s">34000'</span>
+<span class="na">srcDetailAddress</span><span class="pi">:</span> <span class="s1">'</span><span class="s">68/5-6</span><span class="nv"> </span><span class="s">ม.1</span><span class="nv"> </span><span class="s">บ้านท่าบ่อ</span><span class="nv"> </span><span class="s">create</span><span class="nv"> </span><span class="s">order</span><span class="nv"> </span><span class="s">test</span><span class="nv"> </span><span class="s">address'</span>
+<span class="na">dstName</span><span class="pi">:</span> <span class="s1">'</span><span class="s">น้ำพริกแม่อำพร'</span>
+<span class="na">dstPhone</span><span class="pi">:</span> <span class="s1">'</span><span class="s">0970209976'</span>
+<span class="na">dstHomePhone</span><span class="pi">:</span> <span class="s1">'</span><span class="s">0970220220'</span>
+<span class="na">dstProvinceName</span><span class="pi">:</span> <span class="s1">'</span><span class="s">เชียงใหม่'</span>
+<span class="na">dstCityName</span><span class="pi">:</span> <span class="s1">'</span><span class="s">สันทราย'</span>
+<span class="na">dstDistrictName</span><span class="pi">:</span> <span class="s1">'</span><span class="s">สันพระเนตร'</span>
+<span class="na">dstPostalCode</span><span class="pi">:</span> <span class="s1">'</span><span class="s">50210'</span>
+<span class="na">dstDetailAddress</span><span class="pi">:</span> <span class="s1">'</span><span class="s">127</span><span class="nv"> </span><span class="s">หมู่</span><span class="nv"> </span><span class="s">3</span><span class="nv"> </span><span class="s">ต.หนองแหย่ง</span><span class="nv"> </span><span class="s">อ.สันทราย</span><span class="nv"> </span><span class="s">จ.เชียงใหม่</span><span class="nv"> </span><span class="s">create</span><span class="nv"> </span><span class="s">order</span><span class="nv"> </span><span class="s">test</span><span class="nv"> </span><span class="s">address'</span>
+<span class="na">articleCategory</span><span class="pi">:</span> <span class="s">1</span>
+<span class="na">expressCategory</span><span class="pi">:</span> <span class="s">1</span>
+<span class="na">weight</span><span class="pi">:</span> <span class="s">1000</span>
+<span class="na">insured</span><span class="pi">:</span> <span class="s">1</span>
+<span class="na">insureDeclareValue</span><span class="pi">:</span> <span class="s">10000</span>
+<span class="na">codEnabled</span><span class="pi">:</span> <span class="s">1</span>
+<span class="na">codAmount</span><span class="pi">:</span> <span class="s">10000</span>
+<span class="na">remark</span><span class="pi">:</span> <span class="s1">'</span><span class="s">ขึ้นบันได</span>
+</code></pre>
+<p><code>POST /open/v1/orders</code></p>
+
+<p>create order</p>
+<h3 id='request-parameters-2'>Request Parameters</h3>
+<aside class="notice">
+About shipper's information address.</br>
+You could specify shipper's information of the parcel in 2 ways.</br>
+1st,If you input values of all request parameters of {srcName,srcPhone,srcProvinceName,srcCityName,srcPostalCode,srcDetailAddress}, notice that these several parameters must be all input values,  these parameters are the shipper's information.</br>
+2nd,If you don't input value of any request parameter of {srcName,srcPhone,srcProvinceName,srcCityName,srcPostalCode,srcDetailAddress}, you must input value of request parameter "warehouseNo" to show the shipper's information.
+</aside>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>mchId</td>
+<td>string(32)</td>
+<td>true</td>
+<td>merchant no</td>
+</tr>
+<tr>
+<td>nonceStr</td>
+<td>string(32)</td>
+<td>true</td>
+<td>random nonce string</td>
+</tr>
+<tr>
+<td>sign</td>
+<td>string(64)</td>
+<td>true</td>
+<td>signature</td>
+</tr>
+<tr>
+<td>outTradeNo</td>
+<td>string(64)</td>
+<td>true</td>
+<td>merchant order no</td>
+</tr>
+<tr>
+<td>expressCategory</td>
+<td>integer</td>
+<td>true</td>
+<td><a href="#express_category">Express Category</a>(must be 1)</td>
+</tr>
+<tr>
+<td>warehouseNo</td>
+<td>string(32)</td>
+<td>false</td>
+<td>shipper warehouse no.must be one value returned by API <a href="#getallwarehouses-warehouses">getAllWarehouses</a>.</td>
+</tr>
+<tr>
+<td>srcName</td>
+<td>string(50)</td>
+<td>false</td>
+<td>shipper&#39;s name</td>
+</tr>
+<tr>
+<td>srcPhone</td>
+<td>string(20)</td>
+<td>false</td>
+<td>shipper&#39;s phone number</td>
+</tr>
+<tr>
+<td>srcProvinceName</td>
+<td>string(150)</td>
+<td>false</td>
+<td>shipper&#39;s province name</td>
+</tr>
+<tr>
+<td>srcCityName</td>
+<td>string(150)</td>
+<td>false</td>
+<td>shipper&#39;s city name.city is a sub unit of province.</td>
+</tr>
+<tr>
+<td>srcDistrictName</td>
+<td>string(150)</td>
+<td>false</td>
+<td>shipper&#39;s district name.district is a sub unit of city.</td>
+</tr>
+<tr>
+<td>srcPostalCode</td>
+<td>string(20)</td>
+<td>false</td>
+<td>shipper&#39;s postal code</td>
+</tr>
+<tr>
+<td>srcDetailAddress</td>
+<td>string(200)</td>
+<td>false</td>
+<td>shipper&#39;s detail address</td>
+</tr>
+<tr>
+<td>dstName</td>
+<td>string(50)</td>
+<td>true</td>
+<td>consignee&#39;s name</td>
+</tr>
+<tr>
+<td>dstPhone</td>
+<td>string(20)</td>
+<td>true</td>
+<td>consignee&#39;s phone number</td>
+</tr>
+<tr>
+<td>dstHomePhone</td>
+<td>string(20)</td>
+<td>false</td>
+<td>consignee&#39;s home phone number or consigne&#39;s second phone number</td>
+</tr>
+<tr>
+<td>dstProvinceName</td>
+<td>string(150)</td>
+<td>true</td>
+<td>consignee&#39;s province name</td>
+</tr>
+<tr>
+<td>dstCityName</td>
+<td>string(150)</td>
+<td>true</td>
+<td>consignee&#39;s city name.city is a sub unit of province.</td>
+</tr>
+<tr>
+<td>dstDistrictName</td>
+<td>string(150)</td>
+<td>false</td>
+<td>consignee&#39;s district name.district is a sub unit of city.</td>
+</tr>
+<tr>
+<td>dstPostalCode</td>
+<td>string(20)</td>
+<td>true</td>
+<td>consignee&#39;s postal code</td>
+</tr>
+<tr>
+<td>dstDetailAddress</td>
+<td>string(200)</td>
+<td>true</td>
+<td>consignee&#39;s detail address</td>
+</tr>
+<tr>
+<td>articleCategory</td>
+<td>integer</td>
+<td>true</td>
+<td><a href="#article_category">Article Category</a></td>
+</tr>
+<tr>
+<td>weight</td>
+<td>integer</td>
+<td>true</td>
+<td>article weight(unit: gram)</td>
+</tr>
+<tr>
+<td>insured</td>
+<td>integer</td>
+<td>true</td>
+<td>whether insured(1: yes 0: no)</td>
+</tr>
+<tr>
+<td>insureDeclareValue</td>
+<td>integer</td>
+<td>false</td>
+<td>article declare value for insurance(unit: cent)</td>
+</tr>
+<tr>
+<td>codEnabled</td>
+<td>integer</td>
+<td>true</td>
+<td>whether COD(1: yes 0: no)</td>
+</tr>
+<tr>
+<td>codAmount</td>
+<td>integer</td>
+<td>false</td>
+<td>COD amount(unit: cent)</td>
+</tr>
+<tr>
+<td>remark</td>
+<td>string(200)</td>
+<td>false</td>
+<td>remark</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>response body example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"pno"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TH47146DR36"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"mchId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AA0005"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"outTradeNo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"#1536749552628#"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"sortCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"01N-CNXY-00"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"dstStoreName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"เชียงใหม่-DC"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='response-body-2'>Response Body</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>pno</td>
+<td>string(20)</td>
+<td>Flash Express tracking number</td>
+</tr>
+<tr>
+<td>mchId</td>
+<td>string(32)</td>
+<td>merchant no</td>
+</tr>
+<tr>
+<td>outTradeNo</td>
+<td>string(64)</td>
+<td>merchant order no</td>
+</tr>
+<tr>
+<td>sortCode</td>
+<td>string(13)</td>
+<td>Flash Express sorting code</td>
+</tr>
+<tr>
+<td>dstStoreName</td>
+<td>string(50)</td>
+<td>Flash Store Name to deliver the parcel</td>
+</tr>
+</tbody></table>
+<h2 id='cancel-order-orders-pno-cancel'>Cancel order <code>/orders/{pno}/cancel</code></h2><pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/open/v1/orders/TH4714A27/cancel</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api-sandbox.fulfillment.com</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/x-www-form-urlencoded</span>
+<span class="na">Accept</span><span class="p">:</span> <span class="s">application/json</span>
+</code></pre>
+<p><code>POST /open/v1/orders/{pno}/cancel</code></p>
+
+<p>cancel order</p>
+<h3 id='path-variables-not-involved-in-the-signature'>Path Variables (not involved in the signature)</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>pno</td>
+<td>string(20)</td>
+<td>true</td>
+<td>Flash Express tracking number</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>request body example</p>
+</blockquote>
+<pre class="highlight css tab-css"><code><span class="nt">mchId</span><span class="o">=</span><span class="nt">UBP18100020</span><span class="o">&amp;</span><span class="nt">nonceStr</span><span class="o">=</span><span class="nt">1525312687777</span><span class="o">&amp;</span><span class="nt">sign</span><span class="o">=</span><span class="nt">6981B676CF590F1F9BDC5529AF77B8396D70153F4E01FF781069261F35497389</span>
+</code></pre>
+<blockquote>
+<p>parameter description</p>
+</blockquote>
+<pre class="highlight yaml tab-yaml"><code><span class="na">mchId</span><span class="pi">:</span> <span class="s1">'</span><span class="s">UBP18100020'</span>
+<span class="na">nonceStr</span><span class="pi">:</span> <span class="s1">'</span><span class="s">1525312687777'</span>
+<span class="na">sign</span><span class="pi">:</span> <span class="s1">'</span><span class="s">6981B676CF590F1F9BDC5529AF77B8396D70153F4E01FF781069261F35497389'</span>
+</code></pre><h3 id='request-parameters-3'>Request Parameters</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>mchId</td>
+<td>string(32)</td>
+<td>true</td>
+<td>merchant no</td>
+</tr>
+<tr>
+<td>nonceStr</td>
+<td>string(32)</td>
+<td>true</td>
+<td>random nonce string</td>
+</tr>
+<tr>
+<td>sign</td>
+<td>string(64)</td>
+<td>true</td>
+<td>signature</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>response body: none</p>
+</blockquote>
+<h3 id='response-body-3'>Response Body</h3>
+<p>None.</p>
+<h2 id='tracking-order-orders-pno-routes'>Tracking order <code>/orders/{pno}/routes</code></h2><pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/open/v1/orders/TH01011C27/routes</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api-sandbox.fulfillment.com</span>
+<span class="na">Accept</span><span class="p">:</span> <span class="s">application/json</span>
+</code></pre>
+<p><code>POST /open/v1/orders/{pno}/routes</code></p>
+
+<p>tracking order</p>
+<h3 id='path-variables-not-involved-in-the-signature-2'>Path Variables (not involved in the signature)</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>pno</td>
+<td>string(20)</td>
+<td>true</td>
+<td>Flash Express tracking number</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>request body example</p>
+</blockquote>
+<pre class="highlight css tab-css"><code><span class="nt">mchId</span><span class="o">=</span><span class="nt">AA0005</span><span class="o">&amp;</span><span class="nt">nonceStr</span><span class="o">=</span><span class="nt">1525315650958</span><span class="o">&amp;</span><span class="nt">sign</span><span class="o">=</span><span class="nt">EB1C59F14A1A616DE861E7F09C0FD2949B64EAD98B3D649EA2D73CA0328D77B7</span>
+</code></pre>
+<blockquote>
+<p>parameter description</p>
+</blockquote>
+<pre class="highlight yaml tab-yaml"><code><span class="na">mchId</span><span class="pi">:</span> <span class="s1">'</span><span class="s">AA0005'</span>
+<span class="na">nonceStr</span><span class="pi">:</span> <span class="s1">'</span><span class="s">1525315650958'</span>
+<span class="na">sign</span><span class="pi">:</span> <span class="s1">'</span><span class="s">EB1C59F14A1A616DE861E7F09C0FD2949B64EAD98B3D649EA2D73CA0328D77B7'</span>
+</code></pre><h3 id='request-parameters-4'>Request Parameters</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>mchId</td>
+<td>string(32)</td>
+<td>true</td>
+<td>merchant no</td>
+</tr>
+<tr>
+<td>nonceStr</td>
+<td>string(32)</td>
+<td>true</td>
+<td>random nonce string</td>
+</tr>
+<tr>
+<td>sign</td>
+<td>string(64)</td>
+<td>true</td>
+<td>signature</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>response body example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"pno"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TH01011C27"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"state"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"stateText"</span><span class="p">:</span><span class="w"> </span><span class="s2">"เซ็นรับแล้ว"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"routes"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+            </span><span class="s2">"routedAt"</span><span class="p">:</span><span class="w"> </span><span class="mi">1523357001</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"routeAction"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DELIVERY_CONFIRM"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"พัสดุของคุณถูกเซ็นรับแล้ว เซ็นรับโดย TH01011C27"</span><span class="w">
+        </span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"routedAt"</span><span class="p">:</span><span class="w"> </span><span class="mi">1523356924</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"routeAction"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DELIVERY_TICKET_CREATION_SCAN"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"มีพัสดุรอการนำส่ง กรุณารอการติดต่อจากเจ้าหน้าที่ Flash Express"</span><span class="w">
+        </span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"routedAt"</span><span class="p">:</span><span class="w"> </span><span class="mi">1523356560</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"routeAction"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SHIPMENT_WAREHOUSE_SCAN"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"พัสดุของคุณอยู่ที่ กทม. จะถูกส่งไปยัง จตุโชติ-DC"</span><span class="w">
+        </span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"routedAt"</span><span class="p">:</span><span class="w"> </span><span class="mi">1523356029</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"routeAction"</span><span class="p">:</span><span class="w"> </span><span class="s2">"RECEIVED"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"zhao=DC พนักงานเข้ารับพัสดุแล้ว"</span><span class="w">
+        </span><span class="p">}]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='response-body-4'>Response Body</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>pno</td>
+<td>string(20)</td>
+<td>Flash Express tracking number</td>
+</tr>
+<tr>
+<td>state</td>
+<td>integer</td>
+<td>parcel state</td>
+</tr>
+<tr>
+<td>stateText</td>
+<td>string(100)</td>
+<td>parcel state description</td>
+</tr>
+<tr>
+<td>routes.routedAt</td>
+<td>integer</td>
+<td>route status timestamp in UTC</td>
+</tr>
+<tr>
+<td>routes.routedAction</td>
+<td>string(29)</td>
+<td>route status action</td>
+</tr>
+<tr>
+<td>routes.message</td>
+<td>string(500)</td>
+<td>route status message</td>
+</tr>
+</tbody></table>
+<h2 id='getparceldeliveredinfo-orders-pno-deliveredinfo'>getParcelDeliveredInfo <code>/orders/{pno}/deliveredInfo</code></h2><pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/open/v1/orders/TH01011C27/deliveredInfo</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api-sandbox.fulfillment.com</span>
+<span class="na">Accept</span><span class="p">:</span> <span class="s">application/json</span>
+</code></pre>
+<p><code>POST /open/v1/orders/{pno}/deliveredInfo</code></p>
+
+<p>getParcelDeliveredInfo</p>
+<h3 id='path-variables-not-involved-in-the-signature-3'>Path Variables (not involved in the signature)</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>pno</td>
+<td>string(20)</td>
+<td>true</td>
+<td>Flash Express tracking number</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>request body example</p>
+</blockquote>
+<pre class="highlight css tab-css"><code><span class="nt">mchId</span><span class="o">=</span><span class="nt">AA0005</span><span class="o">&amp;</span><span class="nt">nonceStr</span><span class="o">=</span><span class="nt">1539057892711</span><span class="o">&amp;</span><span class="nt">sign</span><span class="o">=</span><span class="nt">9B9519983FEC2B2C3BBD15FF1F858ACEA681E4800B82863EEB91163E87E7B2D9</span>
+</code></pre>
+<blockquote>
+<p>parameter description</p>
+</blockquote>
+<pre class="highlight yaml tab-yaml"><code><span class="na">mchId</span><span class="pi">:</span> <span class="s1">'</span><span class="s">AA0005'</span>
+<span class="na">nonceStr</span><span class="pi">:</span> <span class="s1">'</span><span class="s">1539057892711'</span>
+<span class="na">sign</span><span class="pi">:</span> <span class="s1">'</span><span class="s">9B9519983FEC2B2C3BBD15FF1F858ACEA681E4800B82863EEB91163E87E7B2D9'</span>
+</code></pre><h3 id='request-parameters-5'>Request Parameters</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>mchId</td>
+<td>string(32)</td>
+<td>true</td>
+<td>merchant no</td>
+</tr>
+<tr>
+<td>nonceStr</td>
+<td>string(32)</td>
+<td>true</td>
+<td>random nonce string</td>
+</tr>
+<tr>
+<td>sign</td>
+<td>string(64)</td>
+<td>true</td>
+<td>signature</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>response body example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"pno"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TH01011C27"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"signer"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TH01011C27"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"signerTypeText"</span><span class="p">:</span><span class="w"> </span><span class="s2">"เพื่อนร่วมงาน"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"pod"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://fle-training-asset-internal.oss-ap-southeast-1.aliyuncs.com/deliveryConfirm/1523356999-b384e30df5ed4436a5adf00d80902929.jpg"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='response-body-5'>Response Body</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>pno</td>
+<td>string(20)</td>
+<td>Flash Express tracking number</td>
+</tr>
+<tr>
+<td>signer</td>
+<td>string(50)</td>
+<td>signer&#39;s signature when parcel is delivered</td>
+</tr>
+<tr>
+<td>signerTypeText</td>
+<td>string(50)</td>
+<td>signer type description</td>
+</tr>
+<tr>
+<td>pod</td>
+<td>string(150)</td>
+<td>signer&#39;s signature picture url</td>
+</tr>
+</tbody></table>
+<h2 id='print-label-orders-pno-pre_print'>Print label <code>/orders/{pno}/pre_print</code></h2><pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/open/v1/orders/TH01011C27/pre_print</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api-sandbox.fulfillment.com</span>
+<span class="na">Accept</span><span class="p">:</span> <span class="s">application/pdf</span>
+</code></pre>
+<p><code>POST /open/v1/orders/{pno}/pre_print</code></p>
+
+<p>print label</p>
+<h3 id='path-variables-not-involved-in-the-signature-4'>Path Variables (not involved in the signature)</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>pno</td>
+<td>string(20)</td>
+<td>true</td>
+<td>Flash Express tracking number</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>request body example</p>
+</blockquote>
+<pre class="highlight css tab-css"><code><span class="nt">mchId</span><span class="o">=</span><span class="nt">AA0005</span><span class="o">&amp;</span><span class="nt">nonceStr</span><span class="o">=</span><span class="nt">1525316377546</span><span class="o">&amp;</span><span class="nt">sign</span><span class="o">=</span><span class="nt">D500B8379DDB2CEDDBAF0130D1FF2A995FD3AFEFDE1EC90BBD2A1762F562FAE3</span>
+</code></pre>
+<blockquote>
+<p>parameter description</p>
+</blockquote>
+<pre class="highlight yaml tab-yaml"><code><span class="na">mchId</span><span class="pi">:</span> <span class="s1">'</span><span class="s">AA0005'</span>
+<span class="na">nonceStr</span><span class="pi">:</span> <span class="s1">'</span><span class="s">1525316377546'</span>
+<span class="na">sign</span><span class="pi">:</span> <span class="s1">'</span><span class="s">D500B8379DDB2CEDDBAF0130D1FF2A995FD3AFEFDE1EC90BBD2A1762F562FAE3'</span>
+</code></pre><h3 id='request-parameters-6'>Request Parameters</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>mchId</td>
+<td>string(32)</td>
+<td>true</td>
+<td>merchant no</td>
+</tr>
+<tr>
+<td>nonceStr</td>
+<td>string(32)</td>
+<td>true</td>
+<td>random nonce string</td>
+</tr>
+<tr>
+<td>sign</td>
+<td>string(64)</td>
+<td>true</td>
+<td>signature</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>response body: pdf file stream of label</p>
+</blockquote>
+<h3 id='response-body-6'>Response Body</h3>
+<p>pdf file stream of label</p>
+<h2 id='create-order-by-merchant-tracking-number-ordersbymchpno'>Create order by merchant tracking number <code>/ordersByMchPno</code></h2><pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/open/v1/ordersByMchPno</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api-sandbox.fulfillment.com</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/x-www-form-urlencoded</span>
+<span class="na">Accept</span><span class="p">:</span> <span class="s">application/json</span>
+</code></pre>
+<blockquote>
+<p>request body example</p>
+</blockquote>
+<pre class="highlight css tab-css"><code><span class="nt">mchId</span><span class="o">=</span><span class="nt">AA0005</span><span class="o">&amp;</span><span class="nt">nonceStr</span><span class="o">=</span><span class="nt">1538020484532</span><span class="o">&amp;</span><span class="nt">sign</span><span class="o">=</span><span class="nt">840BDFAC52E4607AEC4AB7CD7A95ABE43CFD974D8DE0726DD6C3891EBB1FF6D8</span><span class="o">&amp;</span><span class="nt">mchPno</span><span class="o">=</span><span class="nt">MP123456111</span><span class="o">&amp;</span><span class="nt">warehouseNo</span><span class="o">=</span><span class="nt">AA0005_001</span><span class="o">&amp;</span><span class="nt">srcName</span><span class="o">=</span><span class="nt">test</span><span class="o">+</span><span class="nt">srcName1111</span><span class="o">&amp;</span><span class="nt">srcPhone</span><span class="o">=</span><span class="nt">111111111</span><span class="o">&amp;</span><span class="nt">srcProvinceName</span><span class="o">=%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">AD</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">9A</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">A5</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">A3</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">B2</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">8A</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">98</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">B2</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">99</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">B5</span><span class="o">&amp;</span><span class="nt">srcCityName</span><span class="o">=%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B9</span><span class="o">%</span><span class="nt">80</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">A1</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">B7</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">AD</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">87</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">AD</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">9A</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">A5</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">A3</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">B2</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">8A</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">98</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">B2</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">99</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">B5</span><span class="o">&amp;</span><span class="nt">srcPostalCode</span><span class="o">=</span><span class="nt">34000</span><span class="o">&amp;</span><span class="nt">srcDetailAddress</span><span class="o">=</span><span class="nt">68</span><span class="o">%</span><span class="nt">2F5-6</span><span class="o">+%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">A1</span><span class="nc">.1</span><span class="o">+%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">9A</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B9</span><span class="o">%</span><span class="nt">89</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">B2</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">99</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">97</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B9</span><span class="o">%</span><span class="nt">88</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">B2</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">9A</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B9</span><span class="o">%</span><span class="nt">88</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">AD99111</span><span class="o">&amp;</span><span class="nt">dstName</span><span class="o">=%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">99</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B9</span><span class="o">%</span><span class="nt">89</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">B3</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">9E</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">A3</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">B4</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">81</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B9</span><span class="o">%</span><span class="nt">81</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">A1</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B9</span><span class="o">%</span><span class="nt">88</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">AD</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">B3</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">9E</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">A3</span><span class="o">&amp;</span><span class="nt">dstPhone</span><span class="o">=</span><span class="nt">091111111</span><span class="o">&amp;</span><span class="nt">dstHomePhone</span><span class="o">=</span><span class="nt">092222222</span><span class="o">&amp;</span><span class="nt">dstProvinceName</span><span class="o">=%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B9</span><span class="o">%</span><span class="nt">80</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">8A</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">B5</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">A2</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">87</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B9</span><span class="o">%</span><span class="nt">83</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">AB</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">A1</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B9</span><span class="o">%</span><span class="nt">88</span><span class="o">&amp;</span><span class="nt">dstCityName</span><span class="o">=%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">AA</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">B1</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">99</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">97</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">A3</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">B2</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">A2</span><span class="o">&amp;</span><span class="nt">dstPostalCode</span><span class="o">=</span><span class="nt">50210</span><span class="o">&amp;</span><span class="nt">dstDetailAddress</span><span class="o">=</span><span class="nt">127</span><span class="o">+%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">AB</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">A1</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">B9</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B9</span><span class="o">%</span><span class="nt">88</span><span class="o">+</span><span class="nt">3</span><span class="o">+%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">95</span><span class="o">.%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">AB</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">99</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">AD</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">87</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B9</span><span class="o">%</span><span class="nt">81</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">AB</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">A2</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B9</span><span class="o">%</span><span class="nt">88</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">87</span><span class="o">+%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">AD</span><span class="o">.%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">AA</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">B1</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">99</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">97</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">A3</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">B2</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">A2</span><span class="o">+%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">88</span><span class="o">.%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B9</span><span class="o">%</span><span class="nt">80</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">8A</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">B5</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">A2</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">87</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B9</span><span class="o">%</span><span class="nt">83</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">AB</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">A1</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B9</span><span class="o">%</span><span class="nt">88</span><span class="o">&amp;</span><span class="nt">articleCategory</span><span class="o">=</span><span class="nt">1</span><span class="o">&amp;</span><span class="nt">expressCategory</span><span class="o">=</span><span class="nt">1</span><span class="o">&amp;</span><span class="nt">weight</span><span class="o">=</span><span class="nt">1000</span><span class="o">&amp;</span><span class="nt">codEnabled</span><span class="o">=</span><span class="nt">1</span><span class="o">&amp;</span><span class="nt">codAmount</span><span class="o">=</span><span class="nt">2000</span><span class="o">&amp;</span><span class="nt">remark</span><span class="o">=</span><span class="nt">-</span>
+</code></pre>
+<blockquote>
+<p>parameter description</p>
+</blockquote>
+<pre class="highlight yaml tab-yaml"><code><span class="na">mchId</span><span class="pi">:</span> <span class="s1">'</span><span class="s">AA0005'</span>
+<span class="na">nonceStr</span><span class="pi">:</span> <span class="s1">'</span><span class="s">1538020484532'</span>
+<span class="na">sign</span><span class="pi">:</span> <span class="s1">'</span><span class="s">840BDFAC52E4607AEC4AB7CD7A95ABE43CFD974D8DE0726DD6C3891EBB1FF6D8'</span>
+<span class="na">mchPno</span><span class="pi">:</span> <span class="s1">'</span><span class="s">MP123456111'</span>
+<span class="na">warehouseNo</span><span class="pi">:</span> <span class="s1">'</span><span class="s">AA0005_001'</span>
+<span class="na">srcName</span><span class="pi">:</span> <span class="s1">'</span><span class="s">test</span><span class="nv"> </span><span class="s">srcName1111'</span>
+<span class="na">srcPhone</span><span class="pi">:</span> <span class="s1">'</span><span class="s">111111111'</span>
+<span class="na">srcProvinceName</span><span class="pi">:</span> <span class="s1">'</span><span class="s">อุบลราชธานี'</span>
+<span class="na">srcCityName</span><span class="pi">:</span> <span class="s1">'</span><span class="s">เมืองอุบลราชธานี'</span>
+<span class="na">srcPostalCode</span><span class="pi">:</span> <span class="s1">'</span><span class="s">34000'</span>
+<span class="na">srcDetailAddress</span><span class="pi">:</span> <span class="s1">'</span><span class="s">68/5-6</span><span class="nv"> </span><span class="s">ม.1</span><span class="nv"> </span><span class="s">บ้านท่าบ่อ99111'</span>
+<span class="na">dstName</span><span class="pi">:</span> <span class="s1">'</span><span class="s">น้ำพริกแม่อำพร'</span>
+<span class="na">dstPhone</span><span class="pi">:</span> <span class="s1">'</span><span class="s">091111111'</span>
+<span class="na">dstHomePhone</span><span class="pi">:</span> <span class="s1">'</span><span class="s">092222222'</span>
+<span class="na">dstProvinceName</span><span class="pi">:</span> <span class="s1">'</span><span class="s">เชียงใหม่'</span>
+<span class="na">dstCityName</span><span class="pi">:</span> <span class="s1">'</span><span class="s">สันทราย'</span>
+<span class="na">dstPostalCode</span><span class="pi">:</span> <span class="s1">'</span><span class="s">50210'</span>
+<span class="na">dstDetailAddress</span><span class="pi">:</span> <span class="s1">'</span><span class="s">127</span><span class="nv"> </span><span class="s">หมู่</span><span class="nv"> </span><span class="s">3</span><span class="nv"> </span><span class="s">ต.หนองแหย่ง</span><span class="nv"> </span><span class="s">อ.สันทราย</span><span class="nv"> </span><span class="s">จ.เชียงใหม่'</span>
+<span class="na">articleCategory</span><span class="pi">:</span> <span class="s">1</span>
+<span class="na">expressCategory</span><span class="pi">:</span> <span class="s">1</span>
+<span class="na">weight</span><span class="pi">:</span> <span class="s">1000</span>
+<span class="na">codEnabled</span><span class="pi">:</span> <span class="s">1</span>
+<span class="na">codAmount</span><span class="pi">:</span> <span class="s">2000</span>
+<span class="na">remark</span><span class="pi">:</span> <span class="s1">'</span><span class="s">-'</span>
+</code></pre>
+<p><code>POST /open/v1/ordersByMchPno</code></p>
+
+<p>Create order by merchant tracking number</p>
+<h3 id='request-parameters-7'>Request Parameters</h3>
+<aside class="notice">
+About shipper's information address.</br>
+You could specify shipper's information of the parcel in 2 ways.</br>
+1st,If you input values of all request parameters of {srcName,srcPhone,srcProvinceName,srcCityName,srcPostalCode,srcDetailAddress}, notice that these several parameters must be all input values,  these parameters are the shipper's information.</br>
+2nd,If you don't input value of any request parameter of {srcName,srcPhone,srcProvinceName,srcCityName,srcPostalCode,srcDetailAddress}, you must input value of request parameter "warehouseNo" to show the shipper's information.
+</aside>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>mchId</td>
+<td>string(32)</td>
+<td>true</td>
+<td>merchant no</td>
+</tr>
+<tr>
+<td>nonceStr</td>
+<td>string(32)</td>
+<td>true</td>
+<td>random nonce string</td>
+</tr>
+<tr>
+<td>sign</td>
+<td>string(64)</td>
+<td>true</td>
+<td>signature</td>
+</tr>
+<tr>
+<td>mchPno</td>
+<td>string(20)</td>
+<td>true</td>
+<td>merchant tracking number.Must be unique.</td>
+</tr>
+<tr>
+<td>expressCategory</td>
+<td>integer</td>
+<td>true</td>
+<td><a href="#express_category">Express Category</a>(must be 1)</td>
+</tr>
+<tr>
+<td>warehouseNo</td>
+<td>string(32)</td>
+<td>false</td>
+<td>shipper warehouse no.must be one value returned by API <a href="#getallwarehouses-warehouses">getAllWarehouses</a>.</td>
+</tr>
+<tr>
+<td>srcName</td>
+<td>string(50)</td>
+<td>false</td>
+<td>shipper&#39;s name</td>
+</tr>
+<tr>
+<td>srcPhone</td>
+<td>string(20)</td>
+<td>false</td>
+<td>shipper&#39;s phone number</td>
+</tr>
+<tr>
+<td>srcProvinceName</td>
+<td>string(150)</td>
+<td>false</td>
+<td>shipper&#39;s province name</td>
+</tr>
+<tr>
+<td>srcCityName</td>
+<td>string(150)</td>
+<td>false</td>
+<td>shipper&#39;s city name.city is a sub unit of province.</td>
+</tr>
+<tr>
+<td>srcDistrictName</td>
+<td>string(150)</td>
+<td>false</td>
+<td>shipper&#39;s district name.district is a sub unit of city.</td>
+</tr>
+<tr>
+<td>srcPostalCode</td>
+<td>string(20)</td>
+<td>false</td>
+<td>shipper&#39;s postal code</td>
+</tr>
+<tr>
+<td>srcDetailAddress</td>
+<td>string(200)</td>
+<td>false</td>
+<td>shipper&#39;s detail address</td>
+</tr>
+<tr>
+<td>dstName</td>
+<td>string(50)</td>
+<td>true</td>
+<td>consignee&#39;s name</td>
+</tr>
+<tr>
+<td>dstPhone</td>
+<td>string(20)</td>
+<td>true</td>
+<td>consignee&#39;s phone number</td>
+</tr>
+<tr>
+<td>dstHomePhone</td>
+<td>string(20)</td>
+<td>false</td>
+<td>consignee&#39;s home phone number or consigne&#39;s second phone number</td>
+</tr>
+<tr>
+<td>dstProvinceName</td>
+<td>string(150)</td>
+<td>true</td>
+<td>consignee&#39;s province name</td>
+</tr>
+<tr>
+<td>dstCityName</td>
+<td>string(150)</td>
+<td>true</td>
+<td>consignee&#39;s city name.city is a sub unit of province.</td>
+</tr>
+<tr>
+<td>dstDistrictName</td>
+<td>string(150)</td>
+<td>false</td>
+<td>consignee&#39;s district name.district is a sub unit of city.</td>
+</tr>
+<tr>
+<td>dstPostalCode</td>
+<td>string(20)</td>
+<td>true</td>
+<td>consignee&#39;s postal code</td>
+</tr>
+<tr>
+<td>dstDetailAddress</td>
+<td>string(200)</td>
+<td>true</td>
+<td>consignee&#39;s detail address</td>
+</tr>
+<tr>
+<td>articleCategory</td>
+<td>integer</td>
+<td>true</td>
+<td><a href="#article_category">Article Category</a></td>
+</tr>
+<tr>
+<td>weight</td>
+<td>integer</td>
+<td>true</td>
+<td>article weight(unit: gram)</td>
+</tr>
+<tr>
+<td>insured</td>
+<td>integer</td>
+<td>true</td>
+<td>whether insured(1: yes 0: no)</td>
+</tr>
+<tr>
+<td>insureDeclareValue</td>
+<td>integer</td>
+<td>false</td>
+<td>article declare value for insurance(unit: cent)</td>
+</tr>
+<tr>
+<td>codEnabled</td>
+<td>integer</td>
+<td>true</td>
+<td>whether COD(1: yes 0: no)</td>
+</tr>
+<tr>
+<td>codAmount</td>
+<td>integer</td>
+<td>false</td>
+<td>COD amount(unit: cent)</td>
+</tr>
+<tr>
+<td>remark</td>
+<td>string(200)</td>
+<td>false</td>
+<td>remark</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>response body example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"mchPno"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MP123456111"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"mchId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AA0005"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"sortCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"01N-CNXY-00"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"dstStoreName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"เชียงใหม่-DC"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='response-body-7'>Response Body</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>mchPno</td>
+<td>string(20)</td>
+<td>merchant tracking number</td>
+</tr>
+<tr>
+<td>mchId</td>
+<td>string(32)</td>
+<td>merchant no</td>
+</tr>
+<tr>
+<td>sortCode</td>
+<td>string(13)</td>
+<td>Flash Express sorting code</td>
+</tr>
+<tr>
+<td>dstStoreName</td>
+<td>string(50)</td>
+<td>Flash Store Name to deliver the parcel</td>
+</tr>
+</tbody></table>
+<h2 id='create-consumer-order-orders-consumer'>Create consumer order <code>/orders/consumer</code></h2><pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/open/v1/orders/consumer</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api-sandbox.fulfillment.com</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/x-www-form-urlencoded</span>
+<span class="na">Accept</span><span class="p">:</span> <span class="s">application/json</span>
+</code></pre>
+<blockquote>
+<p>request body example</p>
+</blockquote>
+<pre class="highlight css tab-css"><code><span class="nt">mchId</span><span class="o">=</span><span class="nt">UBP18100020</span><span class="o">&amp;</span><span class="nt">nonceStr</span><span class="o">=</span><span class="nt">1530763467835</span><span class="o">&amp;</span><span class="nt">sign</span><span class="o">=</span><span class="nt">8D08ACD66D6C3837BB03880A48D639312F76BB70C49DF0283C431AAB9828529B</span><span class="o">&amp;</span><span class="nt">customerPhone</span><span class="o">=</span><span class="nt">0630101499</span><span class="o">&amp;</span><span class="nt">outTradeNo</span><span class="o">=</span><span class="nt">1530763467835</span><span class="o">&amp;</span><span class="nt">srcName</span><span class="o">=%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">AB</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">AD</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">A1</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">A3</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">A7</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">A1</span><span class="o">&amp;</span><span class="nt">srcPhone</span><span class="o">=</span><span class="nt">0630101454</span><span class="o">&amp;</span><span class="nt">srcProvinceName</span><span class="o">=%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">81</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">A3</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">87</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B9</span><span class="o">%</span><span class="nt">80</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">97</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">9E</span><span class="o">&amp;</span><span class="nt">srcCityName</span><span class="o">=%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">AB</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">99</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">AD</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">87</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">88</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">AD</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">81</span><span class="o">&amp;</span><span class="nt">srcDistrictName</span><span class="o">=%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">A5</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">B3</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">9C</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">B1</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">81</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">8A</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">B5</span><span class="o">&amp;</span><span class="nt">srcPostalCode</span><span class="o">=</span><span class="nt">10530</span><span class="o">&amp;</span><span class="nt">srcDetailAddress</span><span class="o">=</span><span class="nt">68</span><span class="o">%</span><span class="nt">2F5-6</span><span class="o">+%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">A1</span><span class="nc">.1</span><span class="o">+%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">9A</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B9</span><span class="o">%</span><span class="nt">89</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">B2</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">99</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">97</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B9</span><span class="o">%</span><span class="nt">88</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">B2</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">9A</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B9</span><span class="o">%</span><span class="nt">88</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">AD</span><span class="o">&amp;</span><span class="nt">srcLat</span><span class="o">=</span><span class="nt">13</span><span class="nc">.80063275</span><span class="o">&amp;</span><span class="nt">srcLng</span><span class="o">=</span><span class="nt">100</span><span class="nc">.84433917</span><span class="o">&amp;</span><span class="nt">dstName</span><span class="o">=%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">99</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B9</span><span class="o">%</span><span class="nt">89</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">B3</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">9E</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">A3</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">B4</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">81</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B9</span><span class="o">%</span><span class="nt">81</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">A1</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B9</span><span class="o">%</span><span class="nt">88</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">AD</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">B3</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">9E</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">A3</span><span class="o">&amp;</span><span class="nt">dstPhone</span><span class="o">=</span><span class="nt">0970209976</span><span class="o">&amp;</span><span class="nt">dstHomePhone</span><span class="o">=</span><span class="nt">0970220220</span><span class="o">&amp;</span><span class="nt">dstProvinceName</span><span class="o">=%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B9</span><span class="o">%</span><span class="nt">80</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">8A</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">B5</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">A2</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">87</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B9</span><span class="o">%</span><span class="nt">83</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">AB</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">A1</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B9</span><span class="o">%</span><span class="nt">88</span><span class="o">&amp;</span><span class="nt">dstCityName</span><span class="o">=%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">AA</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">B1</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">99</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">97</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">A3</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">B2</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">A2</span><span class="o">&amp;</span><span class="nt">dstPostalCode</span><span class="o">=</span><span class="nt">50210</span><span class="o">&amp;</span><span class="nt">dstDetailAddress</span><span class="o">=</span><span class="nt">127</span><span class="o">+%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">AB</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">A1</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">B9</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B9</span><span class="o">%</span><span class="nt">88</span><span class="o">+</span><span class="nt">3</span><span class="o">+%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">95</span><span class="o">.%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">AB</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">99</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">AD</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">87</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B9</span><span class="o">%</span><span class="nt">81</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">AB</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">A2</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B9</span><span class="o">%</span><span class="nt">88</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">87</span><span class="o">+%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">AD</span><span class="o">.%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">AA</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">B1</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">99</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">97</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">A3</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">B2</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">A2</span><span class="o">+%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">88</span><span class="o">.%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B9</span><span class="o">%</span><span class="nt">80</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">8A</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">B5</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">A2</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">87</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B9</span><span class="o">%</span><span class="nt">83</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">AB</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">A1</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B9</span><span class="o">%</span><span class="nt">88</span><span class="o">&amp;</span><span class="nt">articleCategory</span><span class="o">=</span><span class="nt">1</span><span class="o">&amp;</span><span class="nt">expressCategory</span><span class="o">=</span><span class="nt">1</span><span class="o">&amp;</span><span class="nt">weight</span><span class="o">=</span><span class="nt">1000</span><span class="o">&amp;</span><span class="nt">insured</span><span class="o">=</span><span class="nt">1</span><span class="o">&amp;</span><span class="nt">insureDeclareValue</span><span class="o">=</span><span class="nt">10000</span><span class="o">&amp;</span><span class="nt">remark</span><span class="o">=%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">82</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">B6</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B9</span><span class="o">%</span><span class="nt">89</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">99</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">9A</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">B1</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">99</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B9</span><span class="o">%</span><span class="nt">84</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">94</span>
+</code></pre>
+<blockquote>
+<p>parameter description</p>
+</blockquote>
+<pre class="highlight yaml tab-yaml"><code><span class="na">mchId</span><span class="pi">:</span> <span class="s1">'</span><span class="s">UBP18100020'</span>
+<span class="na">nonceStr</span><span class="pi">:</span> <span class="s1">'</span><span class="s">1530763467835'</span>
+<span class="na">sign</span><span class="pi">:</span> <span class="s1">'</span><span class="s">8D08ACD66D6C3837BB03880A48D639312F76BB70C49DF0283C431AAB9828529B'</span>
+<span class="na">customerPhone</span><span class="pi">:</span> <span class="s1">'</span><span class="s">0630101499'</span>
+<span class="na">outTradeNo</span><span class="pi">:</span> <span class="s1">'</span><span class="s">1530763467835'</span>
+<span class="na">expressCategory</span><span class="pi">:</span> <span class="s">1</span>
+<span class="na">srcName</span><span class="pi">:</span> <span class="s1">'</span><span class="s">หอมรวม'</span>
+<span class="na">srcPhone</span><span class="pi">:</span> <span class="s1">'</span><span class="s">0630101454'</span>
+<span class="na">srcProvinceName</span><span class="pi">:</span> <span class="s1">'</span><span class="s">กรุงเทพ'</span>
+<span class="na">srcCityName</span><span class="pi">:</span> <span class="s1">'</span><span class="s">หนองจอก'</span>
+<span class="na">srcDistrictName</span><span class="pi">:</span> <span class="s1">'</span><span class="s">ลำผักชี'</span>
+<span class="na">srcPostalCode</span><span class="pi">:</span> <span class="s1">'</span><span class="s">10530'</span>
+<span class="na">srcDetailAddress</span><span class="pi">:</span> <span class="s1">'</span><span class="s">68/5-6</span><span class="nv"> </span><span class="s">ม.1</span><span class="nv"> </span><span class="s">บ้านท่าบ่อ'</span>
+<span class="na">srcLat</span><span class="pi">:</span> <span class="s">13.80063275</span>
+<span class="na">srcLng</span><span class="pi">:</span> <span class="s">100.84433917</span>
+<span class="na">dstName</span><span class="pi">:</span> <span class="s1">'</span><span class="s">น้ำพริกแม่อำพร'</span>
+<span class="na">dstPhone</span><span class="pi">:</span> <span class="s1">'</span><span class="s">0970209976'</span>
+<span class="na">dstHomePhone</span><span class="pi">:</span> <span class="s1">'</span><span class="s">0970220220'</span>
+<span class="na">dstProvinceName</span><span class="pi">:</span> <span class="s1">'</span><span class="s">เชียงใหม่'</span>
+<span class="na">dstCityName</span><span class="pi">:</span> <span class="s1">'</span><span class="s">สันทราย'</span>
+<span class="na">dstPostalCode</span><span class="pi">:</span> <span class="s1">'</span><span class="s">50210'</span>
+<span class="na">dstDetailAddress</span><span class="pi">:</span> <span class="s1">'</span><span class="s">127หมู่3ต.หนองแหย่งอ.สันทรายจ.เชียงใหม่'</span>
+<span class="na">articleCategory</span><span class="pi">:</span> <span class="s">1</span>
+<span class="na">weight</span><span class="pi">:</span> <span class="s">1000</span>
+<span class="na">insured</span><span class="pi">:</span> <span class="s">1</span>
+<span class="na">insureDeclareValue</span><span class="pi">:</span> <span class="s">100000</span>
+<span class="na">remark</span><span class="pi">:</span> <span class="s1">'</span><span class="s">ขึ้นบันได'</span>
+</code></pre>
+<p><code>POST /open/v1/orders/consumer</code></p>
+
+<p>create consumer order</p>
+<h3 id='request-parameters-8'>Request Parameters</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>mchId</td>
+<td>string(32)</td>
+<td>true</td>
+<td>merchant no</td>
+</tr>
+<tr>
+<td>nonceStr</td>
+<td>string(32)</td>
+<td>true</td>
+<td>random nonce string</td>
+</tr>
+<tr>
+<td>sign</td>
+<td>string(64)</td>
+<td>true</td>
+<td>signature</td>
+</tr>
+<tr>
+<td>customerPhone</td>
+<td>string(20)</td>
+<td>true</td>
+<td>consumer&#39;s phone number</td>
+</tr>
+<tr>
+<td>outTradeNo</td>
+<td>string(64)</td>
+<td>true</td>
+<td>merchant order no</td>
+</tr>
+<tr>
+<td>expressCategory</td>
+<td>integer</td>
+<td>true</td>
+<td><a href="#express_category">Express Category</a>(must be 1)</td>
+</tr>
+<tr>
+<td>srcName</td>
+<td>string(50)</td>
+<td>true</td>
+<td>shipper&#39;s name</td>
+</tr>
+<tr>
+<td>srcPhone</td>
+<td>string(20)</td>
+<td>true</td>
+<td>shipper&#39;s phone number</td>
+</tr>
+<tr>
+<td>srcProvinceName</td>
+<td>string(150)</td>
+<td>true</td>
+<td>shipper&#39;s province name</td>
+</tr>
+<tr>
+<td>srcCityName</td>
+<td>string(150)</td>
+<td>true</td>
+<td>shipper&#39;s city name.city is a sub unit of province.</td>
+</tr>
+<tr>
+<td>srcDistrictName</td>
+<td>string(150)</td>
+<td>false</td>
+<td>shipper&#39;s district name.district is a sub unit of city.</td>
+</tr>
+<tr>
+<td>srcPostalCode</td>
+<td>string(20)</td>
+<td>true</td>
+<td>shipper&#39;s postal code</td>
+</tr>
+<tr>
+<td>srcDetailAddress</td>
+<td>string(200)</td>
+<td>true</td>
+<td>shipper&#39;s detail address</td>
+</tr>
+<tr>
+<td>srcLat</td>
+<td>decimal(11,8)</td>
+<td>false</td>
+<td>shipper&#39;s location latitude</td>
+</tr>
+<tr>
+<td>srcLng</td>
+<td>decimal(11,8)</td>
+<td>false</td>
+<td>shipper&#39;s location longitude</td>
+</tr>
+<tr>
+<td>dstName</td>
+<td>string(50)</td>
+<td>true</td>
+<td>consignee&#39;s name</td>
+</tr>
+<tr>
+<td>dstPhone</td>
+<td>string(20)</td>
+<td>true</td>
+<td>consignee&#39;s phone number</td>
+</tr>
+<tr>
+<td>dstHomePhone</td>
+<td>string(20)</td>
+<td>false</td>
+<td>consignee&#39;s home phone number or consigne&#39;s second phone number</td>
+</tr>
+<tr>
+<td>dstProvinceName</td>
+<td>string(150)</td>
+<td>true</td>
+<td>consignee&#39;s province name</td>
+</tr>
+<tr>
+<td>dstCityName</td>
+<td>string(150)</td>
+<td>true</td>
+<td>consignee&#39;s city name.city is a sub unit of province.</td>
+</tr>
+<tr>
+<td>dstPostalCode</td>
+<td>string(20)</td>
+<td>true</td>
+<td>consignee&#39;s postal code</td>
+</tr>
+<tr>
+<td>dstDetailAddress</td>
+<td>string(200)</td>
+<td>true</td>
+<td>consignee&#39;s detail address</td>
+</tr>
+<tr>
+<td>articleCategory</td>
+<td>integer</td>
+<td>true</td>
+<td><a href="#article_category">Article Category</a></td>
+</tr>
+<tr>
+<td>weight</td>
+<td>integer</td>
+<td>true</td>
+<td>article weight(unit: gram)</td>
+</tr>
+<tr>
+<td>insured</td>
+<td>integer</td>
+<td>true</td>
+<td>whether insured(1: yes 0: no)</td>
+</tr>
+<tr>
+<td>insureDeclareValue</td>
+<td>integer</td>
+<td>false</td>
+<td>article declare value for insurance(unit: cent)</td>
+</tr>
+<tr>
+<td>remark</td>
+<td>string(200)</td>
+<td>false</td>
+<td>remark</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>response body example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"orderId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5b3d98f7a4c2130579510116"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"customerPhone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0630101499"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"outTradeNo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1530763467835"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"sortCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"01N-CNXY-00"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"dstStoreName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"เชียงใหม่-DC"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='response-body-8'>Response Body</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>orderId</td>
+<td>string(32)</td>
+<td>Flash Express order id</td>
+</tr>
+<tr>
+<td>customerPhone</td>
+<td>string(20)</td>
+<td>consumer&#39;s phone number</td>
+</tr>
+<tr>
+<td>outTradeNo</td>
+<td>string(64)</td>
+<td>merchant order no</td>
+</tr>
+<tr>
+<td>sortCode</td>
+<td>string(13)</td>
+<td>Flash Express sorting code</td>
+</tr>
+<tr>
+<td>dstStoreName</td>
+<td>string(50)</td>
+<td>Flash Store Name to deliver the parcel</td>
+</tr>
+</tbody></table>
+<h1 id='notify-api'>Notify API</h1><h2 id='getallnotificationsindate-notifications'>getAllNotificationsInDate <code>/notifications</code></h2><pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/open/v1/notifications</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api-sandbox.fulfillment.com</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/x-www-form-urlencoded</span>
+<span class="na">Accept</span><span class="p">:</span> <span class="s">application/json</span>
+</code></pre>
+<blockquote>
+<p>request body example</p>
+</blockquote>
+<pre class="highlight css tab-css"><code><span class="nt">mchId</span><span class="o">=</span><span class="nt">AA0005</span><span class="o">&amp;</span><span class="nt">nonceStr</span><span class="o">=</span><span class="nt">1538021824975</span><span class="o">&amp;</span><span class="nt">sign</span><span class="o">=</span><span class="nt">3C16B6E0D0DBFC6A1E46EF4D0FCEEB6C54E95960223D08FD5D583C7B7BB04A0C</span><span class="o">&amp;</span><span class="nt">date</span><span class="o">=</span><span class="nt">2018-09-27</span>
+</code></pre>
+<blockquote>
+<p>parameter description</p>
+</blockquote>
+<pre class="highlight yaml tab-yaml"><code><span class="na">mchId</span><span class="pi">:</span> <span class="s1">'</span><span class="s">AA0005'</span>
+<span class="na">nonceStr</span><span class="pi">:</span> <span class="s1">'</span><span class="s">1538021824975'</span>
+<span class="na">sign</span><span class="pi">:</span> <span class="s1">'</span><span class="s">3C16B6E0D0DBFC6A1E46EF4D0FCEEB6C54E95960223D08FD5D583C7B7BB04A0C'</span>
+<span class="na">date</span><span class="pi">:</span> <span class="s1">'</span><span class="s">2018-09-27'</span>
+</code></pre>
+<p><code>POST /open/v1/notifications</code></p>
+
+<p>getAllNotificationsInDate</p>
+<h3 id='request-parameters-9'>Request Parameters</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>mchId</td>
+<td>string(32)</td>
+<td>true</td>
+<td>merchant no</td>
+</tr>
+<tr>
+<td>nonceStr</td>
+<td>string(32)</td>
+<td>true</td>
+<td>random nonce string</td>
+</tr>
+<tr>
+<td>sign</td>
+<td>string(64)</td>
+<td>true</td>
+<td>signature</td>
+</tr>
+<tr>
+<td>date</td>
+<td>string(10)</td>
+<td>true</td>
+<td>notifying date.format:YYYY-MM-DD</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>response body example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+        </span><span class="s2">"ticketPickupId"</span><span class="p">:</span><span class="w"> </span><span class="mi">7392</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="mi">1538047000</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"srcProvinceName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"อุบลราชธานี"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"srcCityName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"เมืองอุบลราชธานี"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"srcDistrictName"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"srcDetailAddress"</span><span class="p">:</span><span class="w"> </span><span class="s2">"68/5-6 ม.1 บ้านท่าบ่อ"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"staffInfoName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"LIU005"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"staffInfomobile"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1234567896"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"state"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"stateText"</span><span class="p">:</span><span class="w"> </span><span class="s2">"รอรับพัสดุ"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"kaWarehouseNo"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"kaWarehouseName"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"remark"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ASAP"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"estimateParcelNumber"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"kaName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"aaa test zhao"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"postalCode"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"phone"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"srcName"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"parcelNumber"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+    </span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"ticketPickupId"</span><span class="p">:</span><span class="w"> </span><span class="mi">7391</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="mi">1538046970</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"srcProvinceName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"อุบลราชธานี"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"srcCityName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"เมืองอุบลราชธานี"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"srcDistrictName"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"srcDetailAddress"</span><span class="p">:</span><span class="w"> </span><span class="s2">"68/5-6 ม.1 บ้านท่าบ่อ"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"staffInfoName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"LIU005"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"staffInfomobile"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1234567896"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"state"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"stateText"</span><span class="p">:</span><span class="w"> </span><span class="s2">"รอรับพัสดุ"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"kaWarehouseNo"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"kaWarehouseName"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"remark"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ASAP"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"estimateParcelNumber"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"kaName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"aaa test zhao"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"postalCode"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"phone"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"srcName"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"parcelNumber"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+    </span><span class="p">}]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='response-body-9'>Response Body</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>ticketPickupId</td>
+<td>integer</td>
+<td>Flash Express notification id</td>
+</tr>
+<tr>
+<td>kaName</td>
+<td>string(50)</td>
+<td>merchant name</td>
+</tr>
+<tr>
+<td>srcName</td>
+<td>string(50)</td>
+<td>contact name of picking up address</td>
+</tr>
+<tr>
+<td>phone</td>
+<td>string(20)</td>
+<td>contact phone number of picking up address</td>
+</tr>
+<tr>
+<td>srcProvinceName</td>
+<td>string(150)</td>
+<td>province name of picking up address</td>
+</tr>
+<tr>
+<td>srcCityName</td>
+<td>string(150)</td>
+<td>city name of picking up address.city is a sub unit of province.</td>
+</tr>
+<tr>
+<td>srcDistrictName</td>
+<td>string(150)</td>
+<td>district name of picking up address.district is a sub unit of city.</td>
+</tr>
+<tr>
+<td>srcDetailAddress</td>
+<td>string(200)</td>
+<td>detail address of picking up address</td>
+</tr>
+<tr>
+<td>postalCode</td>
+<td>string(20)</td>
+<td>postal code of picking up address</td>
+</tr>
+<tr>
+<td>kaWarehouseNo</td>
+<td>string(32)</td>
+<td>warehouse no. of picking up address.</td>
+</tr>
+<tr>
+<td>kaWarehouseName</td>
+<td>string(32)</td>
+<td>warehouse name of picking up address.</td>
+</tr>
+<tr>
+<td>staffInfoName</td>
+<td>string(50)</td>
+<td>courier name to picking up parcels</td>
+</tr>
+<tr>
+<td>staffInfomobile</td>
+<td>string(20)</td>
+<td>courier phone number to picking up parcels</td>
+</tr>
+<tr>
+<td>state</td>
+<td>integer</td>
+<td><a href="#notification_state">Notification State</a></td>
+</tr>
+<tr>
+<td>stateText</td>
+<td>string(100)</td>
+<td>state description of notification</td>
+</tr>
+<tr>
+<td>estimateParcelNumber</td>
+<td>integer</td>
+<td>estimating parcels count to pick up</td>
+</tr>
+<tr>
+<td>parcelNumber</td>
+<td>integer</td>
+<td>actually picked up parcels count</td>
+</tr>
+<tr>
+<td>remark</td>
+<td>string(200)</td>
+<td>remark</td>
+</tr>
+<tr>
+<td>createdAt</td>
+<td>integer</td>
+<td>notifying timestamp in UTC</td>
+</tr>
+</tbody></table>
+<h2 id='notify-courier-notify'>Notify courier <code>/notify</code></h2><pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/open/v1/notify</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api-sandbox.fulfillment.com</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/x-www-form-urlencoded</span>
+<span class="na">Accept</span><span class="p">:</span> <span class="s">application/json</span>
+</code></pre>
+<blockquote>
+<p>request body example</p>
+</blockquote>
+<pre class="highlight css tab-css"><code><span class="nt">mchId</span><span class="o">=</span><span class="nt">AA0005</span><span class="o">&amp;</span><span class="nt">nonceStr</span><span class="o">=</span><span class="nt">1536749937115</span><span class="o">&amp;</span><span class="nt">sign</span><span class="o">=</span><span class="nt">3E750D747981D6175EBB4E1F581DCD9246E60E7E82F8126C8091B27664FCD625</span><span class="o">&amp;</span><span class="nt">warehouseNo</span><span class="o">=</span><span class="nt">AA0005_001</span><span class="o">&amp;</span><span class="nt">srcName</span><span class="o">=%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">AB</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">AD</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">A1</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">A3</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">A7</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">A1</span><span class="o">++</span><span class="nt">nofity</span><span class="o">+</span><span class="nt">test</span><span class="o">+</span><span class="nt">name</span><span class="o">&amp;</span><span class="nt">srcPhone</span><span class="o">=</span><span class="nt">0630101454</span><span class="o">&amp;</span><span class="nt">srcProvinceName</span><span class="o">=%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">AD</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">9A</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">A5</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">A3</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">B2</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">8A</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">98</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">B2</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">99</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">B5</span><span class="o">&amp;</span><span class="nt">srcCityName</span><span class="o">=%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B9</span><span class="o">%</span><span class="nt">80</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">A1</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">B7</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">AD</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">87</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">AD</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">9A</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">A5</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">A3</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">B2</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">8A</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">98</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">B2</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">99</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">B5</span><span class="o">&amp;</span><span class="nt">srcDistrictName</span><span class="o">=%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B9</span><span class="o">%</span><span class="nt">83</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">99</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B9</span><span class="o">%</span><span class="nt">80</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">A1</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">B7</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">AD</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">87</span><span class="o">&amp;</span><span class="nt">srcPostalCode</span><span class="o">=</span><span class="nt">34000</span><span class="o">&amp;</span><span class="nt">srcDetailAddress</span><span class="o">=</span><span class="nt">68</span><span class="o">%</span><span class="nt">2F5-6</span><span class="o">+%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">A1</span><span class="nc">.1</span><span class="o">+%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">9A</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B9</span><span class="o">%</span><span class="nt">89</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">B2</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">99</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">97</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B9</span><span class="o">%</span><span class="nt">88</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">B2</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">9A</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B9</span><span class="o">%</span><span class="nt">88</span><span class="o">%</span><span class="nt">E0</span><span class="o">%</span><span class="nt">B8</span><span class="o">%</span><span class="nt">AD</span><span class="o">+</span><span class="nt">nofity</span><span class="o">+</span><span class="nt">test</span><span class="o">+</span><span class="nt">address</span><span class="o">&amp;</span><span class="nt">estimateParcelNumber</span><span class="o">=</span><span class="nt">100</span><span class="o">&amp;</span><span class="nt">remark</span><span class="o">=</span><span class="nt">ASAP</span>
+</code></pre>
+<blockquote>
+<p>parameter description</p>
+</blockquote>
+<pre class="highlight yaml tab-yaml"><code><span class="na">mchId</span><span class="pi">:</span> <span class="s1">'</span><span class="s">AA0005'</span>
+<span class="na">nonceStr</span><span class="pi">:</span> <span class="s1">'</span><span class="s">1536749937115'</span>
+<span class="na">sign</span><span class="pi">:</span> <span class="s1">'</span><span class="s">3E750D747981D6175EBB4E1F581DCD9246E60E7E82F8126C8091B27664FCD625'</span>
+<span class="na">warehouseNo</span><span class="pi">:</span> <span class="s1">'</span><span class="s">AA0005_001'</span>
+<span class="na">srcName</span><span class="pi">:</span> <span class="s1">'</span><span class="s">หอมรวม</span><span class="nv">  </span><span class="s">nofity</span><span class="nv"> </span><span class="s">test</span><span class="nv"> </span><span class="s">name'</span>
+<span class="na">srcPhone</span><span class="pi">:</span> <span class="s1">'</span><span class="s">0630101454'</span>
+<span class="na">srcProvinceName</span><span class="pi">:</span> <span class="s1">'</span><span class="s">อุบลราชธานี'</span>
+<span class="na">srcCityName</span><span class="pi">:</span> <span class="s1">'</span><span class="s">เมืองอุบลราชธานี'</span>
+<span class="na">srcDistrictName</span><span class="pi">:</span> <span class="s1">'</span><span class="s">ในเมือง'</span>
+<span class="na">srcPostalCode</span><span class="pi">:</span> <span class="s1">'</span><span class="s">34000'</span>
+<span class="na">srcDetailAddress</span><span class="pi">:</span> <span class="s1">'</span><span class="s">68/5-6</span><span class="nv"> </span><span class="s">ม.1</span><span class="nv"> </span><span class="s">บ้านท่าบ่อ</span><span class="nv"> </span><span class="s">nofity</span><span class="nv"> </span><span class="s">test</span><span class="nv"> </span><span class="s">address'</span>
+<span class="na">estimateParcelNumber</span><span class="pi">:</span> <span class="s">100</span>
+<span class="na">remark</span><span class="pi">:</span> <span class="s1">'</span><span class="s">ASAP'</span>
+</code></pre>
+<p><code>POST /open/v1/notify</code></p>
+
+<p>Notify courier</p>
+<h3 id='request-parameters-10'>Request Parameters</h3>
+<aside class="notice">
+About picking up address.</br>
+You could specify the address you want the courier to pick up your parcels.</br>
+If you input values of all request parameters of {srcName,srcPhone,srcProvinceName,srcCityName,srcPostalCode,srcDetailAddress}, notice that these several parameters must be all input values,  this address will be pickup address.</br>
+If you don't input values of all request parameters of {srcName,srcPhone,srcProvinceName,srcCityName,srcPostalCode,srcDetailAddress}, you must input value of request parameter "warehouseNo" as pickup address.
+</aside>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>mchId</td>
+<td>string(32)</td>
+<td>true</td>
+<td>merchant no</td>
+</tr>
+<tr>
+<td>nonceStr</td>
+<td>string(32)</td>
+<td>true</td>
+<td>random nonce string</td>
+</tr>
+<tr>
+<td>sign</td>
+<td>string(64)</td>
+<td>true</td>
+<td>signature</td>
+</tr>
+<tr>
+<td>warehouseNo</td>
+<td>string(32)</td>
+<td>false</td>
+<td>warehouse no. of picking up address.must be one value returned by API <a href="#getallwarehouses-warehouses">getAllWarehouses</a>.</td>
+</tr>
+<tr>
+<td>srcName</td>
+<td>string(50)</td>
+<td>false</td>
+<td>contact name of picking up address</td>
+</tr>
+<tr>
+<td>srcPhone</td>
+<td>string(20)</td>
+<td>false</td>
+<td>contact phone number of picking up address</td>
+</tr>
+<tr>
+<td>srcProvinceName</td>
+<td>string(150)</td>
+<td>false</td>
+<td>province name of picking up address</td>
+</tr>
+<tr>
+<td>srcCityName</td>
+<td>string(150)</td>
+<td>false</td>
+<td>city name of picking up address.city is a sub unit of province.</td>
+</tr>
+<tr>
+<td>srcDistrictName</td>
+<td>string(150)</td>
+<td>false</td>
+<td>district name of picking up address.district is a sub unit of city.</td>
+</tr>
+<tr>
+<td>srcPostalCode</td>
+<td>string(20)</td>
+<td>false</td>
+<td>postal code of picking up address</td>
+</tr>
+<tr>
+<td>srcDetailAddress</td>
+<td>string(200)</td>
+<td>false</td>
+<td>detail address of picking up address</td>
+</tr>
+<tr>
+<td>estimateParcelNumber</td>
+<td>integer</td>
+<td>true</td>
+<td>estimating parcels count to pick up</td>
+</tr>
+<tr>
+<td>remark</td>
+<td>string(200)</td>
+<td>false</td>
+<td>remark</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>response body: none</p>
+</blockquote>
+<h3 id='response-body-10'>Response Body</h3>
+<p>None.</p>
+<h2 id='cancel-notification-notify-id-cancel'>Cancel notification <code>/notify/{id}/cancel</code></h2><pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/open/v1/orders/TH4714A27/cancel</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api-sandbox.fulfillment.com</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/x-www-form-urlencoded</span>
+<span class="na">Accept</span><span class="p">:</span> <span class="s">application/json</span>
+</code></pre>
+<p><code>POST /open/v1/notify/{id}/cancel</code></p>
+
+<p>cancel notification</p>
+<h3 id='path-variables-not-involved-in-the-signature-5'>Path Variables (not involved in the signature)</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>integer</td>
+<td>true</td>
+<td>Flash Express notification id.must be one value returned by API <a href="#getallnotificationsindate-notifications">getAllNotificationsInDate</a>.</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>request body example</p>
+</blockquote>
+<pre class="highlight css tab-css"><code><span class="nt">mchId</span><span class="o">=</span><span class="nt">AA0005</span><span class="o">&amp;</span><span class="nt">nonceStr</span><span class="o">=</span><span class="nt">1538032588802</span><span class="o">&amp;</span><span class="nt">sign</span><span class="o">=</span><span class="nt">4A16C1AD40BCEF7201149F5F125F7AA00D29D78561002DA30D9572AA79CD6F74</span>
+</code></pre>
+<blockquote>
+<p>parameter description</p>
+</blockquote>
+<pre class="highlight yaml tab-yaml"><code><span class="na">mchId</span><span class="pi">:</span> <span class="s1">'</span><span class="s">AA0005'</span>
+<span class="na">nonceStr</span><span class="pi">:</span> <span class="s1">'</span><span class="s">1538032588802'</span>
+<span class="na">sign</span><span class="pi">:</span> <span class="s1">'</span><span class="s">4A16C1AD40BCEF7201149F5F125F7AA00D29D78561002DA30D9572AA79CD6F74'</span>
+</code></pre><h3 id='request-parameters-11'>Request Parameters</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>mchId</td>
+<td>string(32)</td>
+<td>true</td>
+<td>merchant no</td>
+</tr>
+<tr>
+<td>nonceStr</td>
+<td>string(32)</td>
+<td>true</td>
+<td>random nonce string</td>
+</tr>
+<tr>
+<td>sign</td>
+<td>string(64)</td>
+<td>true</td>
+<td>signature</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>response body: none</p>
+</blockquote>
+<h3 id='response-body-11'>Response Body</h3>
+<p>None.</p>
+<h1 id='constants'>Constants</h1>
+<h2 id="response_code">Response Code</h2>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Meaning</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>1</td>
+<td>success</td>
+</tr>
+<tr>
+<td>0</td>
+<td>internal server error</td>
+</tr>
+<tr>
+<td>1000</td>
+<td>Failed to submit</td>
+</tr>
+<tr>
+<td>1001</td>
+<td>customer not found</td>
+</tr>
+<tr>
+<td>1002</td>
+<td>invalid signature</td>
+</tr>
+<tr>
+<td>1003</td>
+<td>order already exists</td>
+</tr>
+<tr>
+<td>1004</td>
+<td>shipper&#39;s address not match</td>
+</tr>
+<tr>
+<td>1005</td>
+<td>destination not match</td>
+</tr>
+<tr>
+<td>1006</td>
+<td>order not found</td>
+</tr>
+<tr>
+<td>1007</td>
+<td>warehouse not found</td>
+</tr>
+<tr>
+<td>1008</td>
+<td>COD service not subscribed</td>
+</tr>
+<tr>
+<td>1009</td>
+<td>COD can not be &lt; 0</td>
+</tr>
+<tr>
+<td>1010</td>
+<td>current address has been notified</td>
+</tr>
+<tr>
+<td>1015</td>
+<td>order has been picked up,can not be canceled</td>
+</tr>
+<tr>
+<td>1018</td>
+<td>shipper&#39;s address and warehouseNo could not both empty</td>
+</tr>
+<tr>
+<td>1019</td>
+<td>pno and mchId not match</td>
+</tr>
+<tr>
+<td>1020</td>
+<td>Insured declare value can not be &lt; 0</td>
+</tr>
+<tr>
+<td>1021</td>
+<td>shipper&#39;s postal code only be a 5 digit number</td>
+</tr>
+<tr>
+<td>1022</td>
+<td>shipper&#39;s address not open</td>
+</tr>
+</tbody></table>
+
+<h2 id="express_category">Express Category</h2>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Meaning</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>1</td>
+<td>Standard delivery</td>
+</tr>
+</tbody></table>
+
+<h2 id="article_category">Article Category</h2>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Meaning</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>0</td>
+<td>File</td>
+</tr>
+<tr>
+<td>1</td>
+<td>Food</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Daily Necessities</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Electronics</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Clothing</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Others</td>
+</tr>
+</tbody></table>
+
+<h2 id="settlement_category">Settlement Category</h2>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Meaning</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>1</td>
+<td>Cash settlement</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Credit settlement</td>
+</tr>
+</tbody></table>
+
+<h2 id="notification_state">Notification State</h2>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Meaning</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>0</td>
+<td>Open</td>
+</tr>
+<tr>
+<td>1</td>
+<td>Assigned</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Completed</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Canceled</td>
+</tr>
+</tbody></table>
+<h1 id='demo-download'>Demo Download</h1>
+<h2 id="demo-csharp">C# Demo</h2>
+
+<p><a href="download/CSharpDemo.rar">C# Demo</a></p>
+
+<h2 id="demo-php">PHP Demo</h2>
+
+<p><a href="download/flashDemo.php.zip">PHP Demo</a></p>
+
+<h2 id="demo-java">Java Demo</h2>
+
+<p><a href="download/OpenTest.java.zip">Java Demo</a></p>
+
+      </div>
+      <div class="dark-box">
+          <div class="lang-selector">
+                <a href="#" data-language-name="http">HTTP</a>
+          </div>
+      </div>
+    </div>
+  </body>
+</html>
