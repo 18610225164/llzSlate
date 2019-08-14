@@ -259,19 +259,34 @@
             <a href="#open_api" class="toc-h1 toc-link" data-title="open_api">open_api</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#post-open-goodsstock" class="toc-h2 toc-link" data-title="code-post-code-code-open-goodsstock-code">仓库库存查询 <code>POST</code> <code>/open/goodsStock</code></a>
+                    <a href="#api" class="toc-h2 toc-link" data-title="api">仓库库存查询API</a>
                   </li>
                   <li>
-                    <a href="#post-open-returnwarehouseadd" class="toc-h2 toc-link" data-title="code-post-open-returnwarehouseadd-code">出库单添加 <code>POST /open/returnWarehouseAdd</code></a>
+                    <a href="#api-2" class="toc-h2 toc-link" data-title="api">入库通知单API</a>
                   </li>
                   <li>
-                    <a href="#post-order-addorder" class="toc-h2 toc-link" data-title="code-post-code-code-order-addorder-code">发货单新增 <code>POST</code> <code>/Order/addOrder</code></a>
+                    <a href="#api-3" class="toc-h2 toc-link" data-title="api">出库单添加API</a>
                   </li>
                   <li>
-                    <a href="#post-arrival_notice-create" class="toc-h2 toc-link" data-title="code-post-code-code-arrival_notice-create-code">入库通知单新增 <code>POST</code> <code>/arrival_notice/create</code></a>
+                    <a href="#api-4" class="toc-h2 toc-link" data-title="api">发货单新增API</a>
                   </li>
                   <li>
-                    <a href="#post-rollback_order-add" class="toc-h2 toc-link" data-title="code-post-code-code-rollback_order-add-code">销退单新增 <code>POST</code> <code>/rollback_order/add</code></a>
+                    <a href="#api-5" class="toc-h2 toc-link" data-title="api">商品档案查询API</a>
+                  </li>
+                  <li>
+                    <a href="#api-6" class="toc-h2 toc-link" data-title="api">地址库修改API</a>
+                  </li>
+                  <li>
+                    <a href="#api-7" class="toc-h2 toc-link" data-title="api">地址库删除API</a>
+                  </li>
+                  <li>
+                    <a href="#api-8" class="toc-h2 toc-link" data-title="api">地址库新增API</a>
+                  </li>
+                  <li>
+                    <a href="#c6288cdcf2" class="toc-h2 toc-link" data-title="">客户商品出库明细</a>
+                  </li>
+                  <li>
+                    <a href="#api-9" class="toc-h2 toc-link" data-title="api">销退单新增API</a>
                   </li>
               </ul>
           </li>
@@ -281,33 +296,12 @@
                   <li>
                     <a href="#response_code" class="toc-h2 toc-link" data-title="code">返回码 (code)</a>
                   </li>
-                  <li>
-                    <a href="#express_category" class="toc-h2 toc-link" data-title="expresscategory">产品类型 (expressCategory)</a>
-                  </li>
-                  <li>
-                    <a href="#article_category" class="toc-h2 toc-link" data-title="articlecategory">物品类型 (articleCategory)</a>
-                  </li>
-              </ul>
-          </li>
-          <li>
-            <a href="#demo" class="toc-h1 toc-link" data-title="demo">Demo 下载</a>
-              <ul class="toc-list-h2">
-                  <li>
-                    <a href="#demo-csharp" class="toc-h2 toc-link" data-title="c-demo">C# Demo</a>
-                  </li>
-                  <li>
-                    <a href="#demo-php" class="toc-h2 toc-link" data-title="php-demo">PHP Demo</a>
-                  </li>
-                  <li>
-                    <a href="#demo-java" class="toc-h2 toc-link" data-title="java-demo">Java Demo</a>
-                  </li>
               </ul>
           </li>
       </div>
         <ul class="toc-footer">
             <li><a href="/index.html">中文</a></li>
             <li><a href="/en.html">English</a></li>
-            <li><a href="http://www.fulfillment.com">Flash Express</a></li>
         </ul>
     </div>
     <div class="page-wrapper">
@@ -325,12 +319,12 @@
 </tr>
 </thead><tbody>
 <tr>
-<td>Sandbox</td>
-<td>https://api-sandbox.fulfillment.com</td>
+<td>Training</td>
+<td>https://open-training.flashfulfillment.co.th/</td>
 </tr>
 <tr>
 <td>Production</td>
-<td>https://api.fulfillment.com</td>
+<td>https://open.flashfulfillment.co.th/</td>
 </tr>
 </tbody></table>
 <h1 id='d972c0c140'>接口规范</h1><h2 id='1e30c2b374'>基本规范</h2>
@@ -487,671 +481,1220 @@
 </aside>
 <h2 id='11769ac9b1'>生成随机数算法</h2>
 <p>开放平台接口规范中包含字段 <code>nonce_str</code>, 主要保证签名不可预测. 我们推荐生成随机数算法如下: 调用随机数函数生成, 将得到的值转换为字符串.</p>
-<h1 id='open_api'>open_api</h1><h2 id='post-open-goodsstock'>仓库库存查询 <code>POST</code> <code>/open/goodsStock</code></h2><pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/open/v1/orders</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
-<span class="na">Host</span><span class="p">:</span> <span class="s">api-sandbox.fulfillment.com</span>
-<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/x-www-form-urlencoded</span>
-<span class="na">Accept</span><span class="p">:</span> <span class="s">application/json</span>
-</code></pre>
-<blockquote>
-<p>请求示例</p>
-</blockquote>
-<pre class="highlight css tab-css"><code></code></pre>
-<blockquote>
-<p>请求示例参数说明</p>
-</blockquote>
-<pre class="highlight yaml tab-yaml"><code>
-</code></pre><h3 id='405cb0a78a'>请求参数说明</h3>
+<h1 id='open_api'>open_api</h1><h2 id='api'>仓库库存查询API</h2>
+<p><a id=仓库库存查询API> </a></p>
+<h3 id='b122f813d5'>基本信息</h3>
+<p><strong>Path：</strong> /open/goodsStock</p>
+
+<p><strong>Method：</strong> POST</p>
+
+<p><strong>接口描述：</strong></p>
+<h3 id='1f9ac54b15'>请求参数</h3>
+<p><strong>Headers</strong></p>
+
 <table><thead>
 <tr>
-<th>名称</th>
-<th>数据类型</th>
-<th>是否必填</th>
-<th>说明</th>
+<th>参数名称</th>
+<th>参数值</th>
+<th>是否必须</th>
+<th>示例</th>
+<th>备注</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Content-Type</td>
+<td>application/x-www-form-urlencoded</td>
+<td>是</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+
+<p><strong>Body</strong></p>
+
+<table><thead>
+<tr>
+<th>参数名称</th>
+<th>参数类型</th>
+<th>是否必须</th>
+<th>示例</th>
+<th>备注</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>barCode</td>
-<td>string</td>
-<td>true</td>
+<td>text</td>
+<td>是</td>
+<td>O3O2O1O,BBBUI,NNN</td>
 <td>条形码 多个用,隔开，验证正则  ^[\w-]+(,[\w-]+)*</td>
 </tr>
 <tr>
 <td>warehouseId</td>
-<td>string</td>
-<td>false</td>
+<td>text</td>
+<td>否</td>
+<td>1</td>
 <td>仓库ID，不填默认全部仓库</td>
 </tr>
 <tr>
 <td>goodsStatus</td>
-<td>string</td>
-<td>false</td>
+<td>text</td>
+<td>否</td>
+<td>normal</td>
 <td>质量状态[normal]正品，默认[bad]残品</td>
 </tr>
 </tbody></table>
+<h3 id='b691cfe782'>返回数据</h3>
+<table>
+  <thead class="ant-table-thead">
+    <tr>
+      <th key=name>名称</th><th key=type>类型</th><th key=required>是否必须</th><th key=default>默认值</th><th key=desc>备注</th><th key=sub>其他信息</th>
+    </tr>
+  </thead><tbody className="ant-table-tbody"><tr key=0-0><td key=0><span style="padding-left: 0px"><span style="color: #8c8a8a"></span> msg</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span></span></td><td key=5></td></tr><tr key=0-1><td key=0><span style="padding-left: 0px"><span style="color: #8c8a8a"></span> code</span></td><td key=1><span>number</span></td><td key=2>非必须</td><td key=3></td><td key=4><span></span></td><td key=5></td></tr><tr key=0-2><td key=0><span style="padding-left: 0px"><span style="color: #8c8a8a"></span> data</span></td><td key=1><span>object</span></td><td key=2>非必须</td><td key=3></td><td key=4><span></span></td><td key=5></td></tr><tr key=0-2-0><td key=0><span style="padding-left: 20px"><span style="color: #8c8a8a">├─</span> O3O2O1O</span></td><td key=1><span>object</span></td><td key=2>非必须</td><td key=3></td><td key=4><span></span></td><td key=5></td></tr><tr key=0-2-0-0><td key=0><span style="padding-left: 40px"><span style="color: #8c8a8a">├─</span> availableInventory</span></td><td key=1><span>integer</span></td><td key=2>非必须</td><td key=3></td><td key=4><span>可售库存</span></td><td key=5></td></tr><tr key=0-2-0-1><td key=0><span style="padding-left: 40px"><span style="color: #8c8a8a">├─</span> totalInventory</span></td><td key=1><span>integer</span></td><td key=2>非必须</td><td key=3></td><td key=4><span>实物库存</span></td><td key=5></td></tr><tr key=0-2-0-2><td key=0><span style="padding-left: 40px"><span style="color: #8c8a8a">├─</span> inventory</span></td><td key=1><span>integer</span></td><td key=2>非必须</td><td key=3></td><td key=4><span>可用库存</span></td><td key=5></td></tr><tr key=0-2-1><td key=0><span style="padding-left: 20px"><span style="color: #8c8a8a">├─</span> BBBUI</span></td><td key=1><span>object</span></td><td key=2>非必须</td><td key=3></td><td key=4><span></span></td><td key=5></td></tr><tr key=0-2-1-0><td key=0><span style="padding-left: 40px"><span style="color: #8c8a8a">├─</span> availableInventory</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span></span></td><td key=5></td></tr><tr key=0-2-1-1><td key=0><span style="padding-left: 40px"><span style="color: #8c8a8a">├─</span> totalInventory</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span></span></td><td key=5></td></tr><tr key=0-2-1-2><td key=0><span style="padding-left: 40px"><span style="color: #8c8a8a">├─</span> inventory</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span></span></td><td key=5></td></tr><tr key=0-2-2><td key=0><span style="padding-left: 20px"><span style="color: #8c8a8a">├─</span> NNN</span></td><td key=1><span>object</span></td><td key=2>非必须</td><td key=3></td><td key=4><span></span></td><td key=5></td></tr><tr key=0-2-2-0><td key=0><span style="padding-left: 40px"><span style="color: #8c8a8a">├─</span> availableInventory</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span></span></td><td key=5></td></tr><tr key=0-2-2-1><td key=0><span style="padding-left: 40px"><span style="color: #8c8a8a">├─</span> totalInventory</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span></span></td><td key=5></td></tr><tr key=0-2-2-2><td key=0><span style="padding-left: 40px"><span style="color: #8c8a8a">├─</span> inventory</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span></span></td><td key=5></td></tr>
+               </tbody>
+              </table>
+            
+<h2 id='api-2'>入库通知单API</h2>
+<p><a id=入库通知单API> </a></p>
+<h3 id='b122f813d5-2'>基本信息</h3>
+<p><strong>Path：</strong> /arrival_notice/create</p>
 
-<blockquote>
-<p>返回数据体示例</p>
-</blockquote>
-<pre class="highlight json tab-json"><code></code></pre><h3 id='2e096960b6'>返回数据体</h3>
-<p><strong><em>data: Array[goodsStockInfo对象]，goodsStockInfo对象说明：</em></strong></p>
+<p><strong>Method：</strong> POST</p>
+
+<p><strong>接口描述：</strong></p>
+<h3 id='1f9ac54b15-2'>请求参数</h3>
+<p><strong>Headers</strong></p>
 
 <table><thead>
 <tr>
-<th>名称</th>
-<th>数据类型</th>
-<th>说明</th>
+<th>参数名称</th>
+<th>参数值</th>
+<th>是否必须</th>
+<th>示例</th>
+<th>备注</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>availableInventory</td>
-<td>integer</td>
-<td>可售库存</td>
-</tr>
-<tr>
-<td>totalInventory</td>
-<td>integer</td>
-<td>实物库存</td>
-</tr>
-<tr>
-<td>inventory</td>
-<td>integer</td>
-<td>可用库存</td>
+<td>Content-Type</td>
+<td>application/x-www-form-urlencoded</td>
+<td>是</td>
+<td></td>
+<td></td>
 </tr>
 </tbody></table>
-<h2 id='post-open-returnwarehouseadd'>出库单添加 <code>POST /open/returnWarehouseAdd</code></h2><pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/open/v1/orders</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
-<span class="na">Host</span><span class="p">:</span> <span class="s">api-sandbox.fulfillment.com</span>
-<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/x-www-form-urlencoded</span>
-<span class="na">Accept</span><span class="p">:</span> <span class="s">application/json</span>
-</code></pre>
-<blockquote>
-<p>请求示例</p>
-</blockquote>
-<pre class="highlight css tab-css"><code></code></pre>
-<blockquote>
-<p>请求示例参数说明</p>
-</blockquote>
-<pre class="highlight yaml tab-yaml"><code>
-</code></pre><h3 id='405cb0a78a-2'>请求参数说明</h3>
+
+<p><strong>Body</strong></p>
+
 <table><thead>
 <tr>
-<th>名称</th>
-<th>数据类型</th>
-<th>是否必填</th>
-<th>说明</th>
+<th>参数名称</th>
+<th>参数类型</th>
+<th>是否必须</th>
+<th>示例</th>
+<th>备注</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>warehouseId</td>
-<td>string</td>
-<td>true</td>
-<td>仓库ID</td>
-</tr>
-<tr>
-<td>consigneeName</td>
-<td>string</td>
-<td>true</td>
-<td>收货人</td>
-</tr>
-<tr>
-<td>consigneePhone</td>
-<td>string</td>
-<td>true</td>
-<td>联系方式</td>
-</tr>
-<tr>
-<td>province</td>
-<td>string</td>
-<td>true</td>
-<td>省</td>
-</tr>
-<tr>
-<td>city</td>
-<td>string</td>
-<td>true</td>
-<td>市</td>
-</tr>
-<tr>
-<td>district</td>
-<td>string</td>
-<td>true</td>
-<td>区</td>
-</tr>
-<tr>
-<td>postalCode</td>
-<td>string</td>
-<td>true</td>
-<td>邮编</td>
-</tr>
-<tr>
-<td>consigneeAddress</td>
-<td>string</td>
-<td>true</td>
-<td>详细地址</td>
-</tr>
-<tr>
-<td>goods</td>
-<td>string</td>
-<td>true</td>
-<td>出库商品json, 详细说明在下方</td>
-</tr>
-<tr>
-<td>orderSn</td>
-<td>string</td>
-<td>true</td>
-<td>外部订单号</td>
-</tr>
-<tr>
-<td>status</td>
-<td>string</td>
-<td>false</td>
-<td>[1]待审核</td>
+<td>text</td>
+<td>是</td>
+<td>1</td>
+<td>仓库ID(目前只有1个仓库填1)</td>
 </tr>
 <tr>
 <td>type</td>
-<td>string</td>
-<td>false</td>
-<td>[1]退供出库</td>
+<td>text</td>
+<td>否</td>
+<td>1</td>
+<td>入库类型(目前只能填1)</td>
+</tr>
+<tr>
+<td>orderSn</td>
+<td>text</td>
+<td>否</td>
+<td></td>
+<td>外部单号(不能重复)</td>
 </tr>
 <tr>
 <td>channelSource</td>
-<td>string</td>
-<td>false</td>
+<td>text</td>
+<td>否</td>
+<td></td>
+<td>渠道来源</td>
+</tr>
+<tr>
+<td>deliveryWay</td>
+<td>text</td>
+<td>否</td>
+<td>logistics</td>
+<td>配送方式：[logistics]物流(默认) [express]快递 [seller]自送</td>
+</tr>
+<tr>
+<td>carrier</td>
+<td>text</td>
+<td>否</td>
+<td></td>
+<td>承运商</td>
+</tr>
+<tr>
+<td>deliveryMan</td>
+<td>text</td>
+<td>否</td>
+<td></td>
+<td>送货人</td>
+</tr>
+<tr>
+<td>plateNumber</td>
+<td>text</td>
+<td>否</td>
+<td></td>
+<td>车牌号</td>
+</tr>
+<tr>
+<td>deliveryNumber</td>
+<td>text</td>
+<td>否</td>
+<td></td>
+<td>运单号</td>
+</tr>
+<tr>
+<td>deliveryContact</td>
+<td>text</td>
+<td>否</td>
+<td></td>
+<td>送货人联系方式</td>
+</tr>
+<tr>
+<td>remark</td>
+<td>text</td>
+<td>否</td>
+<td></td>
+<td>备注</td>
+</tr>
+<tr>
+<td>arrivalStart</td>
+<td>text</td>
+<td>否</td>
+<td>2019-06-10 14:45</td>
+<td>预计到货开始时间(无需到秒)</td>
+</tr>
+<tr>
+<td>arrivalEnd</td>
+<td>text</td>
+<td>否</td>
+<td>2019-06-10 16:45</td>
+<td>预计到货结束时间(无需到秒)</td>
+</tr>
+<tr>
+<td>goods</td>
+<td>text</td>
+<td>是</td>
+<td>[{&quot;i&quot;:1,&quot;barCode&quot;:&quot;00000000001&quot;,&quot;num&quot;:4,&quot;price&quot;:123,&quot;asset&quot;:[&quot;aaaaaaa1&quot;,&quot;aaaaaaa2&quot;,&quot;aaaaaaa3&quot;,&quot;aaaaaaa4&quot;]},{&quot;i&quot;:2,&quot;barCode&quot;:&quot;00000000002&quot;,&quot;num&quot;:2,&quot;price&quot;:456,&quot;asset&quot;:[&quot;bbbbbbb1&quot;,&quot;bbbbbbb2&quot;]}]</td>
+<td>入库商品的json串，下面参数是json串里的</td>
+</tr>
+<tr>
+<td>i</td>
+<td>text</td>
+<td>是</td>
+<td></td>
+<td>顺序码，从1开始递增</td>
+</tr>
+<tr>
+<td>barCode</td>
+<td>text</td>
+<td>是</td>
+<td></td>
+<td>商品条码</td>
+</tr>
+<tr>
+<td>num</td>
+<td>text</td>
+<td>是</td>
+<td></td>
+<td>入库数量</td>
+</tr>
+<tr>
+<td>asset</td>
+<td>text</td>
+<td>否</td>
+<td>[&quot;bbbbbbb1&quot;,&quot;bbbbbbb2&quot;]</td>
+<td>ASSET码数组，当商品开启ASSET时必填</td>
+</tr>
+</tbody></table>
+<h2 id='api-3'>出库单添加API</h2>
+<p><a id=出库单添加API> </a></p>
+<h3 id='b122f813d5-3'>基本信息</h3>
+<p><strong>Path：</strong> /open/returnWarehouseAdd</p>
+
+<p><strong>Method：</strong> POST</p>
+
+<p><strong>接口描述：</strong>
+<p>商品格式<br>
+[{&quot;i&quot;:&quot;0&quot;,&quot;barCode&quot;:&quot;FEX00025&quot;,&quot;goodsName&quot;:&quot;测试接口1&quot;,&quot;specification&quot;:&quot;14*20*6 cm&quot;,&quot;num&quot;:&quot;1&quot;,&quot;price&quot;:&quot;400&quot;,&quot;remark&quot;:&quot;商品备注一&quot;}，{&quot;i&quot;:&quot;1&quot;,&quot;barCode&quot;:&quot;FEX00026&quot;,&quot;goodsName&quot;:&quot;测试接口2&quot;,&quot;specification&quot;:&quot;14*20*7 cm&quot;,&quot;num&quot;:&quot;2&quot;,&quot;price&quot;:&quot;500&quot;,&quot;remark&quot;:&quot;商品备注二&quot;}]</p></p>
+<h3 id='1f9ac54b15-3'>请求参数</h3>
+<p><strong>Headers</strong></p>
+
+<table><thead>
+<tr>
+<th>参数名称</th>
+<th>参数值</th>
+<th>是否必须</th>
+<th>示例</th>
+<th>备注</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Content-Type</td>
+<td>application/x-www-form-urlencoded</td>
+<td>是</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+
+<p><strong>Body</strong></p>
+
+<table><thead>
+<tr>
+<th>参数名称</th>
+<th>参数类型</th>
+<th>是否必须</th>
+<th>示例</th>
+<th>备注</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>status</td>
+<td>text</td>
+<td>否</td>
+<td></td>
+<td>[1]待审核</td>
+</tr>
+<tr>
+<td>warehouseId</td>
+<td>text</td>
+<td>是</td>
+<td>1</td>
+<td>仓库ID</td>
+</tr>
+<tr>
+<td>type</td>
+<td>text</td>
+<td>否</td>
+<td>1</td>
+<td>退供出库</td>
+</tr>
+<tr>
+<td>channelSource</td>
+<td>text</td>
+<td>否</td>
+<td></td>
 <td>来源渠道</td>
 </tr>
 <tr>
 <td>nodeSn</td>
-<td>string</td>
-<td>false</td>
+<td>text</td>
+<td>否</td>
+<td>TH01090201</td>
 <td>网点编码</td>
 </tr>
 <tr>
+<td>consigneeName</td>
+<td>text</td>
+<td>是</td>
+<td></td>
+<td>收货人</td>
+</tr>
+<tr>
+<td>consigneePhone</td>
+<td>text</td>
+<td>是</td>
+<td></td>
+<td>联系方式</td>
+</tr>
+<tr>
+<td>province</td>
+<td>text</td>
+<td>是</td>
+<td></td>
+<td>省</td>
+</tr>
+<tr>
+<td>city</td>
+<td>text</td>
+<td>是</td>
+<td></td>
+<td>市</td>
+</tr>
+<tr>
+<td>district</td>
+<td>text</td>
+<td>是</td>
+<td></td>
+<td>区</td>
+</tr>
+<tr>
+<td>postalCode</td>
+<td>text</td>
+<td>是</td>
+<td></td>
+<td>邮编</td>
+</tr>
+<tr>
+<td>consigneeAddress</td>
+<td>text</td>
+<td>是</td>
+<td></td>
+<td>详细地址</td>
+</tr>
+<tr>
 <td>logistics</td>
-<td>string</td>
-<td>false</td>
+<td>text</td>
+<td>否</td>
+<td></td>
 <td>配送方式【物流 logistics】 【快递express】 【 到仓自取self】</td>
 </tr>
 <tr>
 <td>outTime</td>
-<td>string</td>
-<td>false</td>
+<td>text</td>
+<td>否</td>
+<td></td>
 <td>期望出库时间</td>
 </tr>
 <tr>
 <td>goodsStatus</td>
-<td>string</td>
-<td>false</td>
+<td>text</td>
+<td>否</td>
+<td></td>
 <td>【normal】正品  【bad】残品</td>
 </tr>
 <tr>
 <td>remark</td>
-<td>string</td>
-<td>false</td>
+<td>text</td>
+<td>否</td>
+<td></td>
 <td>备注</td>
 </tr>
+<tr>
+<td>goods</td>
+<td>text</td>
+<td>是</td>
+<td></td>
+<td>出库商品json</td>
+</tr>
+<tr>
+<td>orderSn</td>
+<td>text</td>
+<td>是</td>
+<td></td>
+<td>外部订单号</td>
+</tr>
 </tbody></table>
+<h2 id='api-4'>发货单新增API</h2>
+<p><a id=发货单新增API> </a></p>
+<h3 id='b122f813d5-4'>基本信息</h3>
+<p><strong>Path：</strong> /Order/addOrder</p>
 
-<p><strong><em>goods字段：出库商品json说明</em></strong></p>
+<p><strong>Method：</strong> POST</p>
+
+<p><strong>接口描述：</strong>
+<p><span class="colour" style="color:rgb(85, 85, 85)">商品传输格式&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; [{&quot;id&quot;:&#39;20&#39;,&quot;num&quot;:&quot;1&quot;,&quot;price&quot;:&quot;400&quot;}，{&quot;id&quot;:&quot;21&quot;,&quot;num&quot;:&quot;2&quot;,&quot;price&quot;:&quot;500&quot;}]</span></p></p>
+<h3 id='1f9ac54b15-4'>请求参数</h3>
+<p><strong>Headers</strong></p>
 
 <table><thead>
 <tr>
-<th>名称</th>
-<th>数据类型</th>
-<th>是否必填</th>
-<th>说明</th>
+<th>参数名称</th>
+<th>参数值</th>
+<th>是否必须</th>
+<th>示例</th>
+<th>备注</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>sellerGoodsId</td>
-<td>string</td>
-<td>true</td>
-<td>商品id</td>
-</tr>
-<tr>
-<td>number</td>
-<td>string</td>
-<td>true</td>
-<td>商品数量</td>
+<td>Content-Type</td>
+<td>application/x-www-form-urlencoded</td>
+<td>是</td>
+<td></td>
+<td></td>
 </tr>
 </tbody></table>
 
-<blockquote>
-<p>返回数据体示例</p>
-</blockquote>
-<pre class="highlight json tab-json"><code></code></pre><h3 id='2e096960b6-2'>返回数据体</h3>
-<p>无</p>
-<h2 id='post-order-addorder'>发货单新增 <code>POST</code> <code>/Order/addOrder</code></h2><pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/open/v1/orders</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
-<span class="na">Host</span><span class="p">:</span> <span class="s">api-sandbox.fulfillment.com</span>
-<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/x-www-form-urlencoded</span>
-<span class="na">Accept</span><span class="p">:</span> <span class="s">application/json</span>
-</code></pre>
-<blockquote>
-<p>请求示例</p>
-</blockquote>
-<pre class="highlight css tab-css"><code></code></pre>
-<blockquote>
-<p>请求示例参数说明</p>
-</blockquote>
-<pre class="highlight yaml tab-yaml"><code>
-</code></pre><h3 id='405cb0a78a-3'>请求参数说明</h3>
+<p><strong>Body</strong></p>
+
 <table><thead>
 <tr>
-<th>名称</th>
-<th>数据类型</th>
-<th>是否必填</th>
-<th>说明</th>
+<th>参数名称</th>
+<th>参数类型</th>
+<th>是否必须</th>
+<th>示例</th>
+<th>备注</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>platformSourceId</td>
-<td>string</td>
-<td>true</td>
+<td>text</td>
+<td>是</td>
+<td></td>
 <td>wms端添加的货主店铺主键ID</td>
 </tr>
 <tr>
 <td>orderSn</td>
-<td>string</td>
-<td>true</td>
+<td>text</td>
+<td>是</td>
+<td></td>
 <td>订单号</td>
 </tr>
 <tr>
 <td>orderSourceId</td>
-<td>string</td>
-<td>true</td>
+<td>text</td>
+<td>是</td>
+<td></td>
 <td>订单主键ID</td>
 </tr>
 <tr>
 <td>code</td>
-<td>string</td>
-<td>true</td>
+<td>text</td>
+<td>是</td>
+<td></td>
 <td>地址code</td>
 </tr>
 <tr>
 <td>postalCode</td>
-<td>string</td>
-<td>true</td>
+<td>text</td>
+<td>是</td>
+<td></td>
 <td>邮编</td>
 </tr>
 <tr>
 <td>consigneeName</td>
-<td>string</td>
-<td>true</td>
+<td>text</td>
+<td>是</td>
+<td></td>
 <td>收件人名称</td>
 </tr>
 <tr>
 <td>consigneeAddress</td>
-<td>string</td>
-<td>true</td>
+<td>text</td>
+<td>是</td>
+<td></td>
 <td>收件人详细地址</td>
 </tr>
 <tr>
 <td>phoneNumber</td>
-<td>string</td>
-<td>true</td>
+<td>text</td>
+<td>是</td>
+<td></td>
 <td>联系电话</td>
 </tr>
 <tr>
 <td>buyerMessage</td>
-<td>string</td>
-<td>true</td>
+<td>text</td>
+<td>是</td>
+<td></td>
 <td>买家留言</td>
 </tr>
 <tr>
 <td>paidPrice</td>
-<td>string</td>
-<td>true</td>
+<td>text</td>
+<td>是</td>
+<td></td>
 <td>订单金额</td>
 </tr>
 <tr>
 <td>logisticCharge</td>
-<td>string</td>
-<td>true</td>
+<td>text</td>
+<td>是</td>
+<td></td>
 <td>运费</td>
 </tr>
 <tr>
 <td>totalPrice</td>
-<td>string</td>
-<td>true</td>
+<td>text</td>
+<td>是</td>
+<td></td>
 <td>订单总金额</td>
 </tr>
 <tr>
 <td>payMode</td>
-<td>string</td>
-<td>true</td>
+<td>text</td>
+<td>是</td>
+<td></td>
 <td>支付方式  【1】货到付款  【2】银行转账</td>
 </tr>
 <tr>
+<td>payStatus</td>
+<td>text</td>
+<td>是</td>
+<td></td>
+<td>支付状态 【0】未支付【1】 已支付</td>
+</tr>
+<tr>
 <td>goods</td>
-<td>string</td>
-<td>true</td>
-<td>订单商品list[订单商品信息的json]</td>
+<td>text</td>
+<td>是</td>
+<td>    [{&quot;id&quot;:&#39;20&#39;,&quot;num&quot;:&quot;1&quot;,&quot;price&quot;:&quot;400&quot;}，{&quot;id&quot;:&quot;21&quot;,&quot;num&quot;:&quot;2&quot;,&quot;price&quot;:&quot;500&quot;}]</td>
+<td>订单商品信息 商品id 数量 价格 json格式</td>
 </tr>
 <tr>
 <td>type</td>
-<td>string</td>
-<td>true</td>
+<td>text</td>
+<td>否</td>
+<td>1</td>
 <td>订单类型 [1]销售订单 (默认) [2]补货订单</td>
 </tr>
 <tr>
 <td>deliverySn</td>
-<td>string</td>
-<td>true</td>
+<td>text</td>
+<td>否</td>
+<td></td>
 <td>原发货单号(type=2时必填)</td>
 </tr>
 </tbody></table>
+<h2 id='api-5'>商品档案查询API</h2>
+<p><a id=商品档案查询API> </a></p>
+<h3 id='b122f813d5-5'>基本信息</h3>
+<p><strong>Path：</strong> /open/goods</p>
 
-<p><em>goods字段: 订单商品信息的json说明</em></p>
+<p><strong>Method：</strong> POST</p>
 
-<table><thead>
-<tr>
-<th>名称</th>
-<th>数据类型</th>
-<th>是否必填</th>
-<th>说明</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>id</td>
-<td>string</td>
-<td>true</td>
-<td>商品id</td>
-</tr>
-<tr>
-<td>num</td>
-<td>string</td>
-<td>true</td>
-<td>商品数量</td>
-</tr>
-<tr>
-<td>price</td>
-<td>string</td>
-<td>true</td>
-<td>商品单价</td>
-</tr>
-</tbody></table>
-
-<blockquote>
-<p>返回数据体示例</p>
-</blockquote>
-<pre class="highlight json tab-json"><code></code></pre><h3 id='2e096960b6-3'>返回数据体</h3>
-<p>无</p>
-<h2 id='post-arrival_notice-create'>入库通知单新增 <code>POST</code> <code>/arrival_notice/create</code></h2><pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/open/v1/orders</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
-<span class="na">Host</span><span class="p">:</span> <span class="s">api-sandbox.fulfillment.com</span>
-<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/x-www-form-urlencoded</span>
-<span class="na">Accept</span><span class="p">:</span> <span class="s">application/json</span>
-</code></pre>
-<blockquote>
-<p>请求示例</p>
-</blockquote>
-<pre class="highlight css tab-css"><code></code></pre>
-<blockquote>
-<p>请求示例参数说明</p>
-</blockquote>
-<pre class="highlight yaml tab-yaml"><code>
-</code></pre>
-<p><code>/open/goodsStock</code></p>
-<h3 id='405cb0a78a-4'>请求参数说明</h3>
-<table><thead>
-<tr>
-<th>名称</th>
-<th>数据类型</th>
-<th>是否必填</th>
-<th>说明</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>aaaaaa</td>
-<td>string</td>
-<td>true</td>
-<td>bbbbbbb</td>
-</tr>
-<tr>
-<td>aaaaaa</td>
-<td>string</td>
-<td>true</td>
-<td>bbbbbbb</td>
-</tr>
-<tr>
-<td>aaaaaa</td>
-<td>string</td>
-<td>true</td>
-<td>bbbbbbb</td>
-</tr>
-<tr>
-<td>aaaaaa</td>
-<td>string</td>
-<td>true</td>
-<td>bbbbbbb</td>
-</tr>
-<tr>
-<td>aaaaaa</td>
-<td>string</td>
-<td>true</td>
-<td>bbbbbbb</td>
-</tr>
-<tr>
-<td>aaaaaa</td>
-<td>string</td>
-<td>true</td>
-<td>bbbbbbb</td>
-</tr>
-<tr>
-<td>aaaaaa</td>
-<td>string</td>
-<td>true</td>
-<td>bbbbbbb</td>
-</tr>
-<tr>
-<td>aaaaaa</td>
-<td>string</td>
-<td>true</td>
-<td>bbbbbbb</td>
-</tr>
-<tr>
-<td>aaaaaa</td>
-<td>string</td>
-<td>true</td>
-<td>bbbbbbb</td>
-</tr>
-<tr>
-<td>aaaaaa</td>
-<td>string</td>
-<td>true</td>
-<td>bbbbbbb</td>
-</tr>
-<tr>
-<td>aaaaaa</td>
-<td>string</td>
-<td>true</td>
-<td>bbbbbbb</td>
-</tr>
-<tr>
-<td>aaaaaa</td>
-<td>string</td>
-<td>true</td>
-<td>bbbbbbb</td>
-</tr>
-<tr>
-<td>aaaaaa</td>
-<td>string</td>
-<td>true</td>
-<td>bbbbbbb</td>
-</tr>
-<tr>
-<td>aaaaaa</td>
-<td>string</td>
-<td>true</td>
-<td>bbbbbbb</td>
-</tr>
-</tbody></table>
-
-<blockquote>
-<p>返回数据体示例</p>
-</blockquote>
-<pre class="highlight json tab-json"><code></code></pre><h3 id='2e096960b6-4'>返回数据体</h3>
-<p><strong><em>data: Array[goodsStockInfo对象]，goodsStockInfo对象说明：</em></strong></p>
+<p><strong>接口描述：</strong>
+<p>1.barCode 不传的时候&nbsp; 返回货主所有的商品列表，填写时返回对应条码的商品信息。<br>
+2.如果要查询多个商品则把多个条形码用&nbsp; &nbsp;，（逗号） 隔开&nbsp; 如&nbsp; &nbsp;barCode1,barCode2</p>
+<p>training<span class="size"></span>环境链接：<a href="https://open-training.flashfulfillment.co.th/">https://open-training.flashfulfillment.co.th/</a><span class="size"></span><br>
+training图片地址示例：<a href="https://wms-upload-training.flashfulfillment.co.th/upload/images/goods/94/76/947600748f3a290edb38aee45d3be9e5.jpg">https://wms-upload-training.flashfulfillment.co.th/upload/images/goods/94/76/947600748f3a290edb38aee45d3be9e5.jpg</a><br data-tomark-pass=""><br>
+<br data-tomark-pass=""><br>
+<br data-tomark-pass=""><br>
+生产环境链接：<a href="https://open.flashfulfillment.co.th/">https://open.flashfulfillment.co.th/</a><br>
+生产图片地址示例：<a href="https://wms-upload.flashfulfillment.co.th/upload/images/goods/77/c0/77c04870b9622555c7fd681214ca63a6.png">https://wms-upload.flashfulfillment.co.th/upload/images/goods/77/c0/77c04870b9622555c7fd681214ca63a6.png</a></p></p>
+<h3 id='1f9ac54b15-5'>请求参数</h3>
+<p><strong>Headers</strong></p>
 
 <table><thead>
 <tr>
-<th>名称</th>
-<th>数据类型</th>
-<th>说明</th>
+<th>参数名称</th>
+<th>参数值</th>
+<th>是否必须</th>
+<th>示例</th>
+<th>备注</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>availableInventory</td>
-<td>integer</td>
-<td>可售库存</td>
-</tr>
-<tr>
-<td>totalInventory</td>
-<td>integer</td>
-<td>实物库存</td>
-</tr>
-<tr>
-<td>inventory</td>
-<td>integer</td>
-<td>可用库存</td>
-</tr>
-</tbody></table>
-<h2 id='post-rollback_order-add'>销退单新增 <code>POST</code> <code>/rollback_order/add</code></h2><pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/open/v1/orders</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
-<span class="na">Host</span><span class="p">:</span> <span class="s">api-sandbox.fulfillment.com</span>
-<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/x-www-form-urlencoded</span>
-<span class="na">Accept</span><span class="p">:</span> <span class="s">application/json</span>
-</code></pre>
-<blockquote>
-<p>请求示例</p>
-</blockquote>
-<pre class="highlight css tab-css"><code></code></pre>
-<blockquote>
-<p>请求示例参数说明</p>
-</blockquote>
-<pre class="highlight yaml tab-yaml"><code>
-</code></pre>
-<p><code>/open/goodsStock</code></p>
-<h3 id='405cb0a78a-5'>请求参数说明</h3>
-<table><thead>
-<tr>
-<th>名称</th>
-<th>数据类型</th>
-<th>是否必填</th>
-<th>说明</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>aaaaaa</td>
-<td>string</td>
-<td>true</td>
-<td>bbbbbbb</td>
-</tr>
-<tr>
-<td>aaaaaa</td>
-<td>string</td>
-<td>true</td>
-<td>bbbbbbb</td>
-</tr>
-<tr>
-<td>aaaaaa</td>
-<td>string</td>
-<td>true</td>
-<td>bbbbbbb</td>
-</tr>
-<tr>
-<td>aaaaaa</td>
-<td>string</td>
-<td>true</td>
-<td>bbbbbbb</td>
-</tr>
-<tr>
-<td>aaaaaa</td>
-<td>string</td>
-<td>true</td>
-<td>bbbbbbb</td>
-</tr>
-<tr>
-<td>aaaaaa</td>
-<td>string</td>
-<td>true</td>
-<td>bbbbbbb</td>
-</tr>
-<tr>
-<td>aaaaaa</td>
-<td>string</td>
-<td>true</td>
-<td>bbbbbbb</td>
-</tr>
-<tr>
-<td>aaaaaa</td>
-<td>string</td>
-<td>true</td>
-<td>bbbbbbb</td>
-</tr>
-<tr>
-<td>aaaaaa</td>
-<td>string</td>
-<td>true</td>
-<td>bbbbbbb</td>
-</tr>
-<tr>
-<td>aaaaaa</td>
-<td>string</td>
-<td>true</td>
-<td>bbbbbbb</td>
-</tr>
-<tr>
-<td>aaaaaa</td>
-<td>string</td>
-<td>true</td>
-<td>bbbbbbb</td>
-</tr>
-<tr>
-<td>aaaaaa</td>
-<td>string</td>
-<td>true</td>
-<td>bbbbbbb</td>
-</tr>
-<tr>
-<td>aaaaaa</td>
-<td>string</td>
-<td>true</td>
-<td>bbbbbbb</td>
-</tr>
-<tr>
-<td>aaaaaa</td>
-<td>string</td>
-<td>true</td>
-<td>bbbbbbb</td>
+<td>Content-Type</td>
+<td>application/x-www-form-urlencoded</td>
+<td>是</td>
+<td></td>
+<td></td>
 </tr>
 </tbody></table>
 
-<blockquote>
-<p>返回数据体示例</p>
-</blockquote>
-<pre class="highlight json tab-json"><code></code></pre><h3 id='2e096960b6-5'>返回数据体</h3>
-<p><strong><em>data: Array[goodsStockInfo对象]，goodsStockInfo对象说明：</em></strong></p>
+<p><strong>Body</strong></p>
 
 <table><thead>
 <tr>
-<th>名称</th>
-<th>数据类型</th>
-<th>说明</th>
+<th>参数名称</th>
+<th>参数类型</th>
+<th>是否必须</th>
+<th>示例</th>
+<th>备注</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>availableInventory</td>
-<td>integer</td>
-<td>可售库存</td>
-</tr>
-<tr>
-<td>totalInventory</td>
-<td>integer</td>
-<td>实物库存</td>
-</tr>
-<tr>
-<td>inventory</td>
-<td>integer</td>
-<td>可用库存</td>
+<td>barCode</td>
+<td>text</td>
+<td>否</td>
+<td></td>
+<td>商品条形码</td>
 </tr>
 </tbody></table>
+<h3 id='b691cfe782-2'>返回数据</h3>
+<table>
+  <thead class="ant-table-thead">
+    <tr>
+      <th key=name>名称</th><th key=type>类型</th><th key=required>是否必须</th><th key=default>默认值</th><th key=desc>备注</th><th key=sub>其他信息</th>
+    </tr>
+  </thead><tbody className="ant-table-tbody"><tr key=0-0><td key=0><span style="padding-left: 0px"><span style="color: #8c8a8a"></span> msg</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span></span></td><td key=5></td></tr><tr key=0-1><td key=0><span style="padding-left: 0px"><span style="color: #8c8a8a"></span> code</span></td><td key=1><span>number</span></td><td key=2>非必须</td><td key=3></td><td key=4><span></span></td><td key=5></td></tr><tr key=0-2><td key=0><span style="padding-left: 0px"><span style="color: #8c8a8a"></span> data</span></td><td key=1><span>object</span></td><td key=2>非必须</td><td key=3></td><td key=4><span></span></td><td key=5></td></tr><tr key=0-2-0><td key=0><span style="padding-left: 20px"><span style="color: #8c8a8a">├─</span> SIHX</span></td><td key=1><span>object</span></td><td key=2>非必须</td><td key=3></td><td key=4><span>条形码</span></td><td key=5></td></tr><tr key=0-2-0-0><td key=0><span style="padding-left: 40px"><span style="color: #8c8a8a">├─</span> modifiedName</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span></span></td><td key=5></td></tr><tr key=0-2-0-1><td key=0><span style="padding-left: 40px"><span style="color: #8c8a8a">├─</span> abbrName</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span></span></td><td key=5></td></tr><tr key=0-2-0-2><td key=0><span style="padding-left: 40px"><span style="color: #8c8a8a">├─</span> remark</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span>备注</span></td><td key=5></td></tr><tr key=0-2-0-3><td key=0><span style="padding-left: 40px"><span style="color: #8c8a8a">├─</span> isCombo</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span>【1】商品套装【0】普通商品</span></td><td key=5></td></tr><tr key=0-2-0-4><td key=0><span style="padding-left: 40px"><span style="color: #8c8a8a">├─</span> hot</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span>ABC分类</span></td><td key=5></td></tr><tr key=0-2-0-5><td key=0><span style="padding-left: 40px"><span style="color: #8c8a8a">├─</span> sellerId</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span></span></td><td key=5></td></tr><tr key=0-2-0-6><td key=0><span style="padding-left: 40px"><span style="color: #8c8a8a">├─</span> isAsset</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span>【1】Asset商品【0】普通商品</span></td><td key=5></td></tr><tr key=0-2-0-7><td key=0><span style="padding-left: 40px"><span style="color: #8c8a8a">├─</span> encodeType</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span>[unique]SN商品 [其他]非SN商品</span></td><td key=5></td></tr><tr key=0-2-0-8><td key=0><span style="padding-left: 40px"><span style="color: #8c8a8a">├─</span> price</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span>售价</span></td><td key=5></td></tr><tr key=0-2-0-9><td key=0><span style="padding-left: 40px"><span style="color: #8c8a8a">├─</span> isLocked</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span></span></td><td key=5></td></tr><tr key=0-2-0-10><td key=0><span style="padding-left: 40px"><span style="color: #8c8a8a">├─</span> isUnpackedDelivery</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span></span></td><td key=5></td></tr><tr key=0-2-0-11><td key=0><span style="padding-left: 40px"><span style="color: #8c8a8a">├─</span> modified</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span></span></td><td key=5></td></tr><tr key=0-2-0-12><td key=0><span style="padding-left: 40px"><span style="color: #8c8a8a">├─</span> createdName</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span></span></td><td key=5></td></tr><tr key=0-2-0-13><td key=0><span style="padding-left: 40px"><span style="color: #8c8a8a">├─</span> id</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span>商品ID</span></td><td key=5></td></tr><tr key=0-2-0-14><td key=0><span style="padding-left: 40px"><span style="color: #8c8a8a">├─</span> introduction</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span>商品简介</span></td><td key=5></td></tr><tr key=0-2-0-15><td key=0><span style="padding-left: 40px"><span style="color: #8c8a8a">├─</span> image</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span>图片地址</span></td><td key=5></td></tr><tr key=0-2-0-16><td key=0><span style="padding-left: 40px"><span style="color: #8c8a8a">├─</span> storeType</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span></span></td><td key=5></td></tr><tr key=0-2-0-17><td key=0><span style="padding-left: 40px"><span style="color: #8c8a8a">├─</span> parentTwo</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span></span></td><td key=5></td></tr><tr key=0-2-0-18><td key=0><span style="padding-left: 40px"><span style="color: #8c8a8a">├─</span> logisticRequire</span></td><td key=1><span>string []</span></td><td key=2>非必须</td><td key=3></td><td key=4><span>【dangerous】】危险品【fragile】易碎品【not_flight】禁航品【damp_proof】防潮【fire_proof】防火【put_ice_bag】保鲜品【heteromorphism】异形</span></td><td key=5><p key=3><span style="font-weight: '700'">item 类型: </span><span>string</span></p></td></tr><tr key=0-2-0-19><td key=0><span style="padding-left: 40px"><span style="color: #8c8a8a">├─</span> created</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span></span></td><td key=5></td></tr><tr key=0-2-0-20><td key=0><span style="padding-left: 40px"><span style="color: #8c8a8a">├─</span> costPrice</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span>成本价</span></td><td key=5></td></tr><tr key=0-2-0-21><td key=0><span style="padding-left: 40px"><span style="color: #8c8a8a">├─</span> specification</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span>商品规格</span></td><td key=5></td></tr><tr key=0-2-0-22><td key=0><span style="padding-left: 40px"><span style="color: #8c8a8a">├─</span> isShelfLife</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span>[0]非保质期商品 [1]是保质期商品</span></td><td key=5></td></tr><tr key=0-2-0-23><td key=0><span style="padding-left: 40px"><span style="color: #8c8a8a">├─</span> barCode</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span>商品条码</span></td><td key=5></td></tr><tr key=0-2-0-24><td key=0><span style="padding-left: 40px"><span style="color: #8c8a8a">├─</span> volume</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span></span></td><td key=5></td></tr><tr key=0-2-0-25><td key=0><span style="padding-left: 40px"><span style="color: #8c8a8a">├─</span> orderSourceType</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span></span></td><td key=5></td></tr><tr key=0-2-0-26><td key=0><span style="padding-left: 40px"><span style="color: #8c8a8a">├─</span> name</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span>商品名称</span></td><td key=5></td></tr><tr key=0-2-0-27><td key=0><span style="padding-left: 40px"><span style="color: #8c8a8a">├─</span> replenishmentBatchNum</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span></span></td><td key=5></td></tr><tr key=0-2-0-28><td key=0><span style="padding-left: 40px"><span style="color: #8c8a8a">├─</span> parentOne</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span></span></td><td key=5></td></tr><tr key=0-2-0-29><td key=0><span style="padding-left: 40px"><span style="color: #8c8a8a">├─</span> goodsCode</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span>商品货号</span></td><td key=5></td></tr><tr key=0-2-0-30><td key=0><span style="padding-left: 40px"><span style="color: #8c8a8a">├─</span> categoryId</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span></span></td><td key=5></td></tr><tr key=0-2-0-31><td key=0><span style="padding-left: 40px"><span style="color: #8c8a8a">├─</span> status</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span>[1]停用 [2]存盘 [3]启用</span></td><td key=5></td></tr>
+               </tbody>
+              </table>
+            
+<h2 id='api-6'>地址库修改API</h2>
+<p><a id=地址库修改API> </a></p>
+<h3 id='b122f813d5-6'>基本信息</h3>
+<p><strong>Path：</strong> /seller_address/update</p>
+
+<p><strong>Method：</strong> POST</p>
+
+<p><strong>接口描述：</strong></p>
+<h3 id='1f9ac54b15-6'>请求参数</h3>
+<p><strong>Headers</strong></p>
+
+<table><thead>
+<tr>
+<th>参数名称</th>
+<th>参数值</th>
+<th>是否必须</th>
+<th>示例</th>
+<th>备注</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Content-Type</td>
+<td>application/x-www-form-urlencoded</td>
+<td>是</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+
+<p><strong>Body</strong></p>
+
+<table><thead>
+<tr>
+<th>参数名称</th>
+<th>参数类型</th>
+<th>是否必须</th>
+<th>示例</th>
+<th>备注</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>nodeSn</td>
+<td>text</td>
+<td>是</td>
+<td>TH01050101</td>
+<td>网点编号</td>
+</tr>
+<tr>
+<td>name</td>
+<td>text</td>
+<td>是</td>
+<td></td>
+<td>网点名称</td>
+</tr>
+<tr>
+<td>type</td>
+<td>text</td>
+<td>否</td>
+<td></td>
+<td>网点类型</td>
+</tr>
+<tr>
+<td>contact</td>
+<td>text</td>
+<td>是</td>
+<td></td>
+<td>联系人</td>
+</tr>
+<tr>
+<td>telephone</td>
+<td>text</td>
+<td>是</td>
+<td></td>
+<td>电话号码</td>
+</tr>
+<tr>
+<td>code</td>
+<td>text</td>
+<td>是</td>
+<td></td>
+<td>地址Code</td>
+</tr>
+<tr>
+<td>postalCode</td>
+<td>text</td>
+<td>是</td>
+<td></td>
+<td>地址邮编</td>
+</tr>
+<tr>
+<td>address</td>
+<td>text</td>
+<td>是</td>
+<td></td>
+<td>详细地址</td>
+</tr>
+<tr>
+<td>organization</td>
+<td>text</td>
+<td>否</td>
+<td></td>
+<td>分管机构</td>
+</tr>
+<tr>
+<td>remark</td>
+<td>text</td>
+<td>否</td>
+<td></td>
+<td>备注</td>
+</tr>
+</tbody></table>
+<h2 id='api-7'>地址库删除API</h2>
+<p><a id=地址库删除API> </a></p>
+<h3 id='b122f813d5-7'>基本信息</h3>
+<p><strong>Path：</strong> /seller_address/delete</p>
+
+<p><strong>Method：</strong> POST</p>
+
+<p><strong>接口描述：</strong>
+<p>此api由于wms业务需求&nbsp; 将改功能改成禁用功能</p></p>
+<h3 id='1f9ac54b15-7'>请求参数</h3>
+<p><strong>Headers</strong></p>
+
+<table><thead>
+<tr>
+<th>参数名称</th>
+<th>参数值</th>
+<th>是否必须</th>
+<th>示例</th>
+<th>备注</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Content-Type</td>
+<td>application/x-www-form-urlencoded</td>
+<td>是</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+
+<p><strong>Body</strong></p>
+
+<table><thead>
+<tr>
+<th>参数名称</th>
+<th>参数类型</th>
+<th>是否必须</th>
+<th>示例</th>
+<th>备注</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>nodeSn</td>
+<td>text</td>
+<td>是</td>
+<td></td>
+<td>网点编号</td>
+</tr>
+</tbody></table>
+<h2 id='api-8'>地址库新增API</h2>
+<p><a id=地址库新增API> </a></p>
+<h3 id='b122f813d5-8'>基本信息</h3>
+<p><strong>Path：</strong> /seller_address/create</p>
+
+<p><strong>Method：</strong> POST</p>
+
+<p><strong>接口描述：</strong></p>
+<h3 id='1f9ac54b15-8'>请求参数</h3>
+<p><strong>Headers</strong></p>
+
+<table><thead>
+<tr>
+<th>参数名称</th>
+<th>参数值</th>
+<th>是否必须</th>
+<th>示例</th>
+<th>备注</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Content-Type</td>
+<td>application/x-www-form-urlencoded</td>
+<td>是</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+
+<p><strong>Body</strong></p>
+
+<table><thead>
+<tr>
+<th>参数名称</th>
+<th>参数类型</th>
+<th>是否必须</th>
+<th>示例</th>
+<th>备注</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>nodeSn</td>
+<td>text</td>
+<td>是</td>
+<td>TH01050101</td>
+<td>网点编号</td>
+</tr>
+<tr>
+<td>name</td>
+<td>text</td>
+<td>是</td>
+<td></td>
+<td>网点名称</td>
+</tr>
+<tr>
+<td>type</td>
+<td>text</td>
+<td>否</td>
+<td></td>
+<td>网点类型</td>
+</tr>
+<tr>
+<td>contact</td>
+<td>text</td>
+<td>是</td>
+<td></td>
+<td>联系人</td>
+</tr>
+<tr>
+<td>telephone</td>
+<td>text</td>
+<td>是</td>
+<td></td>
+<td>电话号码</td>
+</tr>
+<tr>
+<td>code</td>
+<td>text</td>
+<td>是</td>
+<td></td>
+<td>地址Code</td>
+</tr>
+<tr>
+<td>postalCode</td>
+<td>text</td>
+<td>是</td>
+<td></td>
+<td>地址邮编</td>
+</tr>
+<tr>
+<td>address</td>
+<td>text</td>
+<td>是</td>
+<td></td>
+<td>详细地址</td>
+</tr>
+<tr>
+<td>organization</td>
+<td>text</td>
+<td>否</td>
+<td></td>
+<td>分管机构</td>
+</tr>
+<tr>
+<td>remark</td>
+<td>text</td>
+<td>否</td>
+<td></td>
+<td>备注</td>
+</tr>
+</tbody></table>
+<h2 id='c6288cdcf2'>客户商品出库明细</h2>
+<p><a id=客户商品出库明细> </a></p>
+<h3 id='b122f813d5-9'>基本信息</h3>
+<p><strong>Path：</strong> /open/outBoundGoods</p>
+
+<p><strong>Method：</strong> POST</p>
+
+<p><strong>接口描述：</strong>
+<p>返回数据字段解释&nbsp; &nbsp;barCode&nbsp; 商品条码， outNumber&nbsp; &nbsp;出库数量&nbsp; &nbsp;outWarehouseTime&nbsp; 出库时间&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;outSn 出库单单号 （方便测试使用）</p></p>
+<h3 id='1f9ac54b15-9'>请求参数</h3>
+<p><strong>Headers</strong></p>
+
+<table><thead>
+<tr>
+<th>参数名称</th>
+<th>参数值</th>
+<th>是否必须</th>
+<th>示例</th>
+<th>备注</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Content-Type</td>
+<td>application/x-www-form-urlencoded</td>
+<td>是</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+
+<p><strong>Body</strong></p>
+
+<table><thead>
+<tr>
+<th>参数名称</th>
+<th>参数类型</th>
+<th>是否必须</th>
+<th>示例</th>
+<th>备注</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>startTime</td>
+<td>text</td>
+<td>是</td>
+<td>2018-07-15</td>
+<td>查询开始日期</td>
+</tr>
+<tr>
+<td>endTime</td>
+<td>text</td>
+<td>是</td>
+<td>2019-07-15</td>
+<td>查询结束日期   开始时间结束时间不要大于一年</td>
+</tr>
+<tr>
+<td>nodeSn</td>
+<td>text</td>
+<td>是</td>
+<td>TH3052641</td>
+<td>客户编码（网点编号）</td>
+</tr>
+<tr>
+<td>barCode</td>
+<td>text</td>
+<td>是</td>
+<td></td>
+<td>商品SN  多个以 逗号隔开     barcode1,barcode2,barcode3</td>
+</tr>
+</tbody></table>
+<h2 id='api-9'>销退单新增API</h2>
+<p><a id=销退单新增API> </a></p>
+<h3 id='b122f813d5-10'>基本信息</h3>
+<p><strong>Path：</strong> /rollback_order/add</p>
+
+<p><strong>Method：</strong> POST</p>
+
+<p><strong>接口描述：</strong>
+<p><span class="colour" style="color: rgb(0, 0, 0);">{</span><br>
+<span class="colour" style="color: rgb(163, 21, 21);">&quot;code&quot;</span><span class="colour" style="color: rgb(0, 0, 0);">:</span><span class="colour" style="color: rgb(9, 136, 90);">1</span><span class="colour" style="color: rgb(0, 0, 0);">,</span><br>
+<span class="colour" style="color: rgb(163, 21, 21);">&quot;msg&quot;</span><span class="colour" style="color: rgb(0, 0, 0);">:</span><span class="colour" style="color: rgb(4, 81, 165);">&quot;成功&quot;</span><span class="colour" style="color: rgb(0, 0, 0);">,</span><br>
+<span class="colour" style="color: rgb(163, 21, 21);">&quot;data&quot;</span><span class="colour" style="color: rgb(0, 0, 0);">:</span><span class="colour" style="color: rgb(4, 81, 165);">&quot;115&quot;</span><br>
+<span class="colour" style="color: rgb(0, 0, 0);">}</span></p></p>
+<h3 id='1f9ac54b15-10'>请求参数</h3>
+<p><strong>Headers</strong></p>
+
+<table><thead>
+<tr>
+<th>参数名称</th>
+<th>参数值</th>
+<th>是否必须</th>
+<th>示例</th>
+<th>备注</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Content-Type</td>
+<td>application/x-www-form-urlencoded</td>
+<td>是</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+
+<p><strong>Body</strong></p>
+
+<table><thead>
+<tr>
+<th>参数名称</th>
+<th>参数类型</th>
+<th>是否必须</th>
+<th>示例</th>
+<th>备注</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>externalOrderSn</td>
+<td>text</td>
+<td>是</td>
+<td>dsfsfsf</td>
+<td>订单号（外部订单号）</td>
+</tr>
+<tr>
+<td>backType</td>
+<td>text</td>
+<td>是</td>
+<td>allRejected</td>
+<td>退货类型 枚举值 allRejected primary</td>
+</tr>
+<tr>
+<td>backReason</td>
+<td>text</td>
+<td>否</td>
+<td>jijijijiji</td>
+<td>退回原因</td>
+</tr>
+<tr>
+<td>deliverySn</td>
+<td>text</td>
+<td>否</td>
+<td>DO19081217361</td>
+<td>销售订单号(SCM发货单号)</td>
+</tr>
+<tr>
+<td>externalUserInfo</td>
+<td>text</td>
+<td>否</td>
+<td>xingfukuaidi12</td>
+<td>用户ID（用户在电商平台的用户）</td>
+</tr>
+<tr>
+<td>senderAddress</td>
+<td>text</td>
+<td>是</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>senderCountry</td>
+<td>text</td>
+<td>否</td>
+<td>th</td>
+<td>国家  默认泰国  填了也不用</td>
+</tr>
+<tr>
+<td>province</td>
+<td>text</td>
+<td>是</td>
+<td>กรุงเทพ</td>
+<td>省</td>
+</tr>
+<tr>
+<td>city</td>
+<td>text</td>
+<td>是</td>
+<td>คลองสามวา</td>
+<td>市</td>
+</tr>
+<tr>
+<td>district</td>
+<td>text</td>
+<td>是</td>
+<td>ทรายกองดิน</td>
+<td>区</td>
+</tr>
+<tr>
+<td>postalCode</td>
+<td>text</td>
+<td>是</td>
+<td>10510</td>
+<td>邮政编码</td>
+</tr>
+<tr>
+<td>senderName</td>
+<td>text</td>
+<td>否</td>
+<td>binbin</td>
+<td>寄件人姓名</td>
+</tr>
+<tr>
+<td>senderPhone</td>
+<td>text</td>
+<td>否</td>
+<td>34534373457474</td>
+<td>寄件人电话号码   9-20位数字</td>
+</tr>
+<tr>
+<td>carrier</td>
+<td>text</td>
+<td>否</td>
+<td>快递</td>
+<td>承运商</td>
+</tr>
+<tr>
+<td>backExpressSn</td>
+<td>text</td>
+<td>否</td>
+<td>急急急试试</td>
+<td>退回运单号</td>
+</tr>
+<tr>
+<td>oriExpressSn</td>
+<td>text</td>
+<td>否</td>
+<td>急急急</td>
+<td>原运单号</td>
+</tr>
+<tr>
+<td>weight</td>
+<td>text</td>
+<td>否</td>
+<td>56</td>
+<td>订单重量 g 传整形</td>
+</tr>
+<tr>
+<td>size</td>
+<td>text</td>
+<td>否</td>
+<td>4445</td>
+<td>订单尺寸 mm  传整型</td>
+</tr>
+<tr>
+<td>buyerRemark</td>
+<td>text</td>
+<td>否</td>
+<td>备注</td>
+<td>买家备注</td>
+</tr>
+<tr>
+<td>backPayMode</td>
+<td>text</td>
+<td>是</td>
+<td>cod</td>
+<td>付款类型 枚举值  bank online cod</td>
+</tr>
+<tr>
+<td>backStatus</td>
+<td>text</td>
+<td>否</td>
+<td>1</td>
+<td>退款状态 枚举值 默认1  1：待退款 2：已退款 3：不退款</td>
+</tr>
+<tr>
+<td>bankId</td>
+<td>text</td>
+<td>否</td>
+<td>电饭锅</td>
+<td>退款账号</td>
+</tr>
+<tr>
+<td>payee</td>
+<td>text</td>
+<td>否</td>
+<td>lolo</td>
+<td>收款人</td>
+</tr>
+<tr>
+<td>bankName</td>
+<td>text</td>
+<td>否</td>
+<td>建行</td>
+<td>银行</td>
+</tr>
+<tr>
+<td>warehouseId</td>
+<td>text</td>
+<td>是</td>
+<td>78</td>
+<td>仓库ID</td>
+</tr>
+<tr>
+<td>goods</td>
+<td>text</td>
+<td>是</td>
+<td>[{&quot;barCode\&quot;:4,\&quot;num\&quot;:34,\&quot;price\&quot;:5565},{\&quot;barCode\&quot;:5,\&quot;num\&quot;:3}]</td>
+<td>商品明细 json字符转  转义和不转义的都支持</td>
+</tr>
+</tbody></table>
+<h3 id='b691cfe782-3'>返回数据</h3>
+<table>
+  <thead class="ant-table-thead">
+    <tr>
+      <th key=name>名称</th><th key=type>类型</th><th key=required>是否必须</th><th key=default>默认值</th><th key=desc>备注</th><th key=sub>其他信息</th>
+    </tr>
+  </thead><tbody className="ant-table-tbody"><tr key=0-0><td key=0><span style="padding-left: 0px"><span style="color: #8c8a8a"></span> code</span></td><td key=1><span>number</span></td><td key=2>非必须</td><td key=3></td><td key=4><span></span></td><td key=5></td></tr><tr key=0-1><td key=0><span style="padding-left: 0px"><span style="color: #8c8a8a"></span> msg</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span></span></td><td key=5></td></tr><tr key=0-2><td key=0><span style="padding-left: 0px"><span style="color: #8c8a8a"></span> data</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span></span></td><td key=5></td></tr>
+               </tbody>
+              </table>
+            
 <h1 id='b4de2c052f'>常量表</h1>
 <h2 id="response_code">返回码 (code)</h2>
 
@@ -1162,142 +1705,626 @@
 </tr>
 </thead><tbody>
 <tr>
-<td>1</td>
-<td>成功</td>
+<td>0</td>
+<td>ระบบภายในไม่ถูกต้อง</td>
 </tr>
 <tr>
-<td>0</td>
-<td>系统内部错误</td>
+<td>1</td>
+<td>สำเร็จ</td>
 </tr>
 <tr>
 <td>1000</td>
-<td>数据校验错误</td>
+<td>การตรวจสอบข้อมูลไม่ถูกต้อง</td>
 </tr>
 <tr>
 <td>1001</td>
-<td>客户不存在</td>
+<td>ไม่พบรายชื่อลูกค้า</td>
+</tr>
+<tr>
+<td>100112</td>
+<td>โปรดเข้าสู่ระบบ</td>
 </tr>
 <tr>
 <td>1002</td>
-<td>签名不通过</td>
+<td>การเซ็นชื่อไม่ผ่าน</td>
 </tr>
 <tr>
 <td>1003</td>
-<td>订单已存在</td>
+<td>พบใบออเดอร์แล้ว</td>
 </tr>
 <tr>
 <td>1004</td>
-<td>发件地匹配不到</td>
+<td>ที่อยู่ผู้ส่งไม่ตรงกัน</td>
 </tr>
 <tr>
 <td>1005</td>
-<td>目的地匹配不到</td>
+<td>ที่อยู่ผู้รับไม่ตรงกัน</td>
 </tr>
 <tr>
 <td>1006</td>
-<td>订单不存在</td>
+<td>ใบพบใบออเดอร์</td>
 </tr>
 <tr>
 <td>1007</td>
-<td>仓库不存在</td>
+<td>ไม่พบคลังสินค้า</td>
 </tr>
 <tr>
 <td>1008</td>
-<td>该用户暂未开通COD服务</td>
+<td>ไม่เปิดใช้บริการCODชั่วคราว</td>
 </tr>
 <tr>
 <td>1009</td>
-<td>COD不能小于0</td>
+<td>COD ต้องไม่น้อยกว่า0</td>
 </tr>
 <tr>
 <td>1010</td>
-<td>当前客户存在未完成的揽件通知，无需发送通知</td>
+<td>ลูกค้าคนปัจจุบันมีการแจ้งรับสินค้าที่ไม่ยังไม่เสร็จสิ้น ไม่จำเป็นต้องแจ้งการจัดส่ง</td>
+</tr>
+<tr>
+<td>1011</td>
+<td>ไม่ปรากฎเจ้าของสินค้า</td>
+</tr>
+<tr>
+<td>1012</td>
+<td>ไม่พบแพลตฟอร์มการขาย</td>
+</tr>
+<tr>
+<td>1013</td>
+<td>ไม่มีบริษัทโลจิสติกส์</td>
+</tr>
+<tr>
+<td>1014</td>
+<td>ไม่พบใบจัดส่งสินค้า</td>
 </tr>
 <tr>
 <td>1015</td>
-<td>已揽收的订单不可作废</td>
+<td>ใบออเดอร์ที่รับสินค้าแล้วไม่สามารถทำลายได้</td>
+</tr>
+<tr>
+<td>1016</td>
+<td>ราคาขายต้องไม่เป็น 0</td>
+</tr>
+<tr>
+<td>1017</td>
+<td>ไม่พบร้านค้าดัง</td>
 </tr>
 <tr>
 <td>1018</td>
-<td>发件地和仓库不能都为空</td>
+<td>ไม่สามารถเว้นว่างที่อยู่จัดส่งและคลังสินค้า ได้</td>
 </tr>
 <tr>
 <td>1019</td>
-<td>包裹号pno和客户mchId不匹配</td>
+<td>เลขพัสดุpno กับ ลูกค้า mchld ไม่ตรงกัน</td>
 </tr>
 <tr>
 <td>1020</td>
-<td>保价不能小于0</td>
+<td>ราคารับประกันไม่สามารถน้อยกว่า0</td>
 </tr>
 <tr>
 <td>1021</td>
-<td>发件地址邮政编码只能是5位的数字</td>
+<td>รหัสไปรษณีย์ของที่อยู่จัดส่งสามารถระบุได้เพียง5ตัวอักขระ</td>
 </tr>
 <tr>
 <td>1022</td>
-<td>发件地址暂未开通服务</td>
+<td>ที่อยู่จัดส่งปิดให้บริการชั่วคราว</td>
+</tr>
+<tr>
+<td>1023</td>
+<td></td>
+</tr>
+<tr>
+<td>1024</td>
+<td></td>
+</tr>
+<tr>
+<td>1025</td>
+<td></td>
+</tr>
+<tr>
+<td>1026</td>
+<td></td>
+</tr>
+<tr>
+<td>1027</td>
+<td></td>
+</tr>
+<tr>
+<td>1101</td>
+<td>เบอร์โทรติดต่อไม่ถูกต้อง</td>
+</tr>
+<tr>
+<td>1102</td>
+<td>ข้อมูลสินค้าไม่ถูกต้อง</td>
+</tr>
+<tr>
+<td>1103</td>
+<td>ไม่สามารถเว้นว่างเลขบาร์โค้ด</td>
+</tr>
+<tr>
+<td>1104</td>
+<td>ไม่พบสินค้า</td>
+</tr>
+<tr>
+<td>1105</td>
+<td>จำเป็นต้องระบุจำนวนสินค้า</td>
+</tr>
+<tr>
+<td>1106</td>
+<td>สินค้าซ้ำกัน</td>
+</tr>
+<tr>
+<td>1107</td>
+<td>ไม่อนุญาติให้เว้นว่างหมายเลขใบออเดอร์</td>
+</tr>
+<tr>
+<td>1108</td>
+<td>รูปแบบเวลาไม่ถูกต้อง</td>
+</tr>
+<tr>
+<td>1109</td>
+<td>รูปแบบใบออเดอร์ไม่ถูกต้อง</td>
+</tr>
+<tr>
+<td>1110</td>
+<td>ไม่สามารถเว้นว่างชื่อสินค้า</td>
+</tr>
+<tr>
+<td>1201</td>
+<td>ไม่สามารถเว้นว่างวันที่สั่งซื้อ</td>
+</tr>
+<tr>
+<td>1202</td>
+<td>ไม่สามารถเว้นว่างยอดเงินใบออเดอร์</td>
+</tr>
+<tr>
+<td>1203</td>
+<td>ไม่สามารถเว้นว่างที่อยู่โดยละเอียด ตำบล อำเภอ จังหวัด และรหัสไปรษณีย์</td>
+</tr>
+<tr>
+<td>1204</td>
+<td>ไม่สามารถเว้นว่างชื่อผู้รับสินค้า</td>
+</tr>
+<tr>
+<td>1205</td>
+<td>ไม่สามารเว้นว่างเบอร์โทรติดต่อ</td>
+</tr>
+<tr>
+<td>1206</td>
+<td>ไม่สามารถเว้นว่างวิธีการชำระเงิน</td>
+</tr>
+<tr>
+<td>1207</td>
+<td>รายละเอียดที่อยู่และรหัสไปรษณีย์ไม่สามารถเว้นว่าง</td>
+</tr>
+<tr>
+<td>1208</td>
+<td>เขตเมืองไม่ถูกต้อง</td>
+</tr>
+<tr>
+<td>1300</td>
+<td>วันที่สั่งซื้อไม่ถูกต้อง</td>
+</tr>
+<tr>
+<td>1301</td>
+<td>ยอดเงินของใบออเดอร์ไม่ถูกต้อง</td>
+</tr>
+<tr>
+<td>1302</td>
+<td>ตำบล อำเภอ จังหวัด รหัสไปรษณีย์ ไม่ตรงกัน</td>
+</tr>
+<tr>
+<td>1303</td>
+<td>วิธีการชำระเงินไม่ถูกต้อง</td>
+</tr>
+<tr>
+<td>1304</td>
+<td>ไม่พบสินค้า</td>
+</tr>
+<tr>
+<td>1305</td>
+<td>ไม่ได้เปิดใช้งานสินค้า</td>
+</tr>
+<tr>
+<td>1306</td>
+<td>จำนวนที่สั่งซื้อไม่ถูกต้อง</td>
+</tr>
+<tr>
+<td>1307</td>
+<td>ราคาไม่ถูกต้อง</td>
+</tr>
+<tr>
+<td>1308</td>
+<td>ค่าขนส่งไม่ถูกต้อง</td>
+</tr>
+<tr>
+<td>1309</td>
+<td>พบบาร์โค้ดสินค้าแล้ว</td>
+</tr>
+<tr>
+<td>1310</td>
+<td>พบบาร์โค้ดที่เหมือนกันในไฟล์เอกสารที่นำเข้า</td>
+</tr>
+<tr>
+<td>1311</td>
+<td>รูปแบบบาร์โค้ดไม่ถูกต้อง</td>
+</tr>
+<tr>
+<td>1312</td>
+<td>รูปแบบรหัสสินค้าไม่ถูกต้อง</td>
+</tr>
+<tr>
+<td>1313</td>
+<td>ระยะเก็บรักษาสินค้าไม่ถูกต้อง</td>
+</tr>
+<tr>
+<td>1314</td>
+<td>รหัสSNสินค้าไม่ถูกต้องหรือไม่</td>
+</tr>
+<tr>
+<td>1315</td>
+<td>ราคาต้นทุนสินค้าไม่ถูกต้อง</td>
+</tr>
+<tr>
+<td>1316</td>
+<td>ความยาวสินค้าไม่ถูกต้อง</td>
+</tr>
+<tr>
+<td>1317</td>
+<td>ความกว้างสินค้าไม่ถูกต้อง</td>
+</tr>
+<tr>
+<td>1318</td>
+<td>ความสูงสินค้าไม่ถูกต้อง</td>
+</tr>
+<tr>
+<td>1319</td>
+<td>น้ำหนักสินค้าไม่ถูกต้อง</td>
+</tr>
+<tr>
+<td>1320</td>
+<td>น้ำหนักเตรียมแพ็คไม่ถูกต้อง</td>
+</tr>
+<tr>
+<td>1321</td>
+<td>จำเป็นต้องระบุจำนวนวันเก็บรักษาสำหรับสินค้าที่มีอายุเก็บรักษา</td>
+</tr>
+<tr>
+<td>1322</td>
+<td>จำนวนวันเก็บรักษาไม่ถูกต้อง</td>
+</tr>
+<tr>
+<td>1323</td>
+<td>จำเป็นต้องระบุจำนวนแจ้งวันเตือนใกล้หมดอายุสำหรับสินค้าที่มีอายุเก็บรักษา</td>
+</tr>
+<tr>
+<td>1324</td>
+<td>จำนวนวันที่แจ้งเตือนสินค้าใกล้หมดอายุไม่ถูกต้อง</td>
+</tr>
+<tr>
+<td>1325</td>
+<td>สินค้าที่มีวันเก็บรักษาต้องไม่ใช่สินค้ารหัสSN</td>
+</tr>
+<tr>
+<td>1326</td>
+<td>ที่อยู่ URL ภาพไม่ถูกต้อง</td>
+</tr>
+<tr>
+<td>1327</td>
+<td>รูปแบบของรูปภาพไม่ถูกต้อง</td>
+</tr>
+<tr>
+<td>1328</td>
+<td>จำนวนวันแจ้งเตือนสินค้าใกล้หมดอายุต้องไม่มากกว่าจำนวนวันเก็บรักษา</td>
+</tr>
+<tr>
+<td>1329</td>
+<td>เวลาการชำระเงินไม่ถูกต้อง</td>
+</tr>
+<tr>
+<td>1330</td>
+<td>ไม่สามารถเว้นว่างชื่อประเทศ</td>
+</tr>
+<tr>
+<td>1331</td>
+<td>ไม่สามารถเว้นว่างชื่อจังหวัด</td>
+</tr>
+<tr>
+<td>1332</td>
+<td>ไม่สามารถเว้นว่างชื่อจังหวัด</td>
+</tr>
+<tr>
+<td>1333</td>
+<td>ไม่สามารถเว้นว่างรหัสไปรษณีย์</td>
+</tr>
+<tr>
+<td>1334</td>
+<td></td>
+</tr>
+<tr>
+<td>1335</td>
+<td></td>
+</tr>
+<tr>
+<td>1336</td>
+<td></td>
+</tr>
+<tr>
+<td>1337</td>
+<td></td>
+</tr>
+<tr>
+<td>1338</td>
+<td></td>
+</tr>
+<tr>
+<td>1400</td>
+<td>พบสินค้าราคาเท่ากันในใบออเดอร์ที่เดียวกัน</td>
+</tr>
+<tr>
+<td>1401</td>
+<td>ยอดเงินของใบออเดอร์ไม่ตรงกัน</td>
+</tr>
+<tr>
+<td>1402</td>
+<td>เจ้าของสินค้าไม่ได้เซ็นต์สัญญากับคลังสินค้านี้หรือไม่พบรหัสIDคลังสินค้า</td>
+</tr>
+<tr>
+<td>1403</td>
+<td>พารามิเตอร์สถานะคุณภาพไม่ถูกต้อง</td>
+</tr>
+<tr>
+<td>1501</td>
+<td>สินค้ายังไม่วางจำหน่าย</td>
+</tr>
+<tr>
+<td>1502</td>
+<td>ไม่พบที่อยู่จัดส่งของผู้ใช้</td>
+</tr>
+<tr>
+<td>1503</td>
+<td>จำเป็นต้องกรอกข้อมูล</td>
+</tr>
+<tr>
+<td>1504</td>
+<td>พารามิเตอร์ไม่ถูกต้อง</td>
+</tr>
+<tr>
+<td>1505</td>
+<td>ไม่สามารถเว้นว่างที่อยู่</td>
+</tr>
+<tr>
+<td>1506</td>
+<td>ID ไม่ถูกต้อง</td>
+</tr>
+<tr>
+<td>1507</td>
+<td>จำนวนไม่ถูกต้อง</td>
+</tr>
+<tr>
+<td>1508</td>
+<td>จำนวนที่สั่งซื้อต้องไม่น้อยกว่ายอดขั้นต่ำ</td>
+</tr>
+<tr>
+<td>1509</td>
+<td>ไม่มีรายการดังกล่าวในรถเข็น</td>
+</tr>
+<tr>
+<td>1510</td>
+<td>จำนวนสินค้าไม่เพียงพอหรือของหมด , ไม่สามารถส่งคำสั่งซื้อได้</td>
+</tr>
+<tr>
+<td>1511</td>
+<td>สินค้าถูกลบแล้ว</td>
+</tr>
+<tr>
+<td>1512</td>
+<td>คำสั่งซื้ออนุมัติแล้วไม่สามารถยกเลิกได้</td>
+</tr>
+<tr>
+<td>1513</td>
+<td>สินค้าวางจำหน่ายแล้ว</td>
+</tr>
+<tr>
+<td>1514</td>
+<td>จำนวนสินค้าที่วางจำหน่ายต้องไม่เป็น0</td>
+</tr>
+<tr>
+<td>1600</td>
+<td>ไม่อนุญาติให้เข้าระบบ</td>
+</tr>
+<tr>
+<td>1601</td>
+<td>ไม่พบข้อมูลสาขาที่ให้บริการ</td>
+</tr>
+<tr>
+<td>1602</td>
+<td>ข้อมูลไม่ใช่รูปแบบ JSON</td>
+</tr>
+<tr>
+<td>1603</td>
+<td>ต้องระบุหมายเลขออเดอร์นอกระบบ</td>
+</tr>
+<tr>
+<td>1604</td>
+<td>ใบจัดส่งสินค้ายกเลิกแล้ว</td>
+</tr>
+<tr>
+<td>1605</td>
+<td>ใบจัดส่งสินค้าเริ่มส่งมอบแล้ว</td>
+</tr>
+<tr>
+<td>1606</td>
+<td>ใบจัดส่งสินค้าได้จัดส่งเรียบร้อยแล้ว</td>
+</tr>
+<tr>
+<td>1607</td>
+<td>ใบจัดส่งสินค้าที่รวมหรือแยกรายการไม่สามารถยกเลิกได้</td>
+</tr>
+<tr>
+<td>1608</td>
+<td>ไม่พบสินค้าหรือสินค้ายังไม่เปิดใช้งาน</td>
+</tr>
+<tr>
+<td>1609</td>
+<td>ไม่สามารถเว้นว่างรหัสสาขาให้บริการการได้</td>
+</tr>
+<tr>
+<td>1610</td>
+<td>รูปแบบรหัสสาขาให้บริการไม่ถูกต้อง</td>
+</tr>
+<tr>
+<td>1611</td>
+<td>ไม่สามารถเว้นว่างชื่อสาขาให้บริการได้</td>
+</tr>
+<tr>
+<td>1612</td>
+<td>ไม่สามารถเว้นว่างชื่อผู้ติดต่อได้</td>
+</tr>
+<tr>
+<td>1613</td>
+<td>ไม่สามารถเว้นว่างโค้ดและรหัสไปรษณีย์ได้</td>
+</tr>
+<tr>
+<td>1614</td>
+<td>พบข้อมูลสาขาบริการแล้ว</td>
+</tr>
+<tr>
+<td>1615</td>
+<td>ไม่สามารถเว้นว่างโซนจัดเก็บสินค้า</td>
+</tr>
+<tr>
+<td>1616</td>
+<td>ไม่สามารถเว้นว่างรหัสที่วางสินค้า</td>
+</tr>
+<tr>
+<td>1617</td>
+<td>ไม่พบโซนจัดเก็บสินค้าดังกล่าว</td>
+</tr>
+<tr>
+<td>1618</td>
+<td>รหัสที่วางสินค้าในตารางมีข้อมูลที่ซ้ำกัน</td>
+</tr>
+<tr>
+<td>1619</td>
+<td>มีข้อมูลในระบบแล้ว</td>
+</tr>
+<tr>
+<td>1620</td>
+<td>รูปแบบรหัสของที่วางสินค้าไม่ถูกต้อง</td>
+</tr>
+<tr>
+<td>1621</td>
+<td>รูปแบบลำดับของที่วางสินค้าไม่ถูกต้อง</td>
+</tr>
+<tr>
+<td>1622</td>
+<td>รูปแบบแถวของที่วางสินค้าไม่ถูกต้อง</td>
+</tr>
+<tr>
+<td>1623</td>
+<td>รูปแบบกลุ่มของที่วางสินค้าไม่ถูกต้อง</td>
+</tr>
+<tr>
+<td>1624</td>
+<td>รูปแบบชั้นของที่วางสินค้าไม่ถูกต้อง</td>
+</tr>
+<tr>
+<td>1625</td>
+<td>รูปแบบตำแหน่งของที่วางสินค้าไม่ถูกต้อง</td>
+</tr>
+<tr>
+<td>1626</td>
+<td>รูปแบบปริมาตรที่มากสุดของที่วางสินค้าไม่ถูกต้อง</td>
+</tr>
+<tr>
+<td>1627</td>
+<td>รูปแบบน้ำหนักที่สามารถรองรับได้ของที่วางสินค้าไม่ถูกต้อง</td>
+</tr>
+<tr>
+<td>1628</td>
+<td>รูปแบบความยาวของที่วางสินค้าไม่ถูกต้อง</td>
+</tr>
+<tr>
+<td>1629</td>
+<td>รูปแบบความกว้างของที่วางสินค้าไม่ถูกต้อง</td>
+</tr>
+<tr>
+<td>1630</td>
+<td>รูปแบบความสูงของที่วางสินค้าไม่ถูกต้อง</td>
+</tr>
+<tr>
+<td>1631</td>
+<td>ปแบบสถานะคุณภาพของที่วางสินค้าไม่ถูกต้อง</td>
+</tr>
+<tr>
+<td>1632</td>
+<td>ซนสินค้าไม่สามารถแก้ไขได้</td>
+</tr>
+<tr>
+<td>1633</td>
+<td>ไม่สามารถเว้นว่างID ที่วางสินค้า</td>
+</tr>
+<tr>
+<td>1634</td>
+<td>ID ที่วางสินค้าในตารางซ้ำกัน</td>
+</tr>
+<tr>
+<td>1635</td>
+<td>ไม่พบ ID ที่วางสินค้า</td>
+</tr>
+<tr>
+<td>1636</td>
+<td>ไม่สามารถเปลี่ยนแปลงสถานะคุณภาพได้</td>
+</tr>
+<tr>
+<td>1637</td>
+<td>ที่วางสินค้าที่ระบบจัดสรรไว้ล่วงหน้าไม่สามารถแก้ไขได้</td>
+</tr>
+<tr>
+<td>1638</td>
+<td>รูปแบบAsset ไม่ถูกต้อง</td>
+</tr>
+<tr>
+<td>1639</td>
+<td>เวลาเริ่มควรน้อยกว่าเวลาสิ้นสุด</td>
+</tr>
+<tr>
+<td>1640</td>
+<td>สินค้าถูกกำหนดเป็น Asset กรุณายื่นหมายเลข Asset</td>
+</tr>
+<tr>
+<td>1641</td>
+<td>สินค้าAsset มีการจัดเก็บภายในคลังแล้ว</td>
+</tr>
+<tr>
+<td>1642</td>
+<td>พบรหัสASSET ที่ซ้ำกัน</td>
+</tr>
+<tr>
+<td>1643</td>
+<td>จำนวนสินค้าAssetกับจำนวนสินค้าในใบรับเข้าคลังไม่ตรงกัน</td>
+</tr>
+<tr>
+<td>1644</td>
+<td>ประเภทข้อมูลรับเข้าคลังไม่ถูกต้อง</td>
+</tr>
+<tr>
+<td>1645</td>
+<td>รูปแบบสาขาไม่ถูกต้อง</td>
+</tr>
+<tr>
+<td>1646</td>
+<td>ระยะเวลาไม่ถูกต้</td>
+</tr>
+<tr>
+<td>1647</td>
+<td>ไม่พบรหัสดังกล่าว</td>
+</tr>
+<tr>
+<td>1648</td>
+<td>รูปแบบหรือประเภทพื้นที่จัดเก็บไม่ถูกต้อง</td>
 </tr>
 </tbody></table>
-
-<h2 id="express_category">产品类型 (expressCategory)</h2>
-
-<table><thead>
-<tr>
-<th>Code</th>
-<th>Meaning</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>1</td>
-<td>标准配送</td>
-</tr>
-</tbody></table>
-
-<h2 id="article_category">物品类型 (articleCategory)</h2>
-
-<table><thead>
-<tr>
-<th>Code</th>
-<th>Meaning</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>0</td>
-<td>文件</td>
-</tr>
-<tr>
-<td>1</td>
-<td>食品</td>
-</tr>
-<tr>
-<td>2</td>
-<td>日用品</td>
-</tr>
-<tr>
-<td>3</td>
-<td>数码产品</td>
-</tr>
-<tr>
-<td>4</td>
-<td>衣物</td>
-</tr>
-<tr>
-<td>5</td>
-<td>其他</td>
-</tr>
-</tbody></table>
-<h1 id='demo'>Demo 下载</h1>
-<h2 id="demo-csharp">C# Demo</h2>
-
-<p><a href="download/CSharpDemo.rar">C# Demo</a></p>
-
-<h2 id="demo-php">PHP Demo</h2>
-
-<p><a href="download/flashDemo.php.zip">PHP Demo</a></p>
-
-<h2 id="demo-java">Java Demo</h2>
-
-<p><a href="download/OpenTest.java.zip">Java Demo</a></p>
 
       </div>
       <div class="dark-box">

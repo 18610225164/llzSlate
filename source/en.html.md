@@ -7,7 +7,6 @@ language_tabs:
 toc_footers:
   - <a href="/index.html">中文</a>
   - <a href="/th.html">ภาษาไทย</a>
-  - <a href="http://www.fulfillment.com">Flash Express</a>
 
 includes: []
 
@@ -24,8 +23,8 @@ API Basic Endpoints:
 
 Env        | Endpoint
 ---        | --------
-Sandbox    | https://api-sandbox.fulfillment.com
-Production | https://api.fulfillment.com
+Training | https://open-training.flashfulfillment.co.th/
+Production | https://open.flashfulfillment.co.th/
 
 # API Reference
 ## The Basic Standard
@@ -181,897 +180,417 @@ Calculate the signature before invoking urlencode(). Meanwhile, the open platfor
 ## Random nonce string algorithm
 the `nonceStr` parameter in this open platform API specification, is used to ensure the signature is unpredictable. The algorithm Ee recommend is as follows: call random number generating function, convert the resulting value to string.
 
-# Management API
-## getAllWarehouses `/warehouses`
-
-```http
-POST /open/v1/warehouses HTTP/1.1
-Host: api-sandbox.fulfillment.com
-Content-Type: application/x-www-form-urlencoded
-Accept: application/json
-```
-
-> request body example
-
-```css
-mchId=UBP18100020&nonceStr=1525314174723&sign=7DE4B504A237BDC961A30A7BF1C9AFF6FB6F386C02A2F7E1FD4F0B1B6B01FB00
-```
-
-> parameter description
-
-```yaml
-mchId: 'UBP18100020'
-nonceStr: '1525314174723'
-sign: '7DE4B504A237BDC961A30A7BF1C9AFF6FB6F386C02A2F7E1FD4F0B1B6B01FB00'
-```
-
-`POST /open/v1/warehouses`
-
-getAllWarehouses
-
-### Request Parameters
-
-|Name|Type|Required|Description|
-|---|---|---|---|
-|mchId|string(32)|true|merchant no|
-|nonceStr|string(32)|true|random nonce string|
-|sign|string(64)|true|signature|
-
-> response body example
-
-```json
-{
-	"code": 1,
-	"message": "success",
-	"data": [{
-		"warehouseNo": "UBP18100020_001",
-		"name": "UBP18100020_001",
-		"countryName": "Thailand",
-		"provinceName": "อุบลราชธานี",
-		"cityName": "เมืองอุบลราชธานี",
-		"districtName": "แจระแม",
-		"postalCode": "34000",
-		"detailAddress": "68/5-6 ม.1 บ้านท่าบ่อ",
-		"phone": "0630101454",
-		"srcName": "หอมรวม"
-	}, {
-		"warehouseNo": "UBP18100020_002",
-		"name": "UBP18100020_002",
-		"countryName": "Thailand",
-		"provinceName": "กรุงเทพ",
-		"cityName": "บางแค",
-		"districtName": "บางแค",
-		"postalCode": "10160",
-		"detailAddress": "11/369 ซ.53 หมู่ 7 ถ.กาญจนาภิเษก",
-		"phone": "0888027955",
-		"srcName": "เอกรินทร์"
-	}]
-}
-```
-
-### Response Body
-
-|Name|Type|Description|
-|---|---|---|
-|warehouseNo|string(32)|shipper warehouse no.|
-|countryName|string(100)|warehouse's province name|
-|provinceName|string(150)|warehouse's province name|
-|cityName|string(150)|warehouse's city name.city is a sub unit of province.|
-|districtName|string(150)|warehouse's district name.district is a sub unit of city.|
-|postalCode|string(20)|warehouse's postal code|
-|detailAddress|string(200)|warehouse's detail address|
-|phone|string(20)|shipper's phone number|
-|srcName|string(50)|shipper's name|
-
-# Order API
-## Create order `/orders`
-
-```http
-POST /open/v1/orders HTTP/1.1
-Host: api-sandbox.fulfillment.com
-Content-Type: application/x-www-form-urlencoded
-Accept: application/json
-```
-
-> request body example
-
-```css
-mchId=AA0005&nonceStr=1536749552628&sign=D4515A46B6094589F1F7615ADCC988FBB03A79010F2A206DC982F27D396F93A0&outTradeNo=%231536749552628%23&warehouseNo=AA0005_001&srcName=%E0%B8%AB%E0%B8%AD%E0%B8%A1%E0%B8%A3%E0%B8%A7%E0%B8%A1++create+order+test+name&srcPhone=0630101454&srcProvinceName=%E0%B8%AD%E0%B8%B8%E0%B8%9A%E0%B8%A5%E0%B8%A3%E0%B8%B2%E0%B8%8A%E0%B8%98%E0%B8%B2%E0%B8%99%E0%B8%B5&srcCityName=%E0%B9%80%E0%B8%A1%E0%B8%B7%E0%B8%AD%E0%B8%87%E0%B8%AD%E0%B8%B8%E0%B8%9A%E0%B8%A5%E0%B8%A3%E0%B8%B2%E0%B8%8A%E0%B8%98%E0%B8%B2%E0%B8%99%E0%B8%B5&srcDistrictName=%E0%B9%83%E0%B8%99%E0%B9%80%E0%B8%A1%E0%B8%B7%E0%B8%AD%E0%B8%87&srcPostalCode=34000&srcDetailAddress=68%2F5-6+%E0%B8%A1.1+%E0%B8%9A%E0%B9%89%E0%B8%B2%E0%B8%99%E0%B8%97%E0%B9%88%E0%B8%B2%E0%B8%9A%E0%B9%88%E0%B8%AD+create+order+test+address&dstName=%E0%B8%99%E0%B9%89%E0%B8%B3%E0%B8%9E%E0%B8%A3%E0%B8%B4%E0%B8%81%E0%B9%81%E0%B8%A1%E0%B9%88%E0%B8%AD%E0%B8%B3%E0%B8%9E%E0%B8%A3&dstPhone=0970209976&dstHomePhone=0970220220&dstProvinceName=%E0%B9%80%E0%B8%8A%E0%B8%B5%E0%B8%A2%E0%B8%87%E0%B9%83%E0%B8%AB%E0%B8%A1%E0%B9%88&dstCityName=%E0%B8%AA%E0%B8%B1%E0%B8%99%E0%B8%97%E0%B8%A3%E0%B8%B2%E0%B8%A2&dstDistrictName=%E0%B8%AA%E0%B8%B1%E0%B8%99%E0%B8%9E%E0%B8%A3%E0%B8%B0%E0%B9%80%E0%B8%99%E0%B8%95%E0%B8%A3&dstPostalCode=50210&dstDetailAddress=127+%E0%B8%AB%E0%B8%A1%E0%B8%B9%E0%B9%88+3+%E0%B8%95.%E0%B8%AB%E0%B8%99%E0%B8%AD%E0%B8%87%E0%B9%81%E0%B8%AB%E0%B8%A2%E0%B9%88%E0%B8%87+%E0%B8%AD.%E0%B8%AA%E0%B8%B1%E0%B8%99%E0%B8%97%E0%B8%A3%E0%B8%B2%E0%B8%A2+%E0%B8%88.%E0%B9%80%E0%B8%8A%E0%B8%B5%E0%B8%A2%E0%B8%87%E0%B9%83%E0%B8%AB%E0%B8%A1%E0%B9%88+create+order+test+address&articleCategory=1&expressCategory=1&weight=1000&insured=1&insureDeclareValue=10000&codEnabled=1&codAmount=10000&remark=%E0%B8%82%E0%B8%B6%E0%B9%89%E0%B8%99%E0%B8%9A%E0%B8%B1%E0%B8%99%E0%B9%84%E0%B8%94
-```
-
-> parameter description
-
-```yaml
-mchId: 'AA0005'
-nonceStr: '1536749552628'
-sign: 'D4515A46B6094589F1F7615ADCC988FBB03A79010F2A206DC982F27D396F93A0'
-outTradeNo: '#1536749552628#'
-warehouseNo: 'AA0005_001'
-srcName: 'หอมรวม  create order test name'
-srcPhone: '0630101454'
-srcProvinceName: 'อุบลราชธานี'
-srcCityName: 'เมืองอุบลราชธานี'
-srcDistrictName: 'ในเมือง'
-srcPostalCode: '34000'
-srcDetailAddress: '68/5-6 ม.1 บ้านท่าบ่อ create order test address'
-dstName: 'น้ำพริกแม่อำพร'
-dstPhone: '0970209976'
-dstHomePhone: '0970220220'
-dstProvinceName: 'เชียงใหม่'
-dstCityName: 'สันทราย'
-dstDistrictName: 'สันพระเนตร'
-dstPostalCode: '50210'
-dstDetailAddress: '127 หมู่ 3 ต.หนองแหย่ง อ.สันทราย จ.เชียงใหม่ create order test address'
-articleCategory: 1
-expressCategory: 1
-weight: 1000
-insured: 1
-insureDeclareValue: 10000
-codEnabled: 1
-codAmount: 10000
-remark: 'ขึ้นบันได
-```
-
-`POST /open/v1/orders`
-
-create order
-
-### Request Parameters
-
-<aside class="notice">
-About shipper's information address.</br>
-You could specify shipper's information of the parcel in 2 ways.</br>
-1st,If you input values of all request parameters of {srcName,srcPhone,srcProvinceName,srcCityName,srcPostalCode,srcDetailAddress}, notice that these several parameters must be all input values,  these parameters are the shipper's information.</br>
-2nd,If you don't input value of any request parameter of {srcName,srcPhone,srcProvinceName,srcCityName,srcPostalCode,srcDetailAddress}, you must input value of request parameter "warehouseNo" to show the shipper's information.
-</aside>
-
-|Name|Type|Required|Description|
-|---|---|---|---|
-|mchId|string(32)|true|merchant no|
-|nonceStr|string(32)|true|random nonce string|
-|sign|string(64)|true|signature|
-|outTradeNo|string(64)|true|merchant order no|
-|expressCategory|integer|true|[Express Category](#express_category)(must be 1)|
-|warehouseNo|string(32)|false|shipper warehouse no.must be one value returned by API [getAllWarehouses](#getallwarehouses-warehouses).|
-|srcName|string(50)|false|shipper's name|
-|srcPhone|string(20)|false|shipper's phone number|
-|srcProvinceName|string(150)|false|shipper's province name|
-|srcCityName|string(150)|false|shipper's city name.city is a sub unit of province.|
-|srcDistrictName|string(150)|false|shipper's district name.district is a sub unit of city.|
-|srcPostalCode|string(20)|false|shipper's postal code|
-|srcDetailAddress|string(200)|false|shipper's detail address|
-|dstName|string(50)|true|consignee's name|
-|dstPhone|string(20)|true|consignee's phone number|
-|dstHomePhone|string(20)|false|consignee's home phone number or consigne's second phone number|
-|dstProvinceName|string(150)|true|consignee's province name|
-|dstCityName|string(150)|true|consignee's city name.city is a sub unit of province.|
-|dstDistrictName|string(150)|false|consignee's district name.district is a sub unit of city.|
-|dstPostalCode|string(20)|true|consignee's postal code|
-|dstDetailAddress|string(200)|true|consignee's detail address|
-|articleCategory|integer|true|[Article Category](#article_category)|
-|weight|integer|true|article weight(unit: gram)|
-|insured|integer|true|whether insured(1: yes 0: no)|
-|insureDeclareValue|integer|false|article declare value for insurance(unit: cent)|
-|codEnabled|integer|true|whether COD(1: yes 0: no)|
-|codAmount|integer|false|COD amount(unit: cent)|
-|remark|string(200)|false|remark|
-
-> response body example
-
-```json
-{
-	"code": 1,
-	"message": "success",
-	"data": {
-		"pno": "TH47146DR36",
-		"mchId": "AA0005",
-		"outTradeNo": "#1536749552628#",
-		"sortCode": "01N-CNXY-00",
-		"dstStoreName": "เชียงใหม่-DC"
-	}
-}
-```
-
-### Response Body
-
-|Name|Type|Description|
-|---|---|---|
-|pno|string(20)|Flash Express tracking number|
-|mchId|string(32)|merchant no|
-|outTradeNo|string(64)|merchant order no|
-|sortCode|string(13)|Flash Express sorting code|
-|dstStoreName|string(50)|Flash Store Name to deliver the parcel|
-
-## Cancel order `/orders/{pno}/cancel`
-
-```http
-POST /open/v1/orders/TH4714A27/cancel HTTP/1.1
-Host: api-sandbox.fulfillment.com
-Content-Type: application/x-www-form-urlencoded
-Accept: application/json
-```
-`POST /open/v1/orders/{pno}/cancel`
-
-cancel order
-
-### Path Variables (not involved in the signature)
-
-|Name|Type|Required|Description|
-|---|---|---|---|
-|pno|string(20)|true|Flash Express tracking number|
-
-> request body example
-
-```css
-mchId=UBP18100020&nonceStr=1525312687777&sign=6981B676CF590F1F9BDC5529AF77B8396D70153F4E01FF781069261F35497389
-```
-
-> parameter description
-
-```yaml
-mchId: 'UBP18100020'
-nonceStr: '1525312687777'
-sign: '6981B676CF590F1F9BDC5529AF77B8396D70153F4E01FF781069261F35497389'
-```
-
-### Request Parameters
-
-|Name|Type|Required|Description|
-|---|---|---|---|
-|mchId|string(32)|true|merchant no|
-|nonceStr|string(32)|true|random nonce string|
-|sign|string(64)|true|signature|
-
-> response body: none
-
-### Response Body
-
-None.
-
-## Tracking order `/orders/{pno}/routes`
-
-```http
-POST /open/v1/orders/TH01011C27/routes HTTP/1.1
-Host: api-sandbox.fulfillment.com
-Accept: application/json
-```
-
-`POST /open/v1/orders/{pno}/routes`
-
-tracking order
-
-### Path Variables (not involved in the signature)
-
-|Name|Type|Required|Description|
-|---|---|---|---|
-|pno|string(20)|true|Flash Express tracking number|
-
-> request body example
-
-```css
-mchId=AA0005&nonceStr=1525315650958&sign=EB1C59F14A1A616DE861E7F09C0FD2949B64EAD98B3D649EA2D73CA0328D77B7
-```
-
-> parameter description
-
-```yaml
-mchId: 'AA0005'
-nonceStr: '1525315650958'
-sign: 'EB1C59F14A1A616DE861E7F09C0FD2949B64EAD98B3D649EA2D73CA0328D77B7'
-```
-
-### Request Parameters
-|Name|Type|Required|Description|
-|---|---|---|---|
-|mchId|string(32)|true|merchant no|
-|nonceStr|string(32)|true|random nonce string|
-|sign|string(64)|true|signature|
-
-> response body example
-
-```json
-{
-	"code": 1,
-	"message": "success",
-	"data": {
-		"pno": "TH01011C27",
-		"state": 5,
-		"stateText": "เซ็นรับแล้ว",
-		"routes": [{
-			"routedAt": 1523357001,
-			"routeAction": "DELIVERY_CONFIRM",
-			"message": "พัสดุของคุณถูกเซ็นรับแล้ว เซ็นรับโดย TH01011C27"
-		}, {
-			"routedAt": 1523356924,
-			"routeAction": "DELIVERY_TICKET_CREATION_SCAN",
-			"message": "มีพัสดุรอการนำส่ง กรุณารอการติดต่อจากเจ้าหน้าที่ Flash Express"
-		}, {
-			"routedAt": 1523356560,
-			"routeAction": "SHIPMENT_WAREHOUSE_SCAN",
-			"message": "พัสดุของคุณอยู่ที่ กทม. จะถูกส่งไปยัง จตุโชติ-DC"
-		}, {
-			"routedAt": 1523356029,
-			"routeAction": "RECEIVED",
-			"message": "zhao=DC พนักงานเข้ารับพัสดุแล้ว"
-		}]
-	}
-}
-```
-
-### Response Body
-
-|Name|Type|Description|
-|---|---|---|
-|pno|string(20)|Flash Express tracking number|
-|state|integer|parcel state|
-|stateText|string(100)|parcel state description|
-|routes.routedAt|integer|route status timestamp in UTC|
-|routes.routedAction|string(29)|route status action|
-|routes.message|string(500)|route status message|
-
-## getParcelDeliveredInfo `/orders/{pno}/deliveredInfo`
-
-```http
-POST /open/v1/orders/TH01011C27/deliveredInfo HTTP/1.1
-Host: api-sandbox.fulfillment.com
-Accept: application/json
-```
-
-`POST /open/v1/orders/{pno}/deliveredInfo`
-
-getParcelDeliveredInfo
-
-### Path Variables (not involved in the signature)
-
-|Name|Type|Required|Description|
-|---|---|---|---|
-|pno|string(20)|true|Flash Express tracking number|
-
-> request body example
-
-```css
-mchId=AA0005&nonceStr=1539057892711&sign=9B9519983FEC2B2C3BBD15FF1F858ACEA681E4800B82863EEB91163E87E7B2D9
-```
-
-> parameter description
-
-```yaml
-mchId: 'AA0005'
-nonceStr: '1539057892711'
-sign: '9B9519983FEC2B2C3BBD15FF1F858ACEA681E4800B82863EEB91163E87E7B2D9'
-```
-
-### Request Parameters
-|Name|Type|Required|Description|
-|---|---|---|---|
-|mchId|string(32)|true|merchant no|
-|nonceStr|string(32)|true|random nonce string|
-|sign|string(64)|true|signature|
-
-> response body example
-
-```json
-{
-	"code": 1,
-	"message": "success",
-	"data": {
-		"pno": "TH01011C27",
-		"signer": "TH01011C27",
-		"signerTypeText": "เพื่อนร่วมงาน",
-		"pod": "https://fle-training-asset-internal.oss-ap-southeast-1.aliyuncs.com/deliveryConfirm/1523356999-b384e30df5ed4436a5adf00d80902929.jpg"
-	}
-}
-```
-
-### Response Body
-
-|Name|Type|Description|
-|---|---|---|
-|pno|string(20)|Flash Express tracking number|
-|signer|string(50)|signer's signature when parcel is delivered|
-|signerTypeText|string(50)|signer type description|
-|pod|string(150)|signer's signature picture url|
-
-## Print label `/orders/{pno}/pre_print`
-
-```http
-POST /open/v1/orders/TH01011C27/pre_print HTTP/1.1
-Host: api-sandbox.fulfillment.com
-Accept: application/pdf
-```
-
-`POST /open/v1/orders/{pno}/pre_print`
-
-print label
-
-### Path Variables (not involved in the signature)
-
-|Name|Type|Required|Description|
-|---|---|---|---|
-|pno|string(20)|true|Flash Express tracking number|
-
-> request body example
-
-```css
-mchId=AA0005&nonceStr=1525316377546&sign=D500B8379DDB2CEDDBAF0130D1FF2A995FD3AFEFDE1EC90BBD2A1762F562FAE3
-```
-
-> parameter description
-
-```yaml
-mchId: 'AA0005'
-nonceStr: '1525316377546'
-sign: 'D500B8379DDB2CEDDBAF0130D1FF2A995FD3AFEFDE1EC90BBD2A1762F562FAE3'
-```
-
-### Request Parameters
-|Name|Type|Required|Description|
-|---|---|---|---|
-|mchId|string(32)|true|merchant no|
-|nonceStr|string(32)|true|random nonce string|
-|sign|string(64)|true|signature|
-
-> response body: pdf file stream of label
-
-### Response Body
-
-pdf file stream of label
-
-## Create order by merchant tracking number `/ordersByMchPno`
-
-```http
-POST /open/v1/ordersByMchPno HTTP/1.1
-Host: api-sandbox.fulfillment.com
-Content-Type: application/x-www-form-urlencoded
-Accept: application/json
-```
-
-> request body example
-
-```css
-mchId=AA0005&nonceStr=1538020484532&sign=840BDFAC52E4607AEC4AB7CD7A95ABE43CFD974D8DE0726DD6C3891EBB1FF6D8&mchPno=MP123456111&warehouseNo=AA0005_001&srcName=test+srcName1111&srcPhone=111111111&srcProvinceName=%E0%B8%AD%E0%B8%B8%E0%B8%9A%E0%B8%A5%E0%B8%A3%E0%B8%B2%E0%B8%8A%E0%B8%98%E0%B8%B2%E0%B8%99%E0%B8%B5&srcCityName=%E0%B9%80%E0%B8%A1%E0%B8%B7%E0%B8%AD%E0%B8%87%E0%B8%AD%E0%B8%B8%E0%B8%9A%E0%B8%A5%E0%B8%A3%E0%B8%B2%E0%B8%8A%E0%B8%98%E0%B8%B2%E0%B8%99%E0%B8%B5&srcPostalCode=34000&srcDetailAddress=68%2F5-6+%E0%B8%A1.1+%E0%B8%9A%E0%B9%89%E0%B8%B2%E0%B8%99%E0%B8%97%E0%B9%88%E0%B8%B2%E0%B8%9A%E0%B9%88%E0%B8%AD99111&dstName=%E0%B8%99%E0%B9%89%E0%B8%B3%E0%B8%9E%E0%B8%A3%E0%B8%B4%E0%B8%81%E0%B9%81%E0%B8%A1%E0%B9%88%E0%B8%AD%E0%B8%B3%E0%B8%9E%E0%B8%A3&dstPhone=091111111&dstHomePhone=092222222&dstProvinceName=%E0%B9%80%E0%B8%8A%E0%B8%B5%E0%B8%A2%E0%B8%87%E0%B9%83%E0%B8%AB%E0%B8%A1%E0%B9%88&dstCityName=%E0%B8%AA%E0%B8%B1%E0%B8%99%E0%B8%97%E0%B8%A3%E0%B8%B2%E0%B8%A2&dstPostalCode=50210&dstDetailAddress=127+%E0%B8%AB%E0%B8%A1%E0%B8%B9%E0%B9%88+3+%E0%B8%95.%E0%B8%AB%E0%B8%99%E0%B8%AD%E0%B8%87%E0%B9%81%E0%B8%AB%E0%B8%A2%E0%B9%88%E0%B8%87+%E0%B8%AD.%E0%B8%AA%E0%B8%B1%E0%B8%99%E0%B8%97%E0%B8%A3%E0%B8%B2%E0%B8%A2+%E0%B8%88.%E0%B9%80%E0%B8%8A%E0%B8%B5%E0%B8%A2%E0%B8%87%E0%B9%83%E0%B8%AB%E0%B8%A1%E0%B9%88&articleCategory=1&expressCategory=1&weight=1000&codEnabled=1&codAmount=2000&remark=-
-```
-
-> parameter description
-
-```yaml
-mchId: 'AA0005'
-nonceStr: '1538020484532'
-sign: '840BDFAC52E4607AEC4AB7CD7A95ABE43CFD974D8DE0726DD6C3891EBB1FF6D8'
-mchPno: 'MP123456111'
-warehouseNo: 'AA0005_001'
-srcName: 'test srcName1111'
-srcPhone: '111111111'
-srcProvinceName: 'อุบลราชธานี'
-srcCityName: 'เมืองอุบลราชธานี'
-srcPostalCode: '34000'
-srcDetailAddress: '68/5-6 ม.1 บ้านท่าบ่อ99111'
-dstName: 'น้ำพริกแม่อำพร'
-dstPhone: '091111111'
-dstHomePhone: '092222222'
-dstProvinceName: 'เชียงใหม่'
-dstCityName: 'สันทราย'
-dstPostalCode: '50210'
-dstDetailAddress: '127 หมู่ 3 ต.หนองแหย่ง อ.สันทราย จ.เชียงใหม่'
-articleCategory: 1
-expressCategory: 1
-weight: 1000
-codEnabled: 1
-codAmount: 2000
-remark: '-'
-```
-
-`POST /open/v1/ordersByMchPno`
-
-Create order by merchant tracking number
-
-### Request Parameters
-
-<aside class="notice">
-About shipper's information address.</br>
-You could specify shipper's information of the parcel in 2 ways.</br>
-1st,If you input values of all request parameters of {srcName,srcPhone,srcProvinceName,srcCityName,srcPostalCode,srcDetailAddress}, notice that these several parameters must be all input values,  these parameters are the shipper's information.</br>
-2nd,If you don't input value of any request parameter of {srcName,srcPhone,srcProvinceName,srcCityName,srcPostalCode,srcDetailAddress}, you must input value of request parameter "warehouseNo" to show the shipper's information.
-</aside>
-
-|Name|Type|Required|Description|
-|---|---|---|---|
-|mchId|string(32)|true|merchant no|
-|nonceStr|string(32)|true|random nonce string|
-|sign|string(64)|true|signature|
-|mchPno|string(20)|true|merchant tracking number.Must be unique.|
-|expressCategory|integer|true|[Express Category](#express_category)(must be 1)|
-|warehouseNo|string(32)|false|shipper warehouse no.must be one value returned by API [getAllWarehouses](#getallwarehouses-warehouses).|
-|srcName|string(50)|false|shipper's name|
-|srcPhone|string(20)|false|shipper's phone number|
-|srcProvinceName|string(150)|false|shipper's province name|
-|srcCityName|string(150)|false|shipper's city name.city is a sub unit of province.|
-|srcDistrictName|string(150)|false|shipper's district name.district is a sub unit of city.|
-|srcPostalCode|string(20)|false|shipper's postal code|
-|srcDetailAddress|string(200)|false|shipper's detail address|
-|dstName|string(50)|true|consignee's name|
-|dstPhone|string(20)|true|consignee's phone number|
-|dstHomePhone|string(20)|false|consignee's home phone number or consigne's second phone number|
-|dstProvinceName|string(150)|true|consignee's province name|
-|dstCityName|string(150)|true|consignee's city name.city is a sub unit of province.|
-|dstDistrictName|string(150)|false|consignee's district name.district is a sub unit of city.|
-|dstPostalCode|string(20)|true|consignee's postal code|
-|dstDetailAddress|string(200)|true|consignee's detail address|
-|articleCategory|integer|true|[Article Category](#article_category)|
-|weight|integer|true|article weight(unit: gram)|
-|insured|integer|true|whether insured(1: yes 0: no)|
-|insureDeclareValue|integer|false|article declare value for insurance(unit: cent)|
-|codEnabled|integer|true|whether COD(1: yes 0: no)|
-|codAmount|integer|false|COD amount(unit: cent)|
-|remark|string(200)|false|remark|
-
-> response body example
-
-```json
-{
-	"code": 1,
-	"message": "success",
-	"data": {
-		"mchPno": "MP123456111",
-		"mchId": "AA0005",
-		"sortCode": "01N-CNXY-00",
-		"dstStoreName": "เชียงใหม่-DC"
-	}
-}
-```
-
-### Response Body
-
-|Name|Type|Description|
-|---|---|---|
-|mchPno|string(20)|merchant tracking number|
-|mchId|string(32)|merchant no|
-|sortCode|string(13)|Flash Express sorting code|
-|dstStoreName|string(50)|Flash Store Name to deliver the parcel|
-
-## Create consumer order `/orders/consumer`
-
-```http
-POST /open/v1/orders/consumer HTTP/1.1
-Host: api-sandbox.fulfillment.com
-Content-Type: application/x-www-form-urlencoded
-Accept: application/json
-```
-
-> request body example
-
-```css
-mchId=UBP18100020&nonceStr=1530763467835&sign=8D08ACD66D6C3837BB03880A48D639312F76BB70C49DF0283C431AAB9828529B&customerPhone=0630101499&outTradeNo=1530763467835&srcName=%E0%B8%AB%E0%B8%AD%E0%B8%A1%E0%B8%A3%E0%B8%A7%E0%B8%A1&srcPhone=0630101454&srcProvinceName=%E0%B8%81%E0%B8%A3%E0%B8%B8%E0%B8%87%E0%B9%80%E0%B8%97%E0%B8%9E&srcCityName=%E0%B8%AB%E0%B8%99%E0%B8%AD%E0%B8%87%E0%B8%88%E0%B8%AD%E0%B8%81&srcDistrictName=%E0%B8%A5%E0%B8%B3%E0%B8%9C%E0%B8%B1%E0%B8%81%E0%B8%8A%E0%B8%B5&srcPostalCode=10530&srcDetailAddress=68%2F5-6+%E0%B8%A1.1+%E0%B8%9A%E0%B9%89%E0%B8%B2%E0%B8%99%E0%B8%97%E0%B9%88%E0%B8%B2%E0%B8%9A%E0%B9%88%E0%B8%AD&srcLat=13.80063275&srcLng=100.84433917&dstName=%E0%B8%99%E0%B9%89%E0%B8%B3%E0%B8%9E%E0%B8%A3%E0%B8%B4%E0%B8%81%E0%B9%81%E0%B8%A1%E0%B9%88%E0%B8%AD%E0%B8%B3%E0%B8%9E%E0%B8%A3&dstPhone=0970209976&dstHomePhone=0970220220&dstProvinceName=%E0%B9%80%E0%B8%8A%E0%B8%B5%E0%B8%A2%E0%B8%87%E0%B9%83%E0%B8%AB%E0%B8%A1%E0%B9%88&dstCityName=%E0%B8%AA%E0%B8%B1%E0%B8%99%E0%B8%97%E0%B8%A3%E0%B8%B2%E0%B8%A2&dstPostalCode=50210&dstDetailAddress=127+%E0%B8%AB%E0%B8%A1%E0%B8%B9%E0%B9%88+3+%E0%B8%95.%E0%B8%AB%E0%B8%99%E0%B8%AD%E0%B8%87%E0%B9%81%E0%B8%AB%E0%B8%A2%E0%B9%88%E0%B8%87+%E0%B8%AD.%E0%B8%AA%E0%B8%B1%E0%B8%99%E0%B8%97%E0%B8%A3%E0%B8%B2%E0%B8%A2+%E0%B8%88.%E0%B9%80%E0%B8%8A%E0%B8%B5%E0%B8%A2%E0%B8%87%E0%B9%83%E0%B8%AB%E0%B8%A1%E0%B9%88&articleCategory=1&expressCategory=1&weight=1000&insured=1&insureDeclareValue=10000&remark=%E0%B8%82%E0%B8%B6%E0%B9%89%E0%B8%99%E0%B8%9A%E0%B8%B1%E0%B8%99%E0%B9%84%E0%B8%94
-```
-
-> parameter description
-
-```yaml
-mchId: 'UBP18100020'
-nonceStr: '1530763467835'
-sign: '8D08ACD66D6C3837BB03880A48D639312F76BB70C49DF0283C431AAB9828529B'
-customerPhone: '0630101499'
-outTradeNo: '1530763467835'
-expressCategory: 1
-srcName: 'หอมรวม'
-srcPhone: '0630101454'
-srcProvinceName: 'กรุงเทพ'
-srcCityName: 'หนองจอก'
-srcDistrictName: 'ลำผักชี'
-srcPostalCode: '10530'
-srcDetailAddress: '68/5-6 ม.1 บ้านท่าบ่อ'
-srcLat: 13.80063275
-srcLng: 100.84433917
-dstName: 'น้ำพริกแม่อำพร'
-dstPhone: '0970209976'
-dstHomePhone: '0970220220'
-dstProvinceName: 'เชียงใหม่'
-dstCityName: 'สันทราย'
-dstPostalCode: '50210'
-dstDetailAddress: '127หมู่3ต.หนองแหย่งอ.สันทรายจ.เชียงใหม่'
-articleCategory: 1
-weight: 1000
-insured: 1
-insureDeclareValue: 100000
-remark: 'ขึ้นบันได'
-```
-
-`POST /open/v1/orders/consumer`
-
-create consumer order
-
-### Request Parameters
-
-|Name|Type|Required|Description|
-|---|---|---|---|
-|mchId|string(32)|true|merchant no|
-|nonceStr|string(32)|true|random nonce string|
-|sign|string(64)|true|signature|
-|customerPhone|string(20)|true|consumer's phone number|
-|outTradeNo|string(64)|true|merchant order no|
-|expressCategory|integer|true|[Express Category](#express_category)(must be 1)|
-|srcName|string(50)|true|shipper's name|
-|srcPhone|string(20)|true|shipper's phone number|
-|srcProvinceName|string(150)|true|shipper's province name|
-|srcCityName|string(150)|true|shipper's city name.city is a sub unit of province.|
-|srcDistrictName|string(150)|false|shipper's district name.district is a sub unit of city.|
-|srcPostalCode|string(20)|true|shipper's postal code|
-|srcDetailAddress|string(200)|true|shipper's detail address|
-|srcLat|decimal(11,8)|false|shipper's location latitude|
-|srcLng|decimal(11,8)|false|shipper's location longitude|
-|dstName|string(50)|true|consignee's name|
-|dstPhone|string(20)|true|consignee's phone number|
-|dstHomePhone|string(20)|false|consignee's home phone number or consigne's second phone number|
-|dstProvinceName|string(150)|true|consignee's province name|
-|dstCityName|string(150)|true|consignee's city name.city is a sub unit of province.|
-|dstPostalCode|string(20)|true|consignee's postal code|
-|dstDetailAddress|string(200)|true|consignee's detail address|
-|articleCategory|integer|true|[Article Category](#article_category)|
-|weight|integer|true|article weight(unit: gram)|
-|insured|integer|true|whether insured(1: yes 0: no)|
-|insureDeclareValue|integer|false|article declare value for insurance(unit: cent)|
-|remark|string(200)|false|remark|
-
-> response body example
-
-```json
-{
-	"code": 1,
-	"message": "success",
-	"data": {
-		"orderId": "5b3d98f7a4c2130579510116",
-		"customerPhone": "0630101499",
-		"outTradeNo": "1530763467835",
-		"sortCode": "01N-CNXY-00",
-		"dstStoreName": "เชียงใหม่-DC"
-	}
-}
-```
-
-### Response Body
-
-|Name|Type|Description|
-|---|---|---|
-|orderId|string(32)|Flash Express order id|
-|customerPhone|string(20)|consumer's phone number|
-|outTradeNo|string(64)|merchant order no|
-|sortCode|string(13)|Flash Express sorting code|
-|dstStoreName|string(50)|Flash Store Name to deliver the parcel|
-
-# Notify API
-## getAllNotificationsInDate `/notifications`
-
-```http
-POST /open/v1/notifications HTTP/1.1
-Host: api-sandbox.fulfillment.com
-Content-Type: application/x-www-form-urlencoded
-Accept: application/json
-```
-
-> request body example
-
-```css
-mchId=AA0005&nonceStr=1538021824975&sign=3C16B6E0D0DBFC6A1E46EF4D0FCEEB6C54E95960223D08FD5D583C7B7BB04A0C&date=2018-09-27
-```
-
-> parameter description
-
-```yaml
-mchId: 'AA0005'
-nonceStr: '1538021824975'
-sign: '3C16B6E0D0DBFC6A1E46EF4D0FCEEB6C54E95960223D08FD5D583C7B7BB04A0C'
-date: '2018-09-27'
-```
-
-`POST /open/v1/notifications`
-
-getAllNotificationsInDate
-
-### Request Parameters
-
-|Name|Type|Required|Description|
-|---|---|---|---|
-|mchId|string(32)|true|merchant no|
-|nonceStr|string(32)|true|random nonce string|
-|sign|string(64)|true|signature|
-|date|string(10)|true|notifying date.format:YYYY-MM-DD|
-
-> response body example
-
-```json
-{
-	"code": 1,
-	"message": "success",
-	"data": [{
-		"ticketPickupId": 7392,
-		"createdAt": 1538047000,
-		"srcProvinceName": "อุบลราชธานี",
-		"srcCityName": "เมืองอุบลราชธานี",
-		"srcDistrictName": null,
-		"srcDetailAddress": "68/5-6 ม.1 บ้านท่าบ่อ",
-		"staffInfoName": "LIU005",
-		"staffInfomobile": "1234567896",
-		"state": 1,
-		"stateText": "รอรับพัสดุ",
-		"kaWarehouseNo": null,
-		"kaWarehouseName": null,
-		"remark": "ASAP",
-		"estimateParcelNumber": 1,
-		"kaName": "aaa test zhao",
-		"postalCode": null,
-		"phone": null,
-		"srcName": null,
-		"parcelNumber": 0
-	}, {
-		"ticketPickupId": 7391,
-		"createdAt": 1538046970,
-		"srcProvinceName": "อุบลราชธานี",
-		"srcCityName": "เมืองอุบลราชธานี",
-		"srcDistrictName": null,
-		"srcDetailAddress": "68/5-6 ม.1 บ้านท่าบ่อ",
-		"staffInfoName": "LIU005",
-		"staffInfomobile": "1234567896",
-		"state": 1,
-		"stateText": "รอรับพัสดุ",
-		"kaWarehouseNo": null,
-		"kaWarehouseName": null,
-		"remark": "ASAP",
-		"estimateParcelNumber": 1,
-		"kaName": "aaa test zhao",
-		"postalCode": null,
-		"phone": null,
-		"srcName": null,
-		"parcelNumber": 0
-	}]
-}
-```
-
-### Response Body
-
-|Name|Type|Description|
-|---|---|---|
-|ticketPickupId|integer|Flash Express notification id|
-|kaName|string(50)|merchant name|
-|srcName|string(50)|contact name of picking up address|
-|phone|string(20)|contact phone number of picking up address|
-|srcProvinceName|string(150)|province name of picking up address|
-|srcCityName|string(150)|city name of picking up address.city is a sub unit of province.|
-|srcDistrictName|string(150)|district name of picking up address.district is a sub unit of city.|
-|srcDetailAddress|string(200)|detail address of picking up address|
-|postalCode|string(20)|postal code of picking up address|
-|kaWarehouseNo|string(32)|warehouse no. of picking up address.|
-|kaWarehouseName|string(32)|warehouse name of picking up address.|
-|staffInfoName|string(50)|courier name to picking up parcels|
-|staffInfomobile|string(20)|courier phone number to picking up parcels|
-|state|integer|[Notification State](#notification_state)|
-|stateText|string(100)|state description of notification|
-|estimateParcelNumber|integer|estimating parcels count to pick up|
-|parcelNumber|integer|actually picked up parcels count|
-|remark|string(200)|remark|
-|createdAt|integer|notifying timestamp in UTC|
-
-## Notify courier `/notify`
-
-```http
-POST /open/v1/notify HTTP/1.1
-Host: api-sandbox.fulfillment.com
-Content-Type: application/x-www-form-urlencoded
-Accept: application/json
-```
-
-> request body example
-
-```css
-mchId=AA0005&nonceStr=1536749937115&sign=3E750D747981D6175EBB4E1F581DCD9246E60E7E82F8126C8091B27664FCD625&warehouseNo=AA0005_001&srcName=%E0%B8%AB%E0%B8%AD%E0%B8%A1%E0%B8%A3%E0%B8%A7%E0%B8%A1++nofity+test+name&srcPhone=0630101454&srcProvinceName=%E0%B8%AD%E0%B8%B8%E0%B8%9A%E0%B8%A5%E0%B8%A3%E0%B8%B2%E0%B8%8A%E0%B8%98%E0%B8%B2%E0%B8%99%E0%B8%B5&srcCityName=%E0%B9%80%E0%B8%A1%E0%B8%B7%E0%B8%AD%E0%B8%87%E0%B8%AD%E0%B8%B8%E0%B8%9A%E0%B8%A5%E0%B8%A3%E0%B8%B2%E0%B8%8A%E0%B8%98%E0%B8%B2%E0%B8%99%E0%B8%B5&srcDistrictName=%E0%B9%83%E0%B8%99%E0%B9%80%E0%B8%A1%E0%B8%B7%E0%B8%AD%E0%B8%87&srcPostalCode=34000&srcDetailAddress=68%2F5-6+%E0%B8%A1.1+%E0%B8%9A%E0%B9%89%E0%B8%B2%E0%B8%99%E0%B8%97%E0%B9%88%E0%B8%B2%E0%B8%9A%E0%B9%88%E0%B8%AD+nofity+test+address&estimateParcelNumber=100&remark=ASAP
-```
-
-> parameter description
-
-```yaml
-mchId: 'AA0005'
-nonceStr: '1536749937115'
-sign: '3E750D747981D6175EBB4E1F581DCD9246E60E7E82F8126C8091B27664FCD625'
-warehouseNo: 'AA0005_001'
-srcName: 'หอมรวม  nofity test name'
-srcPhone: '0630101454'
-srcProvinceName: 'อุบลราชธานี'
-srcCityName: 'เมืองอุบลราชธานี'
-srcDistrictName: 'ในเมือง'
-srcPostalCode: '34000'
-srcDetailAddress: '68/5-6 ม.1 บ้านท่าบ่อ nofity test address'
-estimateParcelNumber: 100
-remark: 'ASAP'
-```
-
-`POST /open/v1/notify`
-
-Notify courier
-
-### Request Parameters
-
-<aside class="notice">
-About picking up address.</br>
-You could specify the address you want the courier to pick up your parcels.</br>
-If you input values of all request parameters of {srcName,srcPhone,srcProvinceName,srcCityName,srcPostalCode,srcDetailAddress}, notice that these several parameters must be all input values,  this address will be pickup address.</br>
-If you don't input values of all request parameters of {srcName,srcPhone,srcProvinceName,srcCityName,srcPostalCode,srcDetailAddress}, you must input value of request parameter "warehouseNo" as pickup address.
-</aside>
-
-|Name|Type|Required|Description|
-|---|---|---|---|
-|mchId|string(32)|true|merchant no|
-|nonceStr|string(32)|true|random nonce string|
-|sign|string(64)|true|signature|
-|warehouseNo|string(32)|false|warehouse no. of picking up address.must be one value returned by API [getAllWarehouses](#getallwarehouses-warehouses).|
-|srcName|string(50)|false|contact name of picking up address|
-|srcPhone|string(20)|false|contact phone number of picking up address|
-|srcProvinceName|string(150)|false|province name of picking up address|
-|srcCityName|string(150)|false|city name of picking up address.city is a sub unit of province.|
-|srcDistrictName|string(150)|false|district name of picking up address.district is a sub unit of city.|
-|srcPostalCode|string(20)|false|postal code of picking up address|
-|srcDetailAddress|string(200)|false|detail address of picking up address|
-|estimateParcelNumber|integer|true|estimating parcels count to pick up|
-|remark|string(200)|false|remark|
-
-> response body: none
-
-### Response Body
-
-None.
-
-## Cancel notification `/notify/{id}/cancel`
-
-```http
-POST /open/v1/orders/TH4714A27/cancel HTTP/1.1
-Host: api-sandbox.fulfillment.com
-Content-Type: application/x-www-form-urlencoded
-Accept: application/json
-```
-`POST /open/v1/notify/{id}/cancel`
-
-cancel notification
-
-### Path Variables (not involved in the signature)
-
-|Name|Type|Required|Description|
-|---|---|---|---|
-|id|integer|true|Flash Express notification id.must be one value returned by API [getAllNotificationsInDate](#getallnotificationsindate-notifications).|
-
-> request body example
-
-```css
-mchId=AA0005&nonceStr=1538032588802&sign=4A16C1AD40BCEF7201149F5F125F7AA00D29D78561002DA30D9572AA79CD6F74
-```
-
-> parameter description
-
-```yaml
-mchId: 'AA0005'
-nonceStr: '1538032588802'
-sign: '4A16C1AD40BCEF7201149F5F125F7AA00D29D78561002DA30D9572AA79CD6F74'
-```
-
-### Request Parameters
-
-|Name|Type|Required|Description|
-|---|---|---|---|
-|mchId|string(32)|true|merchant no|
-|nonceStr|string(32)|true|random nonce string|
-|sign|string(64)|true|signature|
-
-> response body: none
-
-### Response Body
-
-None.
+# open_api
+## 仓库库存查询API
+<a id=仓库库存查询API> </a>
+### 基本信息
+
+**Path：** /open/goodsStock
+
+**Method：** POST
+
+**接口描述：**
+
+
+### 请求参数
+**Headers**
+
+| 参数名称  | 参数值  |  是否必须 | 示例  | 备注  |
+| ------------ | ------------ | ------------ | ------------ | ------------ |
+| Content-Type  |  application/x-www-form-urlencoded | 是  |   |   |
+**Body**
+
+| 参数名称  | 参数类型  |  是否必须 | 示例  | 备注  |
+| ------------ | ------------ | ------------ | ------------ | ------------ |
+| barCode | text  |  是 |  O3O2O1O,BBBUI,NNN  |  条形码 多个用,隔开，验证正则  ^[\w-]+(,[\w-]+)* |
+| warehouseId | text  |  否 |  1  |  仓库ID，不填默认全部仓库 |
+| goodsStatus | text  |  否 |  normal  |  质量状态[normal]正品，默认[bad]残品 |
+
+
+
+### 返回数据
+
+<table>
+  <thead class="ant-table-thead">
+    <tr>
+      <th key=name>名称</th><th key=type>类型</th><th key=required>是否必须</th><th key=default>默认值</th><th key=desc>备注</th><th key=sub>其他信息</th>
+    </tr>
+  </thead><tbody className="ant-table-tbody"><tr key=0-0><td key=0><span style="padding-left: 0px"><span style="color: #8c8a8a"></span> msg</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span></span></td><td key=5></td></tr><tr key=0-1><td key=0><span style="padding-left: 0px"><span style="color: #8c8a8a"></span> code</span></td><td key=1><span>number</span></td><td key=2>非必须</td><td key=3></td><td key=4><span></span></td><td key=5></td></tr><tr key=0-2><td key=0><span style="padding-left: 0px"><span style="color: #8c8a8a"></span> data</span></td><td key=1><span>object</span></td><td key=2>非必须</td><td key=3></td><td key=4><span></span></td><td key=5></td></tr><tr key=0-2-0><td key=0><span style="padding-left: 20px"><span style="color: #8c8a8a">├─</span> O3O2O1O</span></td><td key=1><span>object</span></td><td key=2>非必须</td><td key=3></td><td key=4><span></span></td><td key=5></td></tr><tr key=0-2-0-0><td key=0><span style="padding-left: 40px"><span style="color: #8c8a8a">├─</span> availableInventory</span></td><td key=1><span>integer</span></td><td key=2>非必须</td><td key=3></td><td key=4><span>可售库存</span></td><td key=5></td></tr><tr key=0-2-0-1><td key=0><span style="padding-left: 40px"><span style="color: #8c8a8a">├─</span> totalInventory</span></td><td key=1><span>integer</span></td><td key=2>非必须</td><td key=3></td><td key=4><span>实物库存</span></td><td key=5></td></tr><tr key=0-2-0-2><td key=0><span style="padding-left: 40px"><span style="color: #8c8a8a">├─</span> inventory</span></td><td key=1><span>integer</span></td><td key=2>非必须</td><td key=3></td><td key=4><span>可用库存</span></td><td key=5></td></tr><tr key=0-2-1><td key=0><span style="padding-left: 20px"><span style="color: #8c8a8a">├─</span> BBBUI</span></td><td key=1><span>object</span></td><td key=2>非必须</td><td key=3></td><td key=4><span></span></td><td key=5></td></tr><tr key=0-2-1-0><td key=0><span style="padding-left: 40px"><span style="color: #8c8a8a">├─</span> availableInventory</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span></span></td><td key=5></td></tr><tr key=0-2-1-1><td key=0><span style="padding-left: 40px"><span style="color: #8c8a8a">├─</span> totalInventory</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span></span></td><td key=5></td></tr><tr key=0-2-1-2><td key=0><span style="padding-left: 40px"><span style="color: #8c8a8a">├─</span> inventory</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span></span></td><td key=5></td></tr><tr key=0-2-2><td key=0><span style="padding-left: 20px"><span style="color: #8c8a8a">├─</span> NNN</span></td><td key=1><span>object</span></td><td key=2>非必须</td><td key=3></td><td key=4><span></span></td><td key=5></td></tr><tr key=0-2-2-0><td key=0><span style="padding-left: 40px"><span style="color: #8c8a8a">├─</span> availableInventory</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span></span></td><td key=5></td></tr><tr key=0-2-2-1><td key=0><span style="padding-left: 40px"><span style="color: #8c8a8a">├─</span> totalInventory</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span></span></td><td key=5></td></tr><tr key=0-2-2-2><td key=0><span style="padding-left: 40px"><span style="color: #8c8a8a">├─</span> inventory</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span></span></td><td key=5></td></tr>
+               </tbody>
+              </table>
+            
+## 入库通知单API
+<a id=入库通知单API> </a>
+### 基本信息
+
+**Path：** /arrival_notice/create
+
+**Method：** POST
+
+**接口描述：**
+
+
+### 请求参数
+**Headers**
+
+| 参数名称  | 参数值  |  是否必须 | 示例  | 备注  |
+| ------------ | ------------ | ------------ | ------------ | ------------ |
+| Content-Type  |  application/x-www-form-urlencoded | 是  |   |   |
+**Body**
+
+| 参数名称  | 参数类型  |  是否必须 | 示例  | 备注  |
+| ------------ | ------------ | ------------ | ------------ | ------------ |
+| warehouseId | text  |  是 |  1  |  仓库ID(目前只有1个仓库填1) |
+| type | text  |  否 |  1  |  入库类型(目前只能填1) |
+| orderSn | text  |  否 |    |  外部单号(不能重复) |
+| channelSource | text  |  否 |    |  渠道来源 |
+| deliveryWay | text  |  否 |  logistics  |  配送方式：[logistics]物流(默认) [express]快递 [seller]自送 |
+| carrier | text  |  否 |    |  承运商 |
+| deliveryMan | text  |  否 |    |  送货人 |
+| plateNumber | text  |  否 |    |  车牌号 |
+| deliveryNumber | text  |  否 |    |  运单号 |
+| deliveryContact | text  |  否 |    |  送货人联系方式 |
+| remark | text  |  否 |    |  备注 |
+| arrivalStart | text  |  否 |  2019-06-10 14:45  |  预计到货开始时间(无需到秒) |
+| arrivalEnd | text  |  否 |  2019-06-10 16:45  |  预计到货结束时间(无需到秒) |
+| goods | text  |  是 |  [{"i":1,"barCode":"00000000001","num":4,"price":123,"asset":["aaaaaaa1","aaaaaaa2","aaaaaaa3","aaaaaaa4"]},{"i":2,"barCode":"00000000002","num":2,"price":456,"asset":["bbbbbbb1","bbbbbbb2"]}]  |  入库商品的json串，下面参数是json串里的 |
+| i | text  |  是 |    |  顺序码，从1开始递增 |
+| barCode | text  |  是 |    |  商品条码 |
+| num | text  |  是 |    |  入库数量 |
+| asset | text  |  否 |  ["bbbbbbb1","bbbbbbb2"]  |  ASSET码数组，当商品开启ASSET时必填 |
+
+
+
+## 出库单添加API
+<a id=出库单添加API> </a>
+### 基本信息
+
+**Path：** /open/returnWarehouseAdd
+
+**Method：** POST
+
+**接口描述：**
+<p>商品格式<br>
+[{"i":"0","barCode":"FEX00025","goodsName":"测试接口1","specification":"14*20*6 cm","num":"1","price":"400","remark":"商品备注一"}，{"i":"1","barCode":"FEX00026","goodsName":"测试接口2","specification":"14*20*7 cm","num":"2","price":"500","remark":"商品备注二"}]</p>
+
+
+### 请求参数
+**Headers**
+
+| 参数名称  | 参数值  |  是否必须 | 示例  | 备注  |
+| ------------ | ------------ | ------------ | ------------ | ------------ |
+| Content-Type  |  application/x-www-form-urlencoded | 是  |   |   |
+**Body**
+
+| 参数名称  | 参数类型  |  是否必须 | 示例  | 备注  |
+| ------------ | ------------ | ------------ | ------------ | ------------ |
+| status | text  |  否 |    |  [1]待审核 |
+| warehouseId | text  |  是 |  1  |  仓库ID |
+| type | text  |  否 |  1  |  退供出库 |
+| channelSource | text  |  否 |    |  来源渠道 |
+| nodeSn | text  |  否 |  TH01090201  |  网点编码 |
+| consigneeName | text  |  是 |    |  收货人 |
+| consigneePhone | text  |  是 |    |  联系方式 |
+| province | text  |  是 |    |  省 |
+| city | text  |  是 |    |  市 |
+| district | text  |  是 |    |  区 |
+| postalCode | text  |  是 |    |  邮编 |
+| consigneeAddress | text  |  是 |    |  详细地址 |
+| logistics | text  |  否 |    |  配送方式【物流 logistics】 【快递express】 【 到仓自取self】 |
+| outTime | text  |  否 |    |  期望出库时间 |
+| goodsStatus | text  |  否 |    |  【normal】正品  【bad】残品 |
+| remark | text  |  否 |    |  备注 |
+| goods | text  |  是 |    |  出库商品json |
+| orderSn | text  |  是 |    |  外部订单号 |
+
+
+
+## 发货单新增API
+<a id=发货单新增API> </a>
+### 基本信息
+
+**Path：** /Order/addOrder
+
+**Method：** POST
+
+**接口描述：**
+<p><span class="colour" style="color:rgb(85, 85, 85)">商品传输格式&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; [{"id":'20',"num":"1","price":"400"}，{"id":"21","num":"2","price":"500"}]</span></p>
+
+
+### 请求参数
+**Headers**
+
+| 参数名称  | 参数值  |  是否必须 | 示例  | 备注  |
+| ------------ | ------------ | ------------ | ------------ | ------------ |
+| Content-Type  |  application/x-www-form-urlencoded | 是  |   |   |
+**Body**
+
+| 参数名称  | 参数类型  |  是否必须 | 示例  | 备注  |
+| ------------ | ------------ | ------------ | ------------ | ------------ |
+| platformSourceId | text  |  是 |    |  wms端添加的货主店铺主键ID |
+| orderSn | text  |  是 |    |  订单号 |
+| orderSourceId | text  |  是 |    |  订单主键ID |
+| code | text  |  是 |    |  地址code |
+| postalCode | text  |  是 |    |  邮编 |
+| consigneeName | text  |  是 |    |  收件人名称 |
+| consigneeAddress | text  |  是 |    |  收件人详细地址 |
+| phoneNumber | text  |  是 |    |  联系电话 |
+| buyerMessage | text  |  是 |    |  买家留言 |
+| paidPrice | text  |  是 |    |  订单金额 |
+| logisticCharge | text  |  是 |    |  运费 |
+| totalPrice | text  |  是 |    |  订单总金额 |
+| payMode | text  |  是 |    |  支付方式  【1】货到付款  【2】银行转账 |
+| payStatus | text  |  是 |    |  支付状态 【0】未支付【1】 已支付 |
+| goods | text  |  是 |      [{"id":'20',"num":"1","price":"400"}，{"id":"21","num":"2","price":"500"}]  |  订单商品信息 商品id 数量 价格 json格式 |
+| type | text  |  否 |  1  |  订单类型 [1]销售订单 (默认) [2]补货订单 |
+| deliverySn | text  |  否 |    |  原发货单号(type=2时必填) |
+
+
+
+## 商品档案查询API
+<a id=商品档案查询API> </a>
+### 基本信息
+
+**Path：** /open/goods
+
+**Method：** POST
+
+**接口描述：**
+<p>1.barCode 不传的时候&nbsp; 返回货主所有的商品列表，填写时返回对应条码的商品信息。<br>
+2.如果要查询多个商品则把多个条形码用&nbsp; &nbsp;，（逗号） 隔开&nbsp; 如&nbsp; &nbsp;barCode1,barCode2</p>
+<p>training<span class="size"></span>环境链接：<a href="https://open-training.flashfulfillment.co.th/">https://open-training.flashfulfillment.co.th/</a><span class="size"></span><br>
+training图片地址示例：<a href="https://wms-upload-training.flashfulfillment.co.th/upload/images/goods/94/76/947600748f3a290edb38aee45d3be9e5.jpg">https://wms-upload-training.flashfulfillment.co.th/upload/images/goods/94/76/947600748f3a290edb38aee45d3be9e5.jpg</a><br data-tomark-pass=""><br>
+<br data-tomark-pass=""><br>
+<br data-tomark-pass=""><br>
+生产环境链接：<a href="https://open.flashfulfillment.co.th/">https://open.flashfulfillment.co.th/</a><br>
+生产图片地址示例：<a href="https://wms-upload.flashfulfillment.co.th/upload/images/goods/77/c0/77c04870b9622555c7fd681214ca63a6.png">https://wms-upload.flashfulfillment.co.th/upload/images/goods/77/c0/77c04870b9622555c7fd681214ca63a6.png</a></p>
+
+
+### 请求参数
+**Headers**
+
+| 参数名称  | 参数值  |  是否必须 | 示例  | 备注  |
+| ------------ | ------------ | ------------ | ------------ | ------------ |
+| Content-Type  |  application/x-www-form-urlencoded | 是  |   |   |
+**Body**
+
+| 参数名称  | 参数类型  |  是否必须 | 示例  | 备注  |
+| ------------ | ------------ | ------------ | ------------ | ------------ |
+| barCode | text  |  否 |    |  商品条形码 |
+
+
+
+### 返回数据
+
+<table>
+  <thead class="ant-table-thead">
+    <tr>
+      <th key=name>名称</th><th key=type>类型</th><th key=required>是否必须</th><th key=default>默认值</th><th key=desc>备注</th><th key=sub>其他信息</th>
+    </tr>
+  </thead><tbody className="ant-table-tbody"><tr key=0-0><td key=0><span style="padding-left: 0px"><span style="color: #8c8a8a"></span> msg</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span></span></td><td key=5></td></tr><tr key=0-1><td key=0><span style="padding-left: 0px"><span style="color: #8c8a8a"></span> code</span></td><td key=1><span>number</span></td><td key=2>非必须</td><td key=3></td><td key=4><span></span></td><td key=5></td></tr><tr key=0-2><td key=0><span style="padding-left: 0px"><span style="color: #8c8a8a"></span> data</span></td><td key=1><span>object</span></td><td key=2>非必须</td><td key=3></td><td key=4><span></span></td><td key=5></td></tr><tr key=0-2-0><td key=0><span style="padding-left: 20px"><span style="color: #8c8a8a">├─</span> SIHX</span></td><td key=1><span>object</span></td><td key=2>非必须</td><td key=3></td><td key=4><span>条形码</span></td><td key=5></td></tr><tr key=0-2-0-0><td key=0><span style="padding-left: 40px"><span style="color: #8c8a8a">├─</span> modifiedName</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span></span></td><td key=5></td></tr><tr key=0-2-0-1><td key=0><span style="padding-left: 40px"><span style="color: #8c8a8a">├─</span> abbrName</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span></span></td><td key=5></td></tr><tr key=0-2-0-2><td key=0><span style="padding-left: 40px"><span style="color: #8c8a8a">├─</span> remark</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span>备注</span></td><td key=5></td></tr><tr key=0-2-0-3><td key=0><span style="padding-left: 40px"><span style="color: #8c8a8a">├─</span> isCombo</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span>【1】商品套装【0】普通商品</span></td><td key=5></td></tr><tr key=0-2-0-4><td key=0><span style="padding-left: 40px"><span style="color: #8c8a8a">├─</span> hot</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span>ABC分类</span></td><td key=5></td></tr><tr key=0-2-0-5><td key=0><span style="padding-left: 40px"><span style="color: #8c8a8a">├─</span> sellerId</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span></span></td><td key=5></td></tr><tr key=0-2-0-6><td key=0><span style="padding-left: 40px"><span style="color: #8c8a8a">├─</span> isAsset</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span>【1】Asset商品【0】普通商品</span></td><td key=5></td></tr><tr key=0-2-0-7><td key=0><span style="padding-left: 40px"><span style="color: #8c8a8a">├─</span> encodeType</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span>[unique]SN商品 [其他]非SN商品</span></td><td key=5></td></tr><tr key=0-2-0-8><td key=0><span style="padding-left: 40px"><span style="color: #8c8a8a">├─</span> price</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span>售价</span></td><td key=5></td></tr><tr key=0-2-0-9><td key=0><span style="padding-left: 40px"><span style="color: #8c8a8a">├─</span> isLocked</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span></span></td><td key=5></td></tr><tr key=0-2-0-10><td key=0><span style="padding-left: 40px"><span style="color: #8c8a8a">├─</span> isUnpackedDelivery</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span></span></td><td key=5></td></tr><tr key=0-2-0-11><td key=0><span style="padding-left: 40px"><span style="color: #8c8a8a">├─</span> modified</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span></span></td><td key=5></td></tr><tr key=0-2-0-12><td key=0><span style="padding-left: 40px"><span style="color: #8c8a8a">├─</span> createdName</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span></span></td><td key=5></td></tr><tr key=0-2-0-13><td key=0><span style="padding-left: 40px"><span style="color: #8c8a8a">├─</span> id</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span>商品ID</span></td><td key=5></td></tr><tr key=0-2-0-14><td key=0><span style="padding-left: 40px"><span style="color: #8c8a8a">├─</span> introduction</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span>商品简介</span></td><td key=5></td></tr><tr key=0-2-0-15><td key=0><span style="padding-left: 40px"><span style="color: #8c8a8a">├─</span> image</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span>图片地址</span></td><td key=5></td></tr><tr key=0-2-0-16><td key=0><span style="padding-left: 40px"><span style="color: #8c8a8a">├─</span> storeType</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span></span></td><td key=5></td></tr><tr key=0-2-0-17><td key=0><span style="padding-left: 40px"><span style="color: #8c8a8a">├─</span> parentTwo</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span></span></td><td key=5></td></tr><tr key=0-2-0-18><td key=0><span style="padding-left: 40px"><span style="color: #8c8a8a">├─</span> logisticRequire</span></td><td key=1><span>string []</span></td><td key=2>非必须</td><td key=3></td><td key=4><span>【dangerous】】危险品【fragile】易碎品【not_flight】禁航品【damp_proof】防潮【fire_proof】防火【put_ice_bag】保鲜品【heteromorphism】异形</span></td><td key=5><p key=3><span style="font-weight: '700'">item 类型: </span><span>string</span></p></td></tr><tr key=0-2-0-19><td key=0><span style="padding-left: 40px"><span style="color: #8c8a8a">├─</span> created</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span></span></td><td key=5></td></tr><tr key=0-2-0-20><td key=0><span style="padding-left: 40px"><span style="color: #8c8a8a">├─</span> costPrice</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span>成本价</span></td><td key=5></td></tr><tr key=0-2-0-21><td key=0><span style="padding-left: 40px"><span style="color: #8c8a8a">├─</span> specification</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span>商品规格</span></td><td key=5></td></tr><tr key=0-2-0-22><td key=0><span style="padding-left: 40px"><span style="color: #8c8a8a">├─</span> isShelfLife</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span>[0]非保质期商品 [1]是保质期商品</span></td><td key=5></td></tr><tr key=0-2-0-23><td key=0><span style="padding-left: 40px"><span style="color: #8c8a8a">├─</span> barCode</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span>商品条码</span></td><td key=5></td></tr><tr key=0-2-0-24><td key=0><span style="padding-left: 40px"><span style="color: #8c8a8a">├─</span> volume</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span></span></td><td key=5></td></tr><tr key=0-2-0-25><td key=0><span style="padding-left: 40px"><span style="color: #8c8a8a">├─</span> orderSourceType</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span></span></td><td key=5></td></tr><tr key=0-2-0-26><td key=0><span style="padding-left: 40px"><span style="color: #8c8a8a">├─</span> name</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span>商品名称</span></td><td key=5></td></tr><tr key=0-2-0-27><td key=0><span style="padding-left: 40px"><span style="color: #8c8a8a">├─</span> replenishmentBatchNum</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span></span></td><td key=5></td></tr><tr key=0-2-0-28><td key=0><span style="padding-left: 40px"><span style="color: #8c8a8a">├─</span> parentOne</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span></span></td><td key=5></td></tr><tr key=0-2-0-29><td key=0><span style="padding-left: 40px"><span style="color: #8c8a8a">├─</span> goodsCode</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span>商品货号</span></td><td key=5></td></tr><tr key=0-2-0-30><td key=0><span style="padding-left: 40px"><span style="color: #8c8a8a">├─</span> categoryId</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span></span></td><td key=5></td></tr><tr key=0-2-0-31><td key=0><span style="padding-left: 40px"><span style="color: #8c8a8a">├─</span> status</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span>[1]停用 [2]存盘 [3]启用</span></td><td key=5></td></tr>
+               </tbody>
+              </table>
+            
+## 地址库修改API
+<a id=地址库修改API> </a>
+### 基本信息
+
+**Path：** /seller_address/update
+
+**Method：** POST
+
+**接口描述：**
+
+
+### 请求参数
+**Headers**
+
+| 参数名称  | 参数值  |  是否必须 | 示例  | 备注  |
+| ------------ | ------------ | ------------ | ------------ | ------------ |
+| Content-Type  |  application/x-www-form-urlencoded | 是  |   |   |
+**Body**
+
+| 参数名称  | 参数类型  |  是否必须 | 示例  | 备注  |
+| ------------ | ------------ | ------------ | ------------ | ------------ |
+| nodeSn | text  |  是 |  TH01050101  |  网点编号 |
+| name | text  |  是 |    |  网点名称 |
+| type | text  |  否 |    |  网点类型 |
+| contact | text  |  是 |    |  联系人 |
+| telephone | text  |  是 |    |  电话号码 |
+| code | text  |  是 |    |  地址Code |
+| postalCode | text  |  是 |    |  地址邮编 |
+| address | text  |  是 |    |  详细地址 |
+| organization | text  |  否 |    |  分管机构 |
+| remark | text  |  否 |    |  备注 |
+
+
+
+## 地址库删除API
+<a id=地址库删除API> </a>
+### 基本信息
+
+**Path：** /seller_address/delete
+
+**Method：** POST
+
+**接口描述：**
+<p>此api由于wms业务需求&nbsp; 将改功能改成禁用功能</p>
+
+
+### 请求参数
+**Headers**
+
+| 参数名称  | 参数值  |  是否必须 | 示例  | 备注  |
+| ------------ | ------------ | ------------ | ------------ | ------------ |
+| Content-Type  |  application/x-www-form-urlencoded | 是  |   |   |
+**Body**
+
+| 参数名称  | 参数类型  |  是否必须 | 示例  | 备注  |
+| ------------ | ------------ | ------------ | ------------ | ------------ |
+| nodeSn | text  |  是 |    |  网点编号 |
+
+
+
+## 地址库新增API
+<a id=地址库新增API> </a>
+### 基本信息
+
+**Path：** /seller_address/create
+
+**Method：** POST
+
+**接口描述：**
+
+
+### 请求参数
+**Headers**
+
+| 参数名称  | 参数值  |  是否必须 | 示例  | 备注  |
+| ------------ | ------------ | ------------ | ------------ | ------------ |
+| Content-Type  |  application/x-www-form-urlencoded | 是  |   |   |
+**Body**
+
+| 参数名称  | 参数类型  |  是否必须 | 示例  | 备注  |
+| ------------ | ------------ | ------------ | ------------ | ------------ |
+| nodeSn | text  |  是 |  TH01050101  |  网点编号 |
+| name | text  |  是 |    |  网点名称 |
+| type | text  |  否 |    |  网点类型 |
+| contact | text  |  是 |    |  联系人 |
+| telephone | text  |  是 |    |  电话号码 |
+| code | text  |  是 |    |  地址Code |
+| postalCode | text  |  是 |    |  地址邮编 |
+| address | text  |  是 |    |  详细地址 |
+| organization | text  |  否 |    |  分管机构 |
+| remark | text  |  否 |    |  备注 |
+
+
+
+## 客户商品出库明细
+<a id=客户商品出库明细> </a>
+### 基本信息
+
+**Path：** /open/outBoundGoods
+
+**Method：** POST
+
+**接口描述：**
+<p>返回数据字段解释&nbsp; &nbsp;barCode&nbsp; 商品条码， outNumber&nbsp; &nbsp;出库数量&nbsp; &nbsp;outWarehouseTime&nbsp; 出库时间&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;outSn 出库单单号 （方便测试使用）</p>
+
+
+### 请求参数
+**Headers**
+
+| 参数名称  | 参数值  |  是否必须 | 示例  | 备注  |
+| ------------ | ------------ | ------------ | ------------ | ------------ |
+| Content-Type  |  application/x-www-form-urlencoded | 是  |   |   |
+**Body**
+
+| 参数名称  | 参数类型  |  是否必须 | 示例  | 备注  |
+| ------------ | ------------ | ------------ | ------------ | ------------ |
+| startTime | text  |  是 |  2018-07-15  |  查询开始日期 |
+| endTime | text  |  是 |  2019-07-15  |  查询结束日期   开始时间结束时间不要大于一年 |
+| nodeSn | text  |  是 |  TH3052641  |  客户编码（网点编号） |
+| barCode | text  |  是 |    |  商品SN  多个以 逗号隔开     barcode1,barcode2,barcode3 |
+
+
+
+## 销退单新增API
+<a id=销退单新增API> </a>
+### 基本信息
+
+**Path：** /rollback_order/add
+
+**Method：** POST
+
+**接口描述：**
+<p><span class="colour" style="color: rgb(0, 0, 0);">{</span><br>
+<span class="colour" style="color: rgb(163, 21, 21);">"code"</span><span class="colour" style="color: rgb(0, 0, 0);">:</span><span class="colour" style="color: rgb(9, 136, 90);">1</span><span class="colour" style="color: rgb(0, 0, 0);">,</span><br>
+<span class="colour" style="color: rgb(163, 21, 21);">"msg"</span><span class="colour" style="color: rgb(0, 0, 0);">:</span><span class="colour" style="color: rgb(4, 81, 165);">"成功"</span><span class="colour" style="color: rgb(0, 0, 0);">,</span><br>
+<span class="colour" style="color: rgb(163, 21, 21);">"data"</span><span class="colour" style="color: rgb(0, 0, 0);">:</span><span class="colour" style="color: rgb(4, 81, 165);">"115"</span><br>
+<span class="colour" style="color: rgb(0, 0, 0);">}</span></p>
+
+
+### 请求参数
+**Headers**
+
+| 参数名称  | 参数值  |  是否必须 | 示例  | 备注  |
+| ------------ | ------------ | ------------ | ------------ | ------------ |
+| Content-Type  |  application/x-www-form-urlencoded | 是  |   |   |
+**Body**
+
+| 参数名称  | 参数类型  |  是否必须 | 示例  | 备注  |
+| ------------ | ------------ | ------------ | ------------ | ------------ |
+| externalOrderSn | text  |  是 |  dsfsfsf  |  订单号（外部订单号） |
+| backType | text  |  是 |  allRejected  |  退货类型 枚举值 allRejected primary |
+| backReason | text  |  否 |  jijijijiji  |  退回原因 |
+| deliverySn | text  |  否 |  DO19081217361  |  销售订单号(SCM发货单号) |
+| externalUserInfo | text  |  否 |  xingfukuaidi12  |  用户ID（用户在电商平台的用户） |
+| senderAddress | text  |  是 |    |   |
+| senderCountry | text  |  否 |  th  |  国家  默认泰国  填了也不用 |
+| province | text  |  是 |  กรุงเทพ  |  省 |
+| city | text  |  是 |  คลองสามวา  |  市 |
+| district | text  |  是 |  ทรายกองดิน  |  区 |
+| postalCode | text  |  是 |  10510  |  邮政编码 |
+| senderName | text  |  否 |  binbin  |  寄件人姓名 |
+| senderPhone | text  |  否 |  34534373457474  |  寄件人电话号码   9-20位数字 |
+| carrier | text  |  否 |  快递  |  承运商 |
+| backExpressSn | text  |  否 |  急急急试试  |  退回运单号 |
+| oriExpressSn | text  |  否 |  急急急  |  原运单号 |
+| weight | text  |  否 |  56  |  订单重量 g 传整形 |
+| size | text  |  否 |  4445  |  订单尺寸 mm  传整型 |
+| buyerRemark | text  |  否 |  备注  |  买家备注 |
+| backPayMode | text  |  是 |  cod  |  付款类型 枚举值  bank online cod  |
+| backStatus | text  |  否 |  1  |  退款状态 枚举值 默认1  1：待退款 2：已退款 3：不退款 |
+| bankId | text  |  否 |  电饭锅  |  退款账号 |
+| payee | text  |  否 |  lolo  |  收款人 |
+| bankName | text  |  否 |  建行  |  银行 |
+| warehouseId | text  |  是 |  78  |  仓库ID |
+| goods | text  |  是 |  [{"barCode\":4,\"num\":34,\"price\":5565},{\"barCode\":5,\"num\":3}]  |  商品明细 json字符转  转义和不转义的都支持 |
+
+
+
+### 返回数据
+
+<table>
+  <thead class="ant-table-thead">
+    <tr>
+      <th key=name>名称</th><th key=type>类型</th><th key=required>是否必须</th><th key=default>默认值</th><th key=desc>备注</th><th key=sub>其他信息</th>
+    </tr>
+  </thead><tbody className="ant-table-tbody"><tr key=0-0><td key=0><span style="padding-left: 0px"><span style="color: #8c8a8a"></span> code</span></td><td key=1><span>number</span></td><td key=2>非必须</td><td key=3></td><td key=4><span></span></td><td key=5></td></tr><tr key=0-1><td key=0><span style="padding-left: 0px"><span style="color: #8c8a8a"></span> msg</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span></span></td><td key=5></td></tr><tr key=0-2><td key=0><span style="padding-left: 0px"><span style="color: #8c8a8a"></span> data</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span></span></td><td key=5></td></tr>
+               </tbody>
+              </table>
+            
+
 
 # Constants
 <h2 id="response_code">Response Code</h2>
 |Code|Meaning|
 |---|---|
-|1|success|
 |0|internal server error|
+|1|success|
 |1000|Failed to submit|
 |1001|customer not found|
+|100112|Please log in|
 |1002|invalid signature|
 |1003|order already exists|
 |1004|shipper's address not match|
@@ -1081,50 +600,144 @@ None.
 |1008|COD service not subscribed|
 |1009|COD can not be < 0|
 |1010|current address has been notified|
+|1011|Owner not exists|
+|1012|Sale platform not exists|
+|1013|Logistic company not exists|
+|1014|Delivery order not exists|
 |1015|order has been picked up,can not be canceled|
+|1016|Sales price cannot be 0|
+|1017|The store does not exist|
 |1018|shipper's address and warehouseNo could not both empty|
 |1019|pno and mchId not match|
 |1020|Insured declare value can not be < 0|
 |1021|shipper's postal code only be a 5 digit number|
 |1022|shipper's address not open|
-
-<h2 id="express_category">Express Category</h2>
-|Code|Meaning|
-|---|---|
-|1|Standard delivery|
-
-<h2 id="article_category">Article Category</h2>
-|Code|Meaning|
-|---|---|
-|0|File|
-|1|Food|
-|2|Daily Necessities|
-|3|Electronics|
-|4|Clothing|
-|5|Others|
-
-<h2 id="settlement_category">Settlement Category</h2>
-|Code|Meaning|
-|---|---|
-|1|Cash settlement|
-|2|Credit settlement|
-
-<h2 id="notification_state">Notification State</h2>
-|Code|Meaning|
-|---|---|
-|0|Open|
-|1|Assigned|
-|2|Completed|
-|4|Canceled|
-
-# Demo Download
-<h2 id="demo-csharp">C# Demo</h2>
-<a href="download/CSharpDemo.rar">C# Demo</a>
-
-<h2 id="demo-php">PHP Demo</h2>
-<a href="download/flashDemo.php.zip">PHP Demo</a>
-
-<h2 id="demo-java">Java Demo</h2>
-<a href="download/OpenTest.java.zip">Java Demo</a>
-
-
+|1023||
+|1024||
+|1025||
+|1026||
+|1027||
+|1101| Contact number is incorrect|
+|1102| Commodity information is  incorrect|
+|1103|The barcode can't empty |
+|1104| Commodity not exist|
+|1105| Quantity must be filled|
+|1106|Commodity duplicate|
+|1107|Order number is not allowed to be empty|
+|1108|Time format is   incorrect|
+|1109|Form order  is invalid|
+|1110|The product name  can't be empty|
+|1201|Order date can't empty|
+|1202|Order amount can't empty|
+|1203|Detailed address and provincial and city postal code can't empty|
+|1204|Consignee name can't empty|
+|1205|Phone number  can't empty|
+|1206|The payment method can't empty|
+|1207|Detailed address and postal code cannot be empty|
+|1208|Provincial not match|
+|1300|Order date is  incorrect|
+|1301|Order amount is incorrect|
+|1302|District,  Province, Postal Code not match|
+|1303|The payment method is incorrect|
+|1304|Commodity not exist|
+|1305|Commodity not enabled|
+|1306|The order quantity  is incorrect|
+|1307|The price is incorrect|
+|1308|Freight fee is invalid|
+|1309|Commodity barcode already exists|
+|1310|The same barcode exists in the import file|
+|1311|The barcode format is incorrect|
+|1312|Commodity number format is incorrect|
+|1313|Commodity shelf life parameter is incorrect|
+|1314|The SN parameter is incorrect|
+|1315|Cost price parameter is incorrect|
+|1316|The length parameter is incorrect|
+|1317|The width parameter is incorrect|
+|1318|The height parameter is incorrect|
+|1319|The weight parameter is incorrect|
+|1320|Prepackage weight is incorrect|
+|1321|The number of days for shelf life  item  are required|
+|1322|The number of days for shelf life  is incorrect|
+|1323|Warning days for shelf life  item  are required|
+|1324|Warning days  is incorrect|
+|1325|Shelf life commodity can't be SN code|
+|1326|Image URL error|
+|1327|Image format error|
+|1328|Warning days can't  greater than Shelf life days|
+|1329|Payment time is illegal|
+|1330|Country cannot be empty|
+|1331|City cannot be empty|
+|1332|City cannot be empty|
+|1333|Zip code cannot be empty|
+|1334||
+|1335||
+|1336||
+|1337||
+|1338||
+|1400|The same order has the same price|
+|1401|The order amount is inconsistent|
+|1402|The owner did not sign this warehouse, or the warehouse ID does not exist|
+|1403|The quality status parameter is incorrect|
+|1501|Commodity not yet on sale|
+|1502|User receipt address not exist|
+|1503|Parameters required|
+|1504|Parameter error|
+|1505|Address cannot be empty|
+|1506|ID parameter is incorrect|
+|1507|Quantity parameter is incorrect|
+|1508|The number of purchases cannot be less min qty.|
+|1509|There is no item in the shopping cart|
+|1510|Inventory insufficient  or out of stock, unable to submit order|
+|1511|Commodity sold out|
+|1512|Order approved cannot be cancelled|
+|1513|Commodity on sale|
+|1514|The number of on sale cannot be 0|
+|1600|Not allowed to enter the system|
+|1601|Branch information  not match|
+|1602|Parameter non-JSON format|
+|1603|External order no.  required|
+|1604|Delivery bill has been  cancelled|
+|1605|Delivery bill   already handover|
+|1606|Delivery bill    has been shipped|
+|1607|Merge or split of delivery bill cannot be cancelled|
+|1608|Commodity not exist or is not enabled|
+|1609|Branch code cannot be empty|
+|1610|Branch code format is incorrect|
+|1611|Branch name cannot be empty|
+|1612|Contact name cannot be empty|
+|1613|Code and Postal code cannot be empty|
+|1614|Branch information already exists|
+|1615|Repository area cannot be empty|
+|1616|Ware-location coding cannot be empty|
+|1617|Repository area not exists|
+|1618|Ware-location coding in the table is repeated|
+|1619|Already exists in the system|
+|1620|Location code  format is incorrect|
+|1621|Location sequence format is incorrect|
+|1622|Location row format is incorrect|
+|1623|Location group format is incorrect|
+|1624|Location  floor  format is incorrect|
+|1625|Location format is incorrect|
+|1626|Location maximum volume  format is incorrect|
+|1627|Location maximum load bearing  format is incorrect|
+|1628|Location long format is incorrect|
+|1629|Location width format is incorrect|
+|1630|Location high format is incorrect|
+|1631|Location quality status format is incorrect|
+|1632|The area cannot edit|
+|1633|Location ID cannot be empty|
+|1634|Location ID in the table is repeating|
+|1635|Location ID not exist|
+|1636|Quality status cannot be changed|
+|1637|System preset location cannot be modified|
+|1638|ASSET format error|
+|1639|Start time should be less than end time|
+|1640|Products enabled ASSET, please submit ASSET code|
+|1641|ASSET already exists in the warehouse|
+|1642|Duplicate ASSET code exists|
+|1643|ASSET quantity with inbound bill item quantity not match.|
+|1644|Inbound type parameter invalid|
+|1645|Branch format incorrect|
+|1646|Date range is incorrect|
+|1647|The code does not exist|
+|1648|Incorrect format of location type|
