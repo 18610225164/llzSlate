@@ -67,7 +67,7 @@ Accept: application/json
 Accept-Language: th
 ```
 
-目前接口支持中文(`zh-CN`)和泰文(`th`). 需要注意 **目前行政区划数据不支持国际化，只支持泰文**
+目前接口支持中文(`zh-CN`)、英文(`en`)和泰文(`th`). 需要注意 **目前行政区划数据不支持国际化，只支持泰文**
 
 可以通过添加 HTTP Request Header: `Accept-Language` 来切换语言
 
@@ -75,10 +75,6 @@ Accept-Language: th
 
 <aside class="notice">
 重量单位为克(g), 调用接口之前必须先将千克转换成克, 比如: 2Kg -> 2000g
-</aside>
-
-<aside class="notice">
-金额货币虚拟 分 概念单位, 1泰铢 = 100分, 调用接口前必须将泰铢转换成分
 </aside>
 
 # 安全规范

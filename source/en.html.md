@@ -612,11 +612,11 @@ training图片地址示例：<a href="https://wms-upload-training.flashfulfillme
 |1020|Insured declare value can not be < 0|
 |1021|shipper's postal code only be a 5 digit number|
 |1022|shipper's address not open|
-|1023||
-|1024||
-|1025||
-|1026||
-|1027||
+|1023|Original delivery order is required|
+|1024|This delivery order  information was not found|
+|1025|Order not shipped, cannot be replenished|
+|1026|Contact is required|
+|1027|Sender name is required|
 |1101| Contact number is incorrect|
 |1102| Commodity information is  incorrect|
 |1103|The barcode can't empty |
@@ -669,11 +669,11 @@ training图片地址示例：<a href="https://wms-upload-training.flashfulfillme
 |1331|City cannot be empty|
 |1332|City cannot be empty|
 |1333|Zip code cannot be empty|
-|1334||
-|1335||
-|1336||
-|1337||
-|1338||
+|1334|Refund status is illegal|
+|1335|Product cannot be empty|
+|1336|Product format error|
+|1337|Return type required|
+|1338|Return type format error|
 |1400|The same order has the same price|
 |1401|The order amount is inconsistent|
 |1402|The owner did not sign this warehouse, or the warehouse ID does not exist|
